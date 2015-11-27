@@ -1,0 +1,16 @@
+{
+    "contents" : "//------------------------------------------------------------------------------\n//  GBM by Greg Ridgeway  Copyright (C) 2003\n//\n//  File:       gbm.h\n//\n//  License:    GNU GPL (version 2 or later)\n//\n//  Contents:   Entry point for gbm.dll\n//\n//  Owner:      gregr@rand.org\n//\n//  History:    2/14/2003   gregr created\n//              6/11/2007   gregr added quantile regression\n//                          written by Brian Kriegler\n//\n//------------------------------------------------------------------------------\n\n#include<vector>\n#include \"dataset.h\"\n#include \"distribution.h\"\n#include \"bernoulli.h\"\n#include \"adaboost.h\"\n#include \"poisson.h\"\n#include \"gaussian.h\"\n#include \"coxph.h\"\n#include \"laplace.h\"\n#include \"quantile.h\"\n#include \"tdist.h\"\n#include \"multinomial.h\"\n#include \"pairwise.h\"\n#include \"gbm_engine.h\"\n#include \"locationm.h\"\n#include \"huberized.h\"\n\ntypedef vector<char> VEC_CATEGORIES;\ntypedef vector<VEC_CATEGORIES> VEC_VEC_CATEGORIES;\n\nGBMRESULT gbm_setup\n(\n    double *adY,\n    double *adOffset,\n    double *adX,\n    int *aiXOrder,\n    double *adWeight,\n    double *adMisc,\n    int cRows,\n    int cCols,\n    int *acVarClasses,\n    int *alMonotoneVar,\n    const char *pszFamily,\n    int cTrees,\n    int cLeaves,\n    int cMinObsInNode,\n    int cNumClasses,\n    double dShrinkage,\n    double dBagFraction,\n    int cTrain,\n    CDataset *pData,\n    PCDistribution &pDist,\n    int& cGroups\n);\n\n\nGBMRESULT gbm_transfer_to_R\n(\n    CGBM *pGBM,\n    VEC_VEC_CATEGORIES &vecSplitCodes,\n    int *aiSplitVar,\n    double *adSplitPoint,\n    int *aiLeftNode,\n    int *aiRightNode,\n    int *aiMissingNode,\n    double *adErrorReduction,\n    double *adWeight,\n    double *adPred,\n    int cCatSplitsOld\n);\n\n\nGBMRESULT gbm_transfer_catsplits_to_R\n(\n    int iCatSplit,\n    VEC_VEC_CATEGORIES &vecSplitCodes,\n    int *aiSplitCodes\n);\n\n\nint size_of_vector\n(\n    VEC_VEC_CATEGORIES &vec,\n    int i\n);\n\n\n",
+    "created" : 1444789590979.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "891367063",
+    "id" : "C026A5CA",
+    "lastKnownWriteTime" : 1426060578,
+    "path" : "C:/Users/ambar_000/Desktop/COMP594/Blum Project/R Code/gbm/src/gbm.h",
+    "project_path" : "src/gbm.h",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "h"
+}

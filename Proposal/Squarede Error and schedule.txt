@@ -1,0 +1,131 @@
+Consider the case where \(\Psi\) is the squared error function, with an arbitrary coefficient of \(\frac{1}{2}\) to make the differentiation more readily interpretable.
+
+\begin{equation}
+\Psi(y, \hat{F}(\vec{x}))  = \frac{(y - \hat{F(\vec{x})})^2}{2}
+\end{equation}
+
+The negative gradient computation in Equation \ref{eq:NegativeGradient} then becomes.
+\begin{equation}
+g_{m,i} = -\frac{\partial}{\partial \hat{F}_{m-1}(\vec{x_i})} \frac{(y_i - \hat{F}_{m-1}(\vec{x_i}))^2}{2} = (y_i - \hat{F}_{m-1}(\vec{x_i}))
+\end{equation}
+
+
+That is when \( \Psi \) is the squared error function, the negative gradient is simply the residuals of the predictions on each instance of the training data. This result implies that the optimal scaling coefficient \(\rho\) in Equation \ref{eq:ScalingCoefficent} is always equal to 1 when for the squared error function is employed.
+
+\begin{equation}
+\begin{aligned}
+\rho_m  
+&= argmin_\rho \sum_{\vec{x}_i \, \epsilon \, S_m}\frac{(y_i - (\hat{F}_{m-1}(\vec{x}_i) + \rho h(\vec{x}_i)))^2}{2} \\
+& =  argmin_\rho \sum_{\vec{x}_i \, \epsilon \, S_m}\frac{(g_{m,i} - \rho h(\vec{x}_i))^2}{2} \\
+&= 1 \hspace{4em} \because  \text{Equation \ref{eq:NewBaseLearner}}
+\end{aligned}
+\label{eq:rho1}
+\end{equation}
+
+Thus, for the special case of regression trees as base learners and squared error as the loss function, the gradient boost algorithm simplifies to Algorithm {\ref{alg:TreeGradientBoost}.
+
+
+\newpage
+\section{Schedule}
+\begin{tabular}{|r|c|p{6cm}|p{3cm}|}
+	\hline Class Date & Week & Task & Deliverable Due\\
+	
+	\hline September 23 & 1 & Write proposal and make presentation  &  \\ 
+	\hline September 30 & 2 & Begin Implementation & Written and Oral Proposal \\ 
+	\hline October 7 & 3 & Implementation, Peer Review &  \\ 
+	\hline October 14 & 4 & Implementation, Peer Review &  \\ 
+	\hline October 21 & 5 & Implementation & Peer Review \\ 
+	\hline October 28 & 6 & Implementation, Write Progress Report &  \\ 
+	\hline November 4 & 7 & Implementation &  Progress Report\\ 
+	\hline November 11 & 8 & Implementation &  \\ 
+	\hline November 18 & 9 & Write Final Paper & Implementation \\ 
+	\hline November 25 & 10 & Write Final Paper &  \\
+	\hline December 2 & 11 & Create Final Presentation & Final Paper \\
+	\hline December 9 & 12 & Create Final Presentation &  \\
+	\hline December 14 & 12 &  & Final Presentation \\
+	\hline 
+\end{tabular} 
+
+
+\begin{algorithm}[H]
+	\rule{\textwidth}{2pt}
+	\SetKwInOut{Input}{input}
+	\SetKwInOut{Output}{output}
+	
+	\Input{Training Dataset: \(D = (x_i, y_i),\, i = 1...N\) \newline
+		Bag Fraction: \(bf \, \epsilon \, [0, 1] \) \newline
+		Learning Rate: \(v \, \epsilon \, [0, 1] \) \newline
+		Number of Base Learners: \(M \) \newline
+		Number of Leaves in Each Regression Tree: \(J\)  \newline
+	}
+	\Output{A function \(\hat{F}(\vec{x})\) that minimizes the expected value of \(\Psi(y, F(\vec{x})) \)}
+	\rule{\textwidth}{.5pt}
+	Initialize the  approximation of \(\hat{F}\)
+	\begin{equation}
+	\hat{F}_0(\vec{x}) = avg(y_i), \, \, i=1...N
+	\end{equation}
+	\For{\(m\leftarrow 1\) to \( M\) }
+	{
+		Select a random subsample \(S_m\) of training data without replacement.
+		\begin{equation}
+		S_m \subset D,  |S_m| = \tilde{N} = bf * N 
+		\end{equation}
+		Approximate the negative gradient \(\vec{g}_m\) of \(\Psi(y_i, \hat{F}_{m-1} (\vec{x}) ) \) with respect to \(\hat{F}_{m-1} (\vec{x})\).
+		\begin{equation}
+		g_{m,i} = -\frac{\partial}{\partial \hat{F}_{m-1}(\vec{x_i})} \Psi(y_i, \hat{F}_{m-1}(\vec{x_i})), \, \vec{x}_i \, \epsilon \, S_m
+		\label{eq:NegativeGradient}
+		\end{equation}
+		Build a new regression tree to predict the dataset \( (\vec{x}_i, g_{m,i}), \, \vec{x}_i \, \epsilon \, S_m\). Note \(R_{m,j} \) is defined by the splits made in the regression tree, which are always chosen minimize the least squares loss in the resulting children. Since value of \(h_m\) will always minimize the least squares, the parameter \(\beta\) in Algorithm \ref{alg:GeneralGradientBoost} will always be 1.
+		\begin{equation}
+		h_m(\vec{x}) = \sum_{j=1}^{J}avg_{x_i \epsilon R_{m,j}}( g_{m, i})
+		\end{equation}
+		Solve for the optimal coefficient \(\rho\) that minimizes \(\Psi\). Note: if \(\Psi\) is the least squares loss function, \(\rho = \beta = 1\) but they may differ for other loss functions.
+		\begin{equation}
+		p_m = argmin_\rho \sum_{\vec{x}_i \, \epsilon \, S_m}\Psi(y_i, \hat{F}_{m-1}(\vec{x}_i) + \rho h(\vec{x}_i))
+		\label{eq:ScalingCoefficent}
+		\end{equation}
+		Update your approximation of \(\hat{F}\), scaled by the learning rate v
+		\begin{equation}
+		\hat{F}_m(\vec{x}) = \hat{F}_{m-1}(\vec{x}) + v * \sum_{j=1}^{J}avg_{x_i \epsilon R_{m,j}}( g_{m, i})
+		\label{eq:UpdateStep2}
+		\end{equation}
+		
+		
+		
+
+		
+	}
+	\caption{Friedman's Gradient Boosting Machine with Regression Tree Base Learners \cite{2001Friedman} \cite{GBMTut} \cite{2002Friedman} \cite{death2007ABT}}
+	\rule{\textwidth}{2pt}
+	
+	\label{alg:TreeGradientBoost}
+\end{algorithm}	
+
+
+\begin{displaymath}
+\hat{F}(\vec{x}) = \sum_{m=1}^{M}v\cdot\rho_m \cdot h_m(\vec{x})
+\end{displaymath}
+Where
+\begin{center}
+	\(v \, \epsilon \, (0, 1] \)  - A constant learning rate
+\end{center}
+
+\begin{center}
+\(h_m =\) The base learner learned in the \(m^{th}\) iteration
+\end{center}
+
+\begin{center}
+\(\rho_m =\) \text{The factor that minimized the loss function in the \(m^{th}\) iteration}
+\end{center}
+
+\begin{displaymath}
+\hat{F}(\vec{x}) = \sum_{m=1}^{M}v\cdot\rho_m \cdot \sum_{j=1}^{J}b_{m,j}I(\vec{x} \, \epsilon \, R_{m,j})
+\end{displaymath}
+
+\begin{displaymath}
+\hat{F}(\vec{x}) = \sum_{m=1}^{M}\rho_m \cdot \sum_{j=1}^{J}v_{m,j} \cdot b_{m,j}I(\vec{x} \, \epsilon \, R_{m,j})
+\end{displaymath}
+
+\begin{equation}
+v_{m,j} = v_{max} \cdot \frac{|R_{m,j}|}{N}
+\end{equation}\end{document}

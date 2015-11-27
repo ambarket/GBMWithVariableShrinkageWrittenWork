@@ -1,0 +1,589 @@
+\documentclass[conference]{IEEEtran}
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+% *** CITATION PACKAGES ***
+%
+\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+   \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/tex-archive/info/epslatex/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+\usepackage[cmex10]{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+% There is also a support site at:
+% http://algorithms.berlios.de/index.html
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a larger sans serif font
+% than the serif footnote size font used in traditional IEEE formatting
+% and thus the need to invoke different subfig.sty package options depending
+% on whether compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Do not use the stfloats baselinefloat ability as IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/dblfloatfix/
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/url/
+% Basically, \url{my_url_here}.
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\usepackage{placeins}
+\usepackage{fancyvrb}
+\usepackage[bf]{caption2}
+\usepackage{comment}
+\usepackage{hhline}
+\usepackage{algorithm2e}
+
+\usepackage{filecontents,lipsum}
+\usepackage{todonotes}
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Variable Learning Rate Gradient Boosting Regression Trees }
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{Austin Barket}
+\IEEEauthorblockA{Department of Computer Science\\
+The Pennsylvania State University at Harrisburg\\
+Middletown, PA 17057\\
+Email: amb6470@psu.edu}
+\and
+\IEEEauthorblockN{Jeremy Blum}
+\IEEEauthorblockA{Department of Computer Science\\
+The Pennsylvania State University at Harrisburg\\
+Middletown, PA 17057\\
+Email: jjb24@psu.edu}
+}
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract
+\begin{abstract}
+In this research we explore the effect of variable learning rates on gradient boosting machines that utilize regression trees as the base learners. Until now all research and implementations of gradient boosting machines have used only constant learning rates as in Algorithm \ref{alg:GeneralGradientBoost}. The conventional wisdom has been to use small learning rates of 0.01 or lower as this always seems to lead to high accuracy models with a low risk of overfitting. However this comes at the cost of increased computation time because more base learners must be trained \cite{2012ridgeway}. 
+\end{abstract}
+
+% no keywords
+
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Introduction}
+
+Boosting is a machine learning technique that combines learning algorithms that barely beat random guessing, known as a weak or base learners, into a single model with significantly improved accuracy or lower error rates over any of its constituent parts \cite{StrengthOfWeak}  \cite{BoostingSurvey}. 
+
+The gradient boosting machine, originally introduced by Friedman in 1999 is a general boosting framework that leverages the steepest descent numerical optimization method to iteratively train base learners to address the errors made by those before them \cite{2001Friedman}.
+
+Production implementations of gradient boosting machines such as the gbm package in R have found remarkable traction among researchers in a wide variety of fields including robotics and ecology \cite{GBMTut} \cite{ecological}. Interestingly these packages generally implement Friedman's Gradient Boost algorithm as it was originally defined \cite{2012ridgeway}, leaving some definite opportunity for research into algorithmic tweaks to improve performance. 
+
+A particular component of the algorithm that has not been explored to date is the learning rate, also referred to as shrinkage, which is implemented as a constant parameter to the model. After each iteration the new base learner's predictions are scaled by this parameter as a form of regularization. 
+
+This proposal outlines a new way to think about shrinkage for the common case where the base learners are regression trees. We hypothesize that by varying the learning rate applied to the prediction of the examples in each individual leaf of the regression tree base learners, we will be able to decrease convergence time without sacrificing resilience to overfitting. \todo{Revise}
+
+\section{Related Work}
+Boosting finds its roots in a question originally posed by Kearns and Valient in 1988, is weak learnability equivalent to strong learnability\cite{Kearns:1988} \cite{KearnsValient:1989}? That is if you have a way to learn well enough to beat random guessing, is it inherently true that a strong learner, capable of arbitrarily low error, for that same problem exists? Schapire successfully proved this equivalence in 1990 by proposing and proving the correctness of a polynomial time boosting model he termed \textit{The hypothesis boosting mechanism} \cite{StrengthOfWeak}. 
+
+After Schapire's compelling proof that weak and strong learnability are in fact equivalent, researchers bagan working to improve upon his boosting algorithm. The first practical application of the early boosting algorithms came out of the work of Drucker, Schapire, and Simard at AT\&T Bell Labs in 1992. There they applied boosting of neural network base learners to the problem of optical character recognition of handwritten zip codes on USPS letters \cite{OCRDruckerHarrisSchapire}. 
+
+In 1995 Freund and Schapire introduced the AdaBoost algorithm which is hailed as solving many of the practical problems suffered by previous boosting algorithms. The unique idea introduced by Adaboost is the notion of applying higher weights at each iteration to the training examples that were misclassified in previous iterations, forcing the new base learners to focus their efforts on these examples. AdaBoost became famous as an excellent out of the bag approach for classification with exceptional resilience to overfitting \cite{adaboost}.  However, the details of why exactly AdaBoost worked were unknown until the year 1998 when Friedman, Hastie, and Tibshirani explored the algorithm from an in depth statistical viewpoint. They found that AdaBoost a specialized additive model, and applied knowledge from the long history of statistical additive function approximation to gain a better understanding of AdaBoost and boosting in general \cite{friedman2000}. 
+
+With an increased theoretical statistical understanding of boosting now available, Friedman developed a generalized stagewise additive function approximation boosting model termed the gradient boosting machine in 1999, which he later extended to include a stochastic subsampling approach in 2002 \cite{2001Friedman} \cite{2002Friedman}. Gradient Boosting Machines will be explored is great detail in the following sections as extending this model is the focus of the proposed research.
+
+Since their introduction to the machine learning and data mining communities in 1999, gradient boosting machines have found applications in a variety of fields for both classification and regression tasks. Most recently ecology researchers have found great interest in gradient boosting machines, particularly the varient of them that utilizes classification or regression trees as base learners. In 2007, Glenn De'ath extended the R package gbm, creating a new package gbmplus that implements a varient algorithm he terms Aggregated Boosted Trees (ABT). The idea behind ABTs is to perform cross validation to determine an optimal number of iterations for the boosting, then save the models built during cross validation chopping them off at the optimal number of iterations found. To make a prediction, the predictions of all of these boosted trees are computed then averaged. It was found that this approach lead to improved accuracy over gbm alone \cite{death2007ABT}. 
+
+Another group of ecological researchers Jane Elith and John Leathwick have also been applying boosted regression trees to their work. One such problem involves predicting whether or not a particular species off eel will be present in unsampled Australian rivers based upon measured environmental factors \cite{ecological}.  Elith and Leathwick implemented their own extensions to the functions in the gbm package in their dismo package in 2015 \cite{elith2015boosted}. 
+
+
+\section{The Gradient Boosting Machine}
+\label{sec:GradientBoostingMachine}
+In supervised learning, our goal is to find an approximation \(\hat{F}\) of an unknown function \(F: \vec{x} \rightarrow y\) that maps data instances \(\vec{x}\) to a set of response variables \(y\) and best minimizes the expected value of some loss function \( \Psi(y, F(\vec{x})) \). 
+Friedman's gradient boosting machine achieves this by iteratively constructing a strong learner that approximates \(F\) from many weak learners. In each iteration a new weak learner, such as a short regression tree, \(h(\vec{x})\) is trained to fit the errors made by the function approximation so far. This training is based upon an extremely common numerical minimization method known as steepest gradient descent \cite{2012ridgeway} \cite{2001Friedman} . 
+However, unlike most applications of steepest descent, Friedman's Gradient Boost algorithm computes the negative gradient \(\vec{g}\) in the space of the estimated function itself, not in the space of a finite set of parameters that define the function. By framing the problem in this way, the function \(\hat{F}\) is not limited to a set of functions definable by a finite set of parameters, but rather is defined by a potentially infinite set of parameters, one for each possible value \(\vec{x}\). Obviously, it is impossible to actually compute the gradient and apply steepest-descent in this potentially infinite dimensional function space, but it is possible to perform steepest-descent with respect to the finite space of training examples \(D\) \cite{2012ridgeway} \cite{2001Friedman}. 
+
+The negative gradient in this restricted subset of function space defines the direction of steepest descent in the loss function for the training examples. Thus by updating the function \(\hat{F}\) directly by this negative gradient, we would move closer to the minimum values of the loss function \(\Psi\) for the examples in the training dataset. Of course this is not quite the goal, instead we would like to be able to generalize to all possible data. To accomplish this we instead train a regression model to predict the negative gradient of the loss function at each step, then update our function with this model's prediction. Friedman's general Gradient Boosting Machine, extended to include his later ideas of subsampling the training data and applying a constant learning rate to improve generalization is provided in Algorithm \ref{alg:GeneralGradientBoost} \cite{2012ridgeway} \cite{2001Friedman} \cite{2002Friedman}. 
+
+\begin{algorithm}[]
+	\rule{\textwidth}{2pt}
+	\SetKwInOut{Input}{input}
+	\SetKwInOut{Output}{output}
+	
+	\Input{Training Dataset: \(D = (x_i, y_i),\, i = 1...N\) \newline
+		Bag Fraction: \(bf \, \epsilon \, [0, 1] \) \newline
+		Learning Rate: \(v \, \epsilon \, [0, 1] \) \newline
+		Number of Base Learners: \(M \) \newline
+		Loss Function: \(\Psi\) e.g. RMSE \newline
+		Choice of Base Learner: \(h(\vec{x})\) e.g. regression trees \newline
+	}
+	\Output{A function \(\hat{F}(\vec{x})\) that minimizes the expected value of \(\Psi(y, F(\vec{x})) \) }
+	\rule{\textwidth}{.5pt}
+	Initialize the  approximation of \(\hat{F}\)
+	\begin{equation}
+	\hat{F}_0(\vec{x}) = argmin_\rho \sum_{i=1}^{N}\Psi(y_i, \rho) 
+	\end{equation}
+	\For{\(m\leftarrow 1\) to \( M\) }
+	{
+		Select a random subsample \(S_m\) of training data without replacement.
+		\begin{equation}
+		S_m \subset D,  \tilde{N} = |S_m| = bf  \cdot  N 
+		\end{equation}
+		Approximate the negative gradient \(\vec{g}_m\) of \(\Psi(y_i, \hat{F}_{m-1} (\vec{x}) ) \) with respect to \(\hat{F}_{m-1} (\vec{x})\).
+		\begin{equation}
+		g_{m,i} = -\frac{\partial}{\partial \hat{F}_{m-1}(\vec{x_i})} \Psi(y_i, \hat{F}_{m-1}(\vec{x_i})), \, \vec{x}_i \, \epsilon \, S_m
+		\label{eq:NegativeGradient}
+		\end{equation}
+		Train a new base learner \(h_m(\vec{x})\) to predict \(\vec{g}_m\) and fit the least squares.
+		\begin{equation}
+		\beta_m, h_m(\vec{x}) = argmin_{\beta, h(\vec{x})}\sum_{\vec{x}_i \, \epsilon \, S_m}[ g_{m,i} - \beta h(\vec{x}_i)]^2
+		\label{eq:NewBaseLearner}
+		\end{equation}		
+		Solve for the optimal coefficient \(\rho\) that minimizes \(\Psi\).
+		\begin{equation}
+		p_m = argmin_\rho \sum_{\vec{x}_i \, \epsilon \, S_m}\Psi(y_i, \hat{F}_{m-1}(\vec{x}_i) + \rho h(\vec{x}_i))
+		\label{eq:ScalingCoefficent}
+		\end{equation}
+		Update your approximation of \(\hat{F}\), scaled by the learning rate v
+		\begin{equation}
+		\hat{F}_m(\vec{x}) = \hat{F}_{m-1}(\vec{x}) + v  \cdot  \rho_m h_m(\vec{x})
+		\label{eq:UpdateStep}
+		\end{equation}
+	}
+	\caption{Friedman's Gradient Boost Algorithm  \cite{2001Friedman} \cite{GBMTut} \cite{2002Friedman} \cite{death2007ABT}}
+	\rule{\textwidth}{2pt}
+	\label{alg:GeneralGradientBoost}
+\end{algorithm}
+
+\section{Simplifying Assumptions}
+\label{sec:SimplifyingAssumptions}
+For the purposes of the current research, we will consider only the case where \(\Psi\) is the squared error function and the goal is to predict a real valued response variable. Without loss of generality we will add a coefficient of \(\frac{1}{2}\) to \(\Psi\) so that the negative of the partial derivative of \(\Psi\) with respect to the predicted value of an instance \(\vec{x}_i\) is simply the residual of that prediction. In this case the component wise calculation of the negative gradient (Equation \ref{eq:NegativeGradient}) becomes Equation \ref{eq:SquaredErrorGradient}.
+
+\begin{equation}
+g_{m,i} = -\frac{\partial}{\partial \hat{F}_{m-1}(\vec{x_i})} \frac{(y_i - \hat{F}_{m-1}(\vec{x_i}))^2}{2} = (y_i - \hat{F}_{m-1}(\vec{x_i}))
+\label{eq:SquaredErrorGradient}
+\end{equation}
+
+As alluded to in the introduction, the proposed variable learning rate scheme is specially designed for the common case where the base learners are regression trees. When building the regression trees, we define the next best split as the split that leads to the largest reduction in squared error on the training examples. Thus the least squares coefficient \(\beta\) in Equation \ref{eq:NewBaseLearner} will always be 1, as will the optimal coefficient \(\rho\) in Equations \ref{eq:ScalingCoefficent} and \ref{eq:UpdateStep}. 
+
+Regression trees with J leaves will be represented with the following notation.
+	
+	\begin{equation}
+	h_m(\vec{x}) = \sum_{j=1}^{J}b_{m,j}I(\vec{x} \, \epsilon \, R_{m,j})
+	\end{equation}
+	Where 
+	\begin{center}
+		\(J =\) the number of terminal nodes (leaves) in the tree 
+	\end{center}
+	\begin{center}
+		\(b_{m,j} =\) Prediction made for all instances in \(R_{m,j}\).\\ 
+		For squared error, \(b_{m,j} =  avg_{x_i \epsilon R_{m,j}}( g_{m, i}) \) 
+	\end{center}
+	\begin{center}
+		\(R_{m,j} = \) The subset of instances \(\vec{x} \, \epsilon \, S_m\) \\
+		that are predicted by the \(j^{th}\) terminal node.
+	\end{center}
+	
+	\[ I(\alpha) = \begin{cases} 
+	1 & \alpha \text{ is true} \\
+	0 & \alpha \text{ is false}  
+	\end{cases}
+	\]
+	
+	Thus, for the case where the base learners are regression trees with J leaves and the loss function is the squared error, the update step (Equation \ref{eq:UpdateStep}) becomes
+	
+	\begin{equation}
+	\hat{F}_m(\vec{x}) = \hat{F}_{m-1}(\vec{x}) + v  \cdot \sum_{j=1}^{J}b_{m,j}I(\vec{x} \, \epsilon \, R_{m,j})
+	\label{eq:UpdateStep2}
+	\end{equation}
+	
+The choice of regression tree base learners introduces two additional parameters to the gradient boosting algorithm, namely the maximum number of splits in each tree (aka interaction depth)  and the minimum number of observations in each leaf node. These parameters work together to regularize the complexity of the regression trees, and in general these parameters are chosen to ensure short trees and stout leaves to weaken the predictive power of each individual base learner and strengthen the boosted model's ability to generalize \cite{ecological}. 
+
+Note that although we restricted the current study to regression tasks using the squared error loss function, the variable learning rate scheme defined and tested in the following sections could easily be applied to any of the loss functions originally defined by Friedman in \cite{2001Friedman} \cite{2002Friedman}, and most famously implemented in the gbm R package originally written by Ridgeway \cite{2012ridgeway}. Please see these references for information on the many specialized derivations of Algorithm \ref{alg:GeneralGradientBoost} for various learning tasks and to better understand the reasoning behind the equations defined in this section.
+
+\section{Variable Learning Rates for Regression Tree Base Learners}
+
+The use of regression trees as the base learners presents an interesting possibility of a simple, yet elegant adaptation method. Since the regression trees themselves can be seen as a summation of individual prediction terms, one for each leaf in the tree, a natural adaptation scheme is to compute a different learning rate for each leaf node in each base learner. Specifically a simple linear mapping will be used to ensure that the lower the number of examples in a given leaf node, the lower the computed learning rate. We hypothesize that this will encourage the training to learn rapidly from the most typical training examples, which will fall into large leaf nodes along with their similar peers, while diminishing the impact of outlying and noisy examples, which will be isolated by the regression tree's splitting algorithm. Overall we expect this scheme to lead to faster convergence time while strongly discouraging overfitting.
+
+Specifically, we will alter Algorithm 1 to take as input both a minimum and maximum learning rate \(v_{min}\) and \(v_{max}\) respectively, instead of the constant learning rate \(v\). The following equation will then be used to compute the learning rate for each of the J leaves in Equation \ref{eq:UpdateStep2}.
+	
+\begin{equation}
+v_{m,j} = \frac{|R_{m,j}|}{{|S_m|}}(v_{max} - v_{min})  + v_{min}
+	\label{eq:adaptRule1}
+\end{equation}
+
+This equation maps the range of possible leaf node sizes \([0, |S_m|]\) to the range of possible learning rates \([v_{min}, v_{max}]\). Note that even when the regression trees are built with a minimum number of observations in each leaf node, a common regularization parameter, the missing value branches of the trees can still have any number of examples in them, including zero if no missing values existed in the training data. Thus zero is used as the minimum leaf size regardless of the minimum number of observations parameter. 
+
+Using equation \ref{eq:adaptRule1}, the update step (Equation \ref{eq:UpdateStep2}) becomes...
+
+\begin{equation}
+	\hat{F}_m(\vec{x}) = \hat{F}_{m-1}(\vec{x}) + \rho_m\sum_{j=1}^{J}v_{m,j}  \cdot  b_{m,j}I(\vec{x} \, \epsilon \, R_{m,j})
+	\label{eq:revisedUpdateStep}
+\end{equation}
+	
+\section{Experiment}
+First, we implemented the Friedman's gradient boosting machine algorithm as defined and simplified in sections \ref{sec:GradientBoostingMachine} and \ref{sec:SimplifyingAssumptions} in java.
+
+
+% An example of a floating figure using the graphicx package.
+% Note that \label must occur AFTER (or within) \caption.
+% For figures, \caption should occur after the \includegraphics.
+% Note that IEEEtran v1.7 and later has special internal code that
+% is designed to preserve the operation of \label within \caption
+% even when the captionsoff option is in effect. However, because
+% of issues like this, it may be the safest practice to put all your
+% \label just after \caption rather than within \caption{}.
+%
+% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+% option should be used if it is desired that the figures are to be
+% displayed while in draft mode.
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure}
+
+% Note that IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command,
+% and the \label for the overall figure must come after \caption.
+% \hfil is used as a separator to get equal spacing.
+% Watch out that the combined width of all the subfigures on a 
+% line do not exceed the text width or a line break will occur.
+%
+%\begin{figure*}[!t]
+%\centering
+%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
+%\label{fig_second_case}}
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat[]), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
+% labels, the optional argument to \subfloat must be present. If a
+% subcaption is not desired, just leave its contents blank,
+% e.g., \subfloat[].
+
+
+% An example of a floating table. Note that, for IEEE style tables, the
+% \caption command should come BEFORE the table and, given that table
+% captions serve much like titles, are usually capitalized except for words
+% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
+% and up, which are usually not capitalized unless they are the first or
+% last word of the caption. Table text will default to \footnotesize as
+% IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that the IEEE does not put floats in the very first column
+% - or typically anywhere on the first page for that matter. Also,
+% in-text middle ("here") positioning is typically not used, but it
+% is allowed and encouraged for Computer Society conferences (but
+% not Computer Society journals). Most IEEE journals/conferences use
+% top floats exclusively. 
+% Note that, LaTeX2e, unlike IEEE journals/conferences, places
+% footnotes above bottom floats. This can be corrected via the
+% \fnbelowfloat command of the stfloats package.
+
+
+
+
+\section{Conclusion}
+The conclusion goes here.
+
+
+
+
+% conference papers do not normally have an appendix
+
+
+% use section* for acknowledgment
+\section*{Acknowledgment}
+
+
+The authors would like to thank...
+
+
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+\bibliographystyle{ieeetran}
+\bibliography{references}
+
+
+
+
+% that's all folks
+\end{document}
+
+

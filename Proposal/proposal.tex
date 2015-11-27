@@ -1,0 +1,196 @@
+ \documentclass[runningheads]{llncs}
+
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{fancyvrb}
+\usepackage[bf]{caption2}
+\usepackage{amssymb,amsmath}
+\usepackage{comment}
+\usepackage{hhline}
+\usepackage{algorithm2e}
+
+\usepackage{filecontents,lipsum}
+\usepackage[noadjust]{cite}
+
+\begin{document}
+\pagestyle{headings}
+%\mainmatter
+
+\title{Gradient Boosting Regression Trees with Variable Learning Rate Proposal}
+%Each page title
+\titlerunning{}
+%Authors
+\author{Austin Barket}
+%Authors on each page
+\authorrunning{Austin Barket}
+%University Address and contact information
+\institute{Department of Computer Science\\
+The Pennsylvania State University at Harrisburg\\
+Middletown, PA 17057\\
+\email{amb6470@psu.edu} } \maketitle
+%Document text starts here ...
+
+\section{Introduction}
+
+Boosting is a general machine learning technique that combines learning algorithms that barely beat random guessing, known as a weak or base learners, into a single model with significantly improved accuracy or lower error rates over any of its constituent parts \cite{StrengthOfWeak}  \cite{BoostingSurvey}. 
+
+The gradient boosting machine, originally introduced by Friedman in 1999 is a general boosting framework that leverages the steepest descent numerical optimization method at its core to iteratively train base learners to address the errors made by those before them \cite{2001Friedman}.
+
+Production implementations of gradient boosting machines such as the gbm package in R have found remarkable traction among researchers in a wide variety of fields including robotics and ecology \cite{GBMTut} \cite{ecological} .Interestingly these packages generally implement Friedman's Gradient Boost algorithm as it was originally defined \cite{2012ridgeway}, leaving some definite opportunity for research into algorithmic tweaks to improve performance. 
+
+A particular component of the algorithm that has not been explored to date is the learning rate, also referred to as shrinkage, which is implemented as a constant parameter to the model. After each iteration the new base learner's prediction is scaled by this parameter as a form of regularization. 
+
+This proposal outlines a new way to think about shrinkage for the specialized case where the base learners are regression trees. We hypothesize that by varying the learning rate applied to the prediction of the examples in each individual leaf of the regression tree base learners, we will be able to decrease convergence time without sacrificing resilience to overfitting. 
+
+
+\section{Related Work}
+
+Boosting finds its roots in a question originally posed by Kearns and Valient in 1988, is weak learnability equivalent to strong learnability\cite{Kearns:1988} \cite{KearnsValient:1989}? That is if you have a way to learn well enough to beat random guessing, is it inherently true that a strong learner, capable of arbitrarily low error, for that same problem exists? Schapire successfully proved this equivalence in 1990 by proposing and proving the correctness of a polynomial time boosting model he termed \textit{The hypothesis boosting mechanism} \cite{StrengthOfWeak}. 
+
+After Schapire's compelling proof that weak and strong learnability are in fact equivalent, researchers bagan working to improve upon his boosting algorithm. The first practical application of the early boosting algorithms came out of the work of Drucker, Schapire, and Simard at AT\&T Bell Labs in 1992. There they applied boosting of neural network base learners to the problem of optical character recognition of handwritten zip codes on USPS letters \cite{OCRDruckerHarrisSchapire}. 
+
+In 1995 Freund and Schapire introduced the AdaBoost algorithm which is hailed as solving many of the practical problems suffered by previous boosting algorithms. The unique idea introduced by Adaboost is the notion of applying higher weights at each iteration to the training examples that were misclassified in previous iterations, forcing the new base learners to focus their efforts on these examples. AdaBoost became famous as an excellent out of the bag approach for classification with exceptional resilience to overfitting \cite{adaboost}.  However, the details of why exactly AdaBoost worked were unknown until the year 1998 when Friedman, Hastie, and Tibshirani explored the algorithm from an in depth statistical viewpoint. They found that AdaBoost a specialized additive model, and applied knowledge from the long history of statistical additive function approximation to gain a better understanding of AdaBoost and boosting in general \cite{friedman2000}. 
+
+With an increased theoretical statistical understanding of boosting now available, Friedman developed a generalized stagewise additive function approximation boosting model termed the gradient boosting machine in 1999, which he later extended to include a stochastic subsampling approach in 2002 \cite{2001Friedman} \cite{2002Friedman}. Gradient Boosting Machines will be explored is great detail in the following sections as extending this model is the focus of the proposed research.
+
+Since their introduction to the machine learning and data mining communities in 1999, gradient boosting machines have found applications in a variety of fields for both classification and regression tasks. Most recently ecology researchers have found great interest in gradient boosting machines, particularly the varient of them that utilizes classification or regression trees as base learners. In 2007, Glenn De'ath extended the R package gbm, creating a new package gbmplus that implements a varient algorithm he terms Aggregated Boosted Trees (ABT). The idea behind ABTs is to perform cross validation to determine an optimal number of iterations for the boosting, then save the models built during cross validation chopping them off at the optimal number of iterations found. To make a prediction, the predictions of all of these boosted trees are computed then averaged. It was found that this approach lead to improved accuracy over gbm alone \cite{death2007ABT}. 
+
+Another group of ecological researchers Jane Elith and John Leathwick have also been applying boosted regression trees to their work. One such problem involves predicting whether or not a particular species off eel will be present in unsampled Australian rivers based upon measured environmental factors \cite{ecological}.  Elith and Leathwick implemented their own extensions to the functions in the gbm package in their dismo package in 2015 \cite{elith2015boosted}. 
+
+
+\section{Gradient Boosting Machine} 
+In machine learning, our goal is often to find an approximation \(\hat{F}\) of an unknown function \(F: \vec{x} \rightarrow y\) that maps data instances \(\vec{x}\) to a set of response variables \(y\) and best minimizes the expected value of some loss function \( \Psi(y, F(\vec{x})) \). 
+ Friedman's gradient boosting machine iteratively constructs a strong learner that approximates \(F\). In each iteration a new weak learner, such as a short regression tree, \(h(\vec{x})\) is trained to fit the errors made by the function approximation so far. This training is based upon an extremely common numerical minimization method known as steepest gradient descent \cite{2001Friedman} \cite{2012ridgeway}. 
+However, unlike most applications of steepest descent, Friedman's Gradient Boost algorithm computes the negative gradient \(\vec{g}\) in the space of the estimated function itself, not in the space of a finite parameters that define the function. By framing the problem in this way, the function \(\hat{F}\) is not limited to a set of functions definable by a finite set of parameters, but rather is defined by a potentially infinite set of parameters, one for each possible value \(\vec{x}\). Obviously, it is impossible to actually compute the gradient and apply steepest-descent in this potentially infinite dimensional function space, but it is possible to perform steepest-descent with respect to the finite space of training examples \(D\) \cite{2001Friedman} \cite{2012ridgeway}. 
+
+The negative gradient in this restricted subset of function space defines the direction of steepest descent in the loss function for the training examples. Thus by updating the function \(\hat{F}\) by this negative gradient, we would move closer to the minimum values of the loss function \(\Psi\) for the examples in the training dataset. Of course this is not quite the goal, instead we would like to be able to generalize to all possible data. To accomplish this we train a regression model to predict the negative gradient of the loss function at each step, then update our function with this model's prediction, instead of the value of the negative gradient itself. Friedman's general Gradient Boost algorithm, extended to include his later ideas of subsampling the training data and applying a constant learning rate to improve generalization is provided in Algorithm \ref{alg:GeneralGradientBoost} \cite{2001Friedman} \cite{2002Friedman} \cite{2012ridgeway}. 
+
+\newpage
+\begin{algorithm}[H]
+	\rule{\textwidth}{2pt}
+	\SetKwInOut{Input}{input}
+	\SetKwInOut{Output}{output}
+	
+	\Input{Training Dataset: \(D = (x_i, y_i),\, i = 1...N\) \newline
+		   Bag Fraction: \(bf \, \epsilon \, [0, 1] \) \newline
+	       Learning Rate: \(v \, \epsilon \, [0, 1] \) \newline
+		   Number of Base Learners: \(M \) \newline
+		   Loss Function: \(\Psi\) \newline
+		   Choice of Base Learner: \(h(\vec{x})\) e.g. regression trees \newline
+	}
+	\Output{A function \(\hat{F}(\vec{x})\) that minimizes the expected value of \(\Psi(y, F(\vec{x})) \) }
+	\rule{\textwidth}{.5pt}
+	Initialize the  approximation of \(\hat{F}\)
+	\begin{equation}
+	 \hat{F}_0(\vec{x}) = argmin_\rho \sum_{i=1}^{N}\Psi(y_i, \rho) 
+	\end{equation}
+	\For{\(m\leftarrow 1\) to \( M\) }
+	{
+		Select a random subsample \(S_m\) of training data without replacement.
+		\begin{equation}
+		S_m \subset D,  |S_m| = \tilde{N} = bf  \cdot  N 
+		\end{equation}
+		Approximate the negative gradient \(\vec{g}_m\) of \(\Psi(y_i, \hat{F}_{m-1} (\vec{x}) ) \) with respect to \(\hat{F}_{m-1} (\vec{x})\).
+		\begin{equation}
+		g_{m,i} = -\frac{\partial}{\partial \hat{F}_{m-1}(\vec{x_i})} \Psi(y_i, \hat{F}_{m-1}(\vec{x_i})), \, \vec{x}_i \, \epsilon \, S_m
+		\label{eq:NegativeGradient}
+		\end{equation}
+		Train a new base learner \(h_m(\vec{x})\) to predict \(\vec{g}_m\) and fit the least squares.
+		\begin{equation}
+		\beta_m, h_m(\vec{x}) = argmin_{\beta, h(\vec{x})}\sum_{\vec{x}_i \, \epsilon \, S_m}[ g_{m,i} - \beta h(\vec{x}_i)]^2
+		\label{eq:NewBaseLearner}
+		\end{equation}		
+		Solve for the optimal coefficient \(\rho\) that minimizes \(\Psi\). Note: if \(\Psi\) is the least squares loss function, \(\rho = \beta \) but they may differ for other loss functions.
+		\begin{equation}
+		p_m = argmin_\rho \sum_{\vec{x}_i \, \epsilon \, S_m}\Psi(y_i, \hat{F}_{m-1}(\vec{x}_i) + \rho h(\vec{x}_i))
+		\label{eq:ScalingCoefficent}
+		\end{equation}
+		Update your approximation of \(\hat{F}\), scaled by the learning rate v
+		\begin{equation}
+		\hat{F}_m(\vec{x}) = \hat{F}_{m-1}(\vec{x}) + v  \cdot  \rho_m h_m(\vec{x})
+		\label{eq:UpdateStep}
+		\end{equation}
+		
+	}
+	\caption{Friedman's Gradient Boost Algorithm  \cite{2001Friedman} \cite{GBMTut} \cite{2002Friedman} \cite{death2007ABT}}
+	\rule{\textwidth}{2pt}
+	\label{alg:GeneralGradientBoost}
+\end{algorithm}
+
+\newpage
+\section{Proposed Work}
+
+\subsection{Overview} 
+The goal of the this project is to explore the effect of variable learning rates on gradient boosting machines that utilize regression trees as the base learners. Until now all research and implementations of gradient boosting machines have used only constant learning rates as in Algorithm \ref{alg:GeneralGradientBoost}. The conventional wisdom has been to use small learning rates of 0.01 or lower as this always seems to lead to high accuracy models with a low risk of overfitting. However this comes at the cost of increased computation time because more base learners must be trained \cite{2012ridgeway}. 
+
+We believe that variable learning rates provide an unexploited area of research and hypothesize that an intelligent method of adapting the learning rate can improve the convergence speed without compromising the model's resilience to overfitting. As we will formulate in detail below, the use of regression trees as the base learners presents an interesting possibility of a simple, yet elegant adaptation method. Since the regression trees themselves can be seen as a summation of individual prediction terms, one for each leaf in the tree, a natural adaptation scheme is to apply a different learning rate to the predictions made by each leaf in the tree. Specifically, the lower the number of examples in a given leaf node, the lower its learning rate ought to be to discourage overfitting to the examples. On the contrary, a leaf node containing a large number of training examples poses less danger to the generalization ability of the overall learner, and thus it should be safe to apply relatively high learning rates to these leaves. 
+
+\subsection{Details}
+In order to discuss the proposed learning rate adaptation scheme in more detail, we will first specialize Algorithm {\ref{alg:GeneralGradientBoost} to use regression trees as base learners.
+
+Regression trees with J leaves will be represented with the following notation.
+
+\begin{equation}
+h_m(\vec{x}) = \sum_{j=1}^{J}b_{m,j}I(\vec{x} \, \epsilon \, R_{m,j})
+\end{equation}
+Where 
+\begin{center}
+	\(J =\) the number of terminal nodes (leaves) in the tree 
+\end{center}
+\begin{center}
+	\(b_{m,j} =\) Prediction made for all instances in \(R_{m,j}\).\\ 
+	 Dependent on the loss function used. E.g. for squared error, \(b_{m,j} =  avg_{x_i \epsilon R_{m,j}}( g_{m, i}) \) 
+\end{center}
+\begin{center}
+	\(R_{m,j} = \) The subset of instances \(\vec{x} \, \epsilon \, S_m\) \\
+	that are predicted by the \(j^{th}\) terminal node.
+\end{center}
+
+\[ I(\alpha) = \begin{cases} 
+1 & \alpha \text{ is true} \\
+0 & \alpha \text{ is false}  
+\end{cases}
+\]
+
+Thus, for the case where the base learners are regression trees with J leaves, the update step (Equation \ref{eq:UpdateStep}) becomes
+
+		\begin{equation}
+		\hat{F}_m(\vec{x}) = \hat{F}_{m-1}(\vec{x}) + v  \cdot  \rho_m  \cdot  \sum_{j=1}^{J}b_{m,j}I(\vec{x} \, \epsilon \, R_{m,j})
+		\label{eq:UpdateStep2}
+		\end{equation}
+
+As mentioned in the overview section, the main goal of this project is to examine the effects of variable learning rates on the gradient boost algorithm. Specifically, we will alter Algorithm 1 to take as input a maximum learning rate \(v_{max}\) instead of the constant learning rate \(v\). The following equation will then be used to compute the learning rate for each of the J leaves in Equation \ref{eq:UpdateStep2}.
+
+\begin{equation}
+v_{m,j} = v_{max}  \cdot  \frac{|R_{m,j}|}{|S_m|}
+\label{eq:adaptRule1}
+\end{equation}
+
+Note that the regions in regression trees are disjoint by definition. Thus  \(\sum_{j=1}^{J}|R_{m,j}| = |S_m|\). So we are essentially weighting each leaf's contribution to \(\hat{F}\) by the ratio of examples predicted by that leaf. The hypothesis being that as this ratio increases, the generalization quality of that leaf's prediction also increases and the risk of overfitting to those training examples diminishes.
+
+Using equation \ref{eq:adaptRule1}, the update step of Algorithm \ref{alg:GeneralGradientBoost} becomes
+
+	\begin{equation}
+	\hat{F}_m(\vec{x}) = \hat{F}_{m-1}(\vec{x}) + \rho_m\sum_{j=1}^{J}v_{m,j}  \cdot  b_{m,j}I(\vec{x} \, \epsilon \, R_{m,j})
+	\label{eq:revisedUpdateStep}
+	\end{equation}
+
+It's important to note that the usefulness and impact of this adaptation scheme is dependent upon the assumption that the number of examples predicted by the leaves in the regression trees vary sufficiently. If the trees tend to partition the training data evenly, then the proposed adaptation scheme will be approximately the same as just having a constant learning rate. If this proves to be the case one way in which we can increase the impact of the learning rate adaption, would be to allow the number of leaves J to vary from iteration to iteration. Perhaps by randomly selecting J from a small range of values. By varying J we will get shorter and taller trees which will result in different size partitions of the training data and thus different learning rates from tree to tree.
+
+Varying J across iterations could have a positive impact on the model performance of its own. A key factor in the performance of boosting models to have the individual base learners focus on different aspects of the training data \cite{2002Friedman}. This is why AdaBoost weights its misclassified examples \cite{adaboost}, why gradient boosting models fit the errors of previous iterations, and why Friedman's idea of subsampling the data at each iteration, which is essentially a form of bagging or bootstrapping found in other ensemble methods, is so crucial to the performance of the algorithm \cite{2002Friedman}.  We hypothesize that by varying J, the individual base learners will view the training data at different levels of granularity, and as a result the concepts that they focus on should differ, this increased diversity among base learners may lead to an increase in model performance.
+
+Time permitting, it may also be interesting to consider alternative adaptation schemes or even hybrids between them. For example we may consider starting with a high learning rate, then allowing it to diminish as the iterations go on. Note that such a scheme is not in conflict with the per leaf adaption mentioned above, and the two schemes could be used together, where we begin with a large maximum learning rate, and allow that maximum to vary as the iterations go on.
+
+We plan to modify an existing gradient boosting machine implementation, most likely the gbm or gbmplus R package. There are many benefits to extending one of these packages, chief among them is the built-in plotting and analysis functions that will be readily available to help compare the original implementation's performance against one with variable learning rates. In addition, some of the datasets and R code for the ecological experiments mentioned earlier are available for download \cite{death2007ABT} \cite{ecological} \cite{elith2015boosted}.  Using gbm will make it very easy to compare our results with those found in this prior research on the standard gbm model. 
+
+In the event that gbm proves to be too formidable to extend due to the large number of use cases the package is designed to support, we will extend a simpler implementation that is more directly focused on Friedman's original implementation. Two such options are the JSGBM Java implementation or the Apache Spark implementation written in Scala. If this is the case, additional work will be required to find numeric datasets suitable for use with these implementations.
+
+After finishing the implementation a significant portion of this project will entail parameter tuning and model analysis to determine the impact of the variable learning rates and any other algorithmic tweaks made. For these purposes we will most likely employ analysis similar to that seen in \cite{ecological}. 
+
+
+\newpage
+
+\bibliographystyle{ieeetran}
+\bibliography{references}
+
+\end{document}

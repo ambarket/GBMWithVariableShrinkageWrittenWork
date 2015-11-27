@@ -1,0 +1,15 @@
+Package: gbmplus
+Version: 1.5-17
+Date: 2006-07-01
+Title: Generalized Boosted Regression Models
+Author: Greg Ridgeway <gregr@rand.org> Modifications by Glenn De'ath <g.death@aims.gov.au>
+Maintainer: Glenn De'ath <g.death@aims.gov.au>
+Depends: R (>= 2.1.0), lattice
+Description: This package implements extensions
+  to Freund and Schapire's AdaBoost algorithm and J. Friedman's
+  gradient boosting machine. Includes regression methods for least
+  squares, absolute loss, logistic, Poisson, Cox proportional hazards
+  partial likelihood, and AdaBoost exponential loss.
+License: GPL (version 2 or newer)
+URL: http://www.i-pensieri.com/gregr/gbm.shtml
+Packaged: Tue Jul  4 11:34:54 2006; Glenn

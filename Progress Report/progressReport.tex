@@ -1,0 +1,278 @@
+\documentclass[runningheads]{llncs_2}
+
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{fancyvrb}
+\usepackage[bf]{caption2}
+\usepackage{amssymb,amsmath}
+\usepackage{comment}
+\usepackage{hhline}
+\usepackage{algorithm2e}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+\usepackage{filecontents,lipsum}
+\usepackage[noadjust]{cite}
+
+
+\begin{filecontents}{references.bib}
+@article{2001Friedman,
+	jstor_articletype = {research-article},
+	title = {Greedy Function Approximation: A Gradient Boosting Machine},
+	author = {Friedman, Jerome H.},
+	journal = {The Annals of Statistics},
+	jstor_issuetitle = {},
+	volume = {29},
+	number = {5},
+	jstor_formatteddate = {Oct., 2001},
+	pages = {pp. 1189-1232},
+	url = {http://www.jstor.org/stable/2699986},
+	ISSN = {00905364},
+	language = {English},
+	year = {2001},
+	publisher = {Institute of Mathematical Statistics},
+	copyright = {Copyright © 2001 Institute of Mathematical Statistics},
+}
+@article{2002Friedman,
+	title = {Stochastic gradient boosting},
+	author = {Friedman, Jerome H.},
+	journal = {Computational Statistics And Data Analysis},
+	volume = {38},
+	number = {4},
+	pages = {pp 367-378},
+	year = {2002},
+	issn = {0167-9473},
+	doi = {10.1016/S0167-9473(01)00065-2},
+	url = {http://www.sciencedirect.com/science/article/pii/S0167947301000652}
+}
+@article{GBMTut,
+	title = {Gradient boosting machines, a tutorial},
+	author = {Natekin, Alexey, and Alois Knoll},
+	journal = {Frontiers in Neurorobotics},
+	volume = {7},
+	pages = {21},
+	year = {2013},
+	issn = {1662-5218},
+	doi = {10.3389/fnbot.2013.00021},
+url = {http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3885826/}
+}
+@article{2012ridgeway,
+	title = {Generalized Boosted Models: A guide to the gbm package},
+	author = {Ridgeway, Greg},
+	journal = {Update},
+	volume = {1},
+	number = {1},
+	pages = {14},
+	year = {2012}
+}
+@article{StrengthOfWeak,
+	author = {Schapire, Robert E.},
+	title = {The Strength of Weak Learnability},
+	journal = {Mach. Learn.},
+	issue_date = {Jun. 1990},
+	volume = {5},
+	number = {2},
+	month = jul,
+	year = {1990},
+	issn = {0885-6125},
+	pages = {197--227},
+	numpages = {31},
+	url = {http://dx.doi.org/10.1023/A:1022648800760},
+	doi = {10.1023/A:1022648800760},
+	acmid = {83645},
+	publisher = {Kluwer Academic Publishers},
+	address = {Hingham, MA, USA},
+	keywords = {Machine learning, PAC learning, learnability theory, learning from examples, polynomial-time identification},
+} 
+@incollection{BoostingSurvey,
+	year={2003},
+	isbn={978-0-387-95471-4},
+	booktitle={Nonlinear Estimation and Classification},
+	volume={171},
+	series={Lecture Notes in Statistics},
+	editor={Denison, DavidD. and Hansen, MarkH. and Holmes, ChristopherC. and Mallick, Bani and Yu, Bin},
+	doi={10.1007/978-0-387-21579-2_9},
+	title={The Boosting Approach to Machine Learning: An Overview},
+	publisher={Springer New York},
+	author={Schapire, Robert E.},
+	pages={149-171},
+	language={English}
+}
+@article {ecological,
+	author = {Elith, J. and Leathwick, J. R. and Hastie, T.},
+	title = {A working guide to boosted regression trees},
+	journal = {Journal of Animal Ecology},
+	volume = {77},
+	number = {4},
+	publisher = {Blackwell Publishing Ltd},
+	issn = {1365-2656},
+	url = {http://dx.doi.org/10.1111/j.1365-2656.2008.01390.x},
+	doi = {10.1111/j.1365-2656.2008.01390.x},
+	pages = {802--813},
+	keywords = {data mining, machine learning, model averaging, random forests, species distributions},
+	year = {2008},
+}
+@inproceedings{KearnsValient:1989,
+	author = {Kearns, M. and Valiant, L. G.},
+	title = {Crytographic Limitations on Learning Boolean Formulae and Finite Automata},
+	booktitle = {Proceedings of the Twenty-first Annual ACM Symposium on Theory of Computing},
+	series = {STOC '89},
+	year = {1989},
+	isbn = {0-89791-307-8},
+	location = {Seattle, Washington, USA},
+	pages = {433--444},
+	numpages = {12},
+	url = {http://doi.acm.org/10.1145/73007.73049},
+	doi = {10.1145/73007.73049},
+	acmid = {73049},
+	publisher = {ACM},
+	address = {New York, NY, USA},
+} 
+@article {Kearns:1988,
+	author = {Kearns, M.},
+	title = {Thoughts on Hypothesis Boosting},
+	journal = {Unpublished manuscript (Machine Learning class project, December 1988)},
+	year = {1988}
+}
+@inproceedings{OCRDruckerHarrisSchapire,
+	author = {Drucker, Harris and Schapire, Robert E. and Simard, Patrice},
+	title = {Improving Performance in Neural Networks Using a Boosting Algorithm},
+	booktitle = {Advances in Neural Information Processing Systems 5, [NIPS Conference]},
+	year = {1993},
+	isbn = {1-55860-274-7},
+	pages = {42--49},
+	numpages = {8},
+	url = {http://dl.acm.org/citation.cfm?id=645753.668055},
+	acmid = {668055},
+	publisher = {Morgan Kaufmann Publishers Inc.},
+	address = {San Francisco, CA, USA},
+} 
+@article{friedman2000,
+	author = "Friedman, Jerome and Hastie, Trevor and Tibshirani, Robert",
+	doi = "10.1214/aos/1016218223",
+	fjournal = "The Annals of Statistics",
+	journal = "Ann. Statist.",
+	month = "04",
+	number = "2",
+	pages = "337--407",
+	publisher = "The Institute of Mathematical Statistics",
+	title = "Additive logistic regression: a statistical view of boosting (With
+	discussion and a rejoinder by the authors)",
+	url = "http://dx.doi.org/10.1214/aos/1016218223",
+	volume = "28",
+	year = "2000"
+}
+@incollection{adaboost,
+	year={1995},
+	isbn={978-3-540-59119-1},
+	booktitle={Computational Learning Theory},
+	volume={904},
+	series={Lecture Notes in Computer Science},
+	editor={Vitányi, Paul},
+	doi={10.1007/3-540-59119-2_166},
+	title={A desicion-theoretic generalization of on-line learning and an application to boosting},
+	url={http://dx.doi.org/10.1007/3\-540\-59119-2\_166},
+	publisher={Springer Berlin Heidelberg},
+	author={Freund, Yoav and Schapire, RobertE.},
+	pages={23-37},
+	language={English}
+}
+@article{death2007ABT,
+	title={Boosted trees for ecological modeling and prediction},
+	author={De'Ath, Glenn},
+	journal={Ecology},
+	volume={88},
+	number={1},
+	pages={243--251},
+	year={2007},
+	publisher={Eco Soc America}
+}
+@misc{elith2015boosted,
+	title={Boosted Regression Trees for ecological modeling},
+	author={Elith, Jane and Leathwick, John},
+	year={2015}
+}
+@misc{airFoilDataset,
+	title={Airfoil Self-Noise Data Set},
+	url={http://archive.ics.uci.edu/ml/datasets/Airfoil+Self-Noise}
+}
+@misc{bikeSharingDataset,
+	title={Bike Sharing Dataset Data Set },
+	url={http://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset}
+}
+@misc{powerPlantDataset,
+	title={Combined Cycle Power Plant Data Set },
+	url={http://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant}
+}
+
+
+\end{filecontents}
+
+\begin{document}
+\pagestyle{headings}
+\mainmatter
+
+\title{Gradient Boosting Regression Trees with Variable Learning Rate: Progress Report}
+%Each page title
+\titlerunning{}
+%Authors
+\author{Austin Barket}
+%Authors on each page
+\authorrunning{Austin Barket}
+%University Address and contact information
+\institute{Department of Computer Science\\
+The Pennsylvania State University at Harrisburg\\
+Middletown, PA 17057\\
+\email{amb6470@psu.edu} } \maketitle
+%Document text starts here ...
+
+\section{Proposed Work Summary}
+
+
+
+The goal of the this project is to explore the effect of variable learning rates on gradient boosting machines that utilize regression trees as the base learners. Until now all research and implementations of gradient boosting machines have used only constant learning rates. The conventional wisdom has been to use small learning rates of 0.01 or lower as this always seems to lead to high accuracy models with a low risk of overfitting. However this comes at the cost of increased computation time because more base learners must be trained \cite{2012ridgeway}. 
+
+We believe that variable learning rates provide an unexploited area of research and hypothesize that an intelligent method of adapting the learning rate can improve the convergence speed without compromising the model's resilience to overfitting. The use of regression trees as the base learners presents an interesting possibility of a simple, yet elegant adaptation method. Since the regression trees themselves can be seen as a summation of individual prediction terms, one for each leaf in the tree, a natural adaptation scheme is to apply a different learning rate to the predictions made by each leaf in the tree. Specifically, the lower the number of examples in a given leaf node, the lower its learning rate ought to be to discourage overfitting to the examples. On the contrary, a leaf node containing a large number of training examples poses less danger to the generalization ability of the overall learner, and thus it should be safe to apply relatively high learning rates to these leaves. 
+
+Specifically, the model will take as input a maximum learning rate \(v_{max}\) instead of the constant learning rate \(v\). The following equation will then be used to compute the learning rate for each of the J leaves in tree m.
+
+\begin{figure}[!htb]\centering
+	\includegraphics[width=1\textwidth]{"C:/Users/ambar_000/Documents/GitHub/GBMWithVariableShrinkage/data/paramTuning4/bikeSharingParameterTuning/Averages/Constant/0.00100LR/8Splits/CONSTANT_LR-0.0010_SPLITS-8_BF-0.7500_MEIN-1_TREES-150000"}
+	\caption{Bike Sharing CONSTANT LR: 0.0010 MaxSplits: 8 BF: 0.7500 MEIN: 1}
+	\label{fig:BikeSharingCONSTANTLR0.0010MaxSplits8BF0.7500MEIN1}
+\end{figure}
+
+\begin{equation}
+	v_{m,j} = v_{max}  \cdot  \frac{|R_{m,j}|}{|S_m|}
+	\label{eq:adaptRule1}
+\end{equation}
+
+\section{Completed Work Summary}
+
+I have completed the core of the implementation and am now working on designing and running my experiments and collecting data for analysis. As mentioned in the proposal, my original intention was to extend the existing production quality gbm package in R to support my variable learning rate scheme. After a week of struggling to get up to speed with their implementation, I decided the best way forward would be to work with a simpler implementation I found written in Java, known as JSGBM. However, after beginning to use JSGBM, I became dissatisfied with its performance and limitation of only supporting numerical attributes in its regression trees. Thus, I set out to implement my own regression tree, focusing on an efficient implementation of the algorithm to find the next optimal split and adding support for splitting on categorical attributes. I've also implemented a cross validation based method of finding the optimal number of trees to use, similar to that found in the gbm R package. 
+
+So far I have done some extensive testing on a wide range of parameter combinations, in an effort to reduce the number of parameter combinations I'll need to look at for my final tests.  Note that in all the experiments described below, I first select randomly without replacement 20\% of the dataset to set aside as a test set, this same partitioning is used for all combinations of parameters tested. In the descriptions below, training a single model on a given combination of parameters involves performing 4 fold cross validation on the remaining 80\% of the dataset. E.g. that 80\% is shuffled again, then 4 different gradient boosting machines are constructed, each using a different 20\% of the original dataset as the validation fold, and remaining 60\% as the training set. Training stops once the average RMSE across the 4 models stops descending and begins to increase; or when the maximum number of trees is reached. The optimal number of trees is defined as the number of trees corresponding to the minimum average RMSE across the cross validation folds. Alongside the cross validated models, a model is trained using all 80\% of the training data. The optimal number of trees found via cross validation is associated with the all training data model, which is then evaluated against the held out test set.
+
+Gradient boosting machines with regression tree base learners are defined by 5 parameters. The maximum number of trees to grow, learning rate, bag fraction, minimum number of examples in a leaf node, and the maximum number of splits in each tree.
+
+After some initial testing on the power plant dataset \cite{powerPlantDataset}, I determined that it should be safe to hold the minimum examples in each node parameter constant in future tests. My process was to hold the minimum examples in each node constant at 1, 10, 100, and 1000 in turn. For each value, I then varied all the other parameters through a variety of configurations, using 500,000 as the maximum number of trees. I found that approximately the same minimum RMSE was achieved for the values of 1, 10. Minimums of 100 and 1000 resulted in increasingly higher minimum error values, both for constant and variable learning rates. This seems to make sense in that the interactions between the maximum number of splits and learning rate should be able to sufficiently regularize the complexity of the regression trees on their own. Using a high minimum on the examples in each leaf node forces the algorithm to make sub optimal splits, which lead to higher error rates. With this in mind, I decided to simplify future testing by holding the minimum number of examples in each node constant at 1.
+
+This week I've been running similar parameter tuning tests on 3  datasets which can be found in the following references \cite{airFoilDataset} \cite{bikeSharingDataset} \cite{powerPlantDataset}. The maximum number of iterations was set to 250,000. The learning rate was allowed to vary between 2.5 and .00122, dividing by 2 each iteration. Bag fractions of 1, 0.75, and 0.5 were evaluated. The maximum number of splits varied from 20 down to 4, in increments of 4. Each parameter combination was tested using both the constant and variable learning rate schemes, except for the learning rates of 2.5 and 1.25 which were evaluated using variable learning rates only. 
+
+I'm still in the process of evaluating these results. However my preliminary analysis has yielded the following realizations. First, the initially proposed learning rate scheme does not generalize well across datasets with varying numbers of examples. The minimum learning rate possible using equation \ref{eq:adaptRule1} with a given max learning rate decreases as the number of examples increases. This of course is not ideal. To avoid this, I plan to introduce a minimum learning rate and change the adaptation rule to use a direct linear mapping from the range $[1, |S_m|]$ (possible number of examples in each leaf), to the range $[v_{min}, v_{max}]$ (possible learning rates). The new rule is shown in equation \ref{eq:adaptRule2} below. In this way we will ensure that regardless of the number of examples in the dataset, a node with X\% of the training examples in dataset A will have the same learning rate applied as a node with X\% of the training examples in dataset B, making cross dataset comparisons of model performance more meaningful.
+
+\begin{equation}
+v_{m,j} =(|R_{m,j}| - 1)\frac{v_{max} - v_{min}} {|S_m| - 1} + v_{min}
+\label{eq:adaptRule2}
+\end{equation}
+
+Furthermore, the data seems to show that the choice of bag fraction does not significantly impact the minimum error that can be achieved using combinations of the other parameters. Basically, by graphing a each combination of parameters on a Test set RMSE vs Bag Fraction graph, the results show that roughly the same minimum RMSE is achieved regardless of if the bag fraction is set to 0.5, 0.75, or 1.0. Thus for future tests it should be safe to fix the bag fraction at 0.5, take advantage of a slight training time speed up as a result and focus our analysis on the two parameters that do show definite correlation with the error, the learning rate and maximum number of splits.
+
+The plan now is to implement the revised learning rate adaptation described above. Fix the bag fraction at 0.5, continue to use 1 as the minimum examples in each leaf, and runs tests across a variety of combinations of max learning rate, min learning rate, and number of splits using the variable learning rate scheme. The goal being to come up rules of thumb as to what parameter combinations tend to work the best and which ones seem to be the worst. Once I have this data I'd like to examine the models built with these parameters in more depth, and see if I can explain from a machine learning point of view why the model performs the way it does.
+
+The good news is that the variable learning rate scheme, even as is without updating it to work more consistently across datasets, seems to be performing quite well. On the power plant and air foil datasets, the best combination of parameters using variable learning rates comes within tenths of the minimum RMSE, which is still achieved using a constant learning rate. However on the bike sharing dataset, which has significantly more noise and is a much more difficult regression problem than the other too, variable learning rates are a clear winner. Eighty sets of parameters using variable learning rates precede the first constant learning rate entry in the list of parameters sorted by their error on the test set. For future tests, the plan is to track down more noisy datasets as it seems this may be the error where variable learning rates will show their value. This performance increase makes sense because the regression trees should split the noisy examples out into their own leaf nodes, which will have very few examples in them and thus be heavily penalized by the variable learning rate scheme. The non noisy, more "average" looking examples on the other hand will find their way into large leaf nodes and will be able to contribute a relatively large amount to the function approximation as a whole.
+
+
+
+\bibliographystyle{ieeetran}
+\bibliography{references}
+
+\end{document}
