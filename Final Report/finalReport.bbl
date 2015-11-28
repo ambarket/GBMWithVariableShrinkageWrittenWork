@@ -119,4 +119,46 @@ G.~De'Ath, ``Boosted trees for ecological modeling and prediction,''
 J.~Elith and J.~Leathwick, ``Boosted regression trees for ecological
   modeling,'' 2015.
 
+\bibitem{jsgbm}
+\BIBentryALTinterwordspacing
+``Jsgbm.'' [Online]. Available: \url{https://code.google.com/p/jsgbm/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{myGithub}
+\BIBentryALTinterwordspacing
+``Project implementation.'' [Online]. Available:
+  \url{https://github.com/ambarket/GBMWithVariableShrinkage}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Lichman:2013}
+\BIBentryALTinterwordspacing
+M.~Lichman, ``{UCI} machine learning repository,'' 2013. [Online]. Available:
+  \url{http://archive.ics.uci.edu/ml}
+\BIBentrySTDinterwordspacing
+
+\bibitem{powerPlantDataset}
+\BIBentryALTinterwordspacing
+``Combined cycle power plant data set.'' [Online]. Available:
+  \url{http://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant}
+\BIBentrySTDinterwordspacing
+
+\bibitem{airFoilDataset}
+\BIBentryALTinterwordspacing
+``Airfoil self-noise data set.'' [Online]. Available:
+  \url{http://archive.ics.uci.edu/ml/datasets/Airfoil+Self-Noise}
+\BIBentrySTDinterwordspacing
+
+\bibitem{bikeSharingDataset}
+\BIBentryALTinterwordspacing
+``Bike sharing dataset data set.'' [Online]. Available:
+  \url{http://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset}
+\BIBentrySTDinterwordspacing
+
+\bibitem{bikeSharingCiteRequest}
+\BIBentryALTinterwordspacing
+H.~Fanaee-T and J.~Gama, ``Event labeling combining ensemble detectors and
+  background knowledge,'' \emph{Progress in Artificial Intelligence}, pp.
+  1--15, 2013. [Online]. Available: \url{[Web Link]}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}

@@ -1,6 +1,6 @@
 This is BibTeX, Version 0.99d (TeX Live 2014/Cygwin)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: finalReport.aux
+The top-level auxiliary file: progressReport.aux
 The style file: ieeetran.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -8,53 +8,49 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: references.bib
-Warning--I didn't find a database entry for "crimeCommunities"
 -- IEEEtran.bst version 1.12 (2007/01/11) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-Name 1 in "Natekin, Alexey, and Alois Knoll" has a comma at the end for entry GBMTut
-while executing---line 4821 of file ieeetran.bst
 
 Done.
-You've used 21 entries,
+You've used 4 entries,
             4024 wiz_defined-function locations,
-            965 strings with 11027 characters,
-and the built_in function-call counts, 14119 in all, are:
-= -- 1189
-> -- 231
-< -- 115
-+ -- 130
-- -- 33
-* -- 709
-:= -- 2270
-add.period$ -- 46
-call.type$ -- 21
-change.case$ -- 25
-chr.to.int$ -- 255
-cite$ -- 21
-duplicate$ -- 1028
-empty$ -- 1136
-format.name$ -- 42
-if$ -- 3187
+            826 strings with 7691 characters,
+and the built_in function-call counts, 1450 in all, are:
+= -- 101
+> -- 7
+< -- 3
++ -- 5
+- -- 1
+* -- 70
+:= -- 260
+add.period$ -- 8
+call.type$ -- 4
+change.case$ -- 4
+chr.to.int$ -- 0
+cite$ -- 4
+duplicate$ -- 128
+empty$ -- 141
+format.name$ -- 1
+if$ -- 296
 int.to.chr$ -- 0
-int.to.str$ -- 21
-missing$ -- 172
-newline$ -- 118
-num.names$ -- 20
-pop$ -- 406
+int.to.str$ -- 4
+missing$ -- 26
+newline$ -- 41
+num.names$ -- 1
+pop$ -- 84
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1095
+skip$ -- 106
 stack$ -- 0
-substring$ -- 630
-swap$ -- 822
-text.length$ -- 30
+substring$ -- 8
+swap$ -- 68
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 21
+type$ -- 4
 warning$ -- 0
-while$ -- 59
-width$ -- 23
-write$ -- 256
-(There was 1 error message)
+while$ -- 2
+width$ -- 5
+write$ -- 57

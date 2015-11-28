@@ -1,10 +1,14 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.9.8)  27 NOV 2015 01:06
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.9.8)  28 NOV 2015 01:40
 entering extended mode
 **finalReport.tex
-("C:\Users\ambar_000\Desktop\COMP594\Written Work\Final Report\finalReport.tex"
+
+("C:\Users\ambar_000\Documents\GitHub\GBMWithVariableShrinkageWrittenWork\Final
+ Report\finalReport.tex"
 LaTeX2e <2014/05/01>
 Babel <3.9k> and hyphenation patterns for 68 languages loaded.
-("C:\Users\ambar_000\Desktop\COMP594\Written Work\Final Report\IEEEtran.cls"
+
+("C:\Users\ambar_000\Documents\GitHub\GBMWithVariableShrinkageWrittenWork\Final
+ Report\IEEEtran.cls"
 Document Class: IEEEtran 2014/09/17 V1.8a by Michael Shell
 -- See the "IEEEtran_HOWTO" manual for usage information.
 -- http://www.michaelshell.org/tex/ieeetran/
@@ -23,7 +27,7 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 -- Using 8.5in x 11in (letter) paper.
 -- Using PDF output.
 \@IEEEnormalsizeunitybaselineskip=\dimen105
--- This is a 10 point document.
+-- This is a 9 point document.
 \CLASSINFOnormalsizebaselineskip=\dimen106
 \CLASSINFOnormalsizeunitybaselineskip=\dimen107
 \IEEEnormaljot=\dimen108
@@ -42,6 +46,11 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <8> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
 
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8.5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <8.5> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
@@ -52,14 +61,9 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11> not available
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <11> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
-
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <14> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17> not available
@@ -70,11 +74,6 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <17> not available
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <20> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
-
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
 
 \IEEEquantizedlength=\dimen109
@@ -211,12 +210,6 @@ LaTeX Info: Redefining \em on input line 430.
 LaTeX Info: The control sequence `\[' is already robust on input line 481.
 LaTeX Info: The control sequence `\]' is already robust on input line 482.
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\sttools\stfloats.sty"
-Package: stfloats 2012/05/29 v1.1 Improve float mechanism and baselineskip sett
-ings
-\@dblbotnum=\count107
-\c@dblbotnumber=\count108
-)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\url\url.sty"
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
@@ -229,11 +222,11 @@ Package: fancyvrb 2008/02/07
 
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
 <2008/02/07> (tvz)
-\FV@CodeLineNo=\count109
+\FV@CodeLineNo=\count107
 \FV@InFile=\read1
 \FV@TabBox=\box30
-\c@FancyVerbLine=\count110
-\FV@StepNumber=\count111
+\c@FancyVerbLine=\count108
+\FV@StepNumber=\count109
 \FV@OutFile=\write3
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption2.sty"
 Package: caption2 2013/02/03 v2.2-62 Customising captions (AR)
@@ -275,7 +268,7 @@ Package: hhline 1994/05/23 v2.03 Table rule package (DPC)
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\algorithm2e\algorithm2e.sty"
 Package: algorithm2e 2013/01/06 v5.00 algorithms environments
-\c@AlgoLine=\count112
+\c@AlgoLine=\count110
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
@@ -321,9 +314,9 @@ subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
 \algoheightrule=\skip60
 \algotitleheightruledefault=\skip61
 \algotitleheightrule=\skip62
-\c@algocfline=\count113
-\c@algocfproc=\count114
-\c@algocf=\count115
+\c@algocfline=\count111
+\c@algocfproc=\count112
+\c@algocf=\count113
 \algocf@algoframe=\box37
 \algocf@algobox=\box38
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\filecontents\filecontents.sty"
@@ -332,7 +325,7 @@ eX document
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lipsum\lipsum.sty"
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
-\c@lips@count=\count116
+\c@lips@count=\count114
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\todonotes\todonotes.sty"
 Package: todonotes 2012/07/25 .dtx Todonotes source and documentation.
@@ -346,7 +339,7 @@ Package: xkeyval 2014/05/25 v2.7 package option processing (HA)
 \XKV@toks=\toks21
 \XKV@tempa@toks=\toks22
 )
-\XKV@depth=\count117
+\XKV@depth=\count115
 File: xkeyval.tex 2014/05/25 v2.7 key=value parser (HA)
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
@@ -408,10 +401,10 @@ x"
 \pgf@yc=\dimen160
 \w@pgf@writea=\write5
 \r@pgf@reada=\read2
-\c@pgf@counta=\count118
-\c@pgf@countb=\count119
-\c@pgf@countc=\count120
-\c@pgf@countd=\count121
+\c@pgf@counta=\count116
+\c@pgf@countb=\count117
+\c@pgf@countc=\count118
+\c@pgf@countd=\count119
 \t@pgf@toka=\toks27
 \t@pgf@tokb=\toks28
 \t@pgf@tokc=\toks29
@@ -430,8 +423,8 @@ File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.t
 ex"
 File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
-\pgfsyssoftpath@smallbuffer@items=\count122
-\pgfsyssoftpath@bigbuffer@items=\count123
+\pgfsyssoftpath@smallbuffer@items=\count120
+\pgfsyssoftpath@bigbuffer@items=\count121
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsysprotocol.code.t
 ex"
@@ -443,7 +436,7 @@ Package: pgfcore 2010/04/11 v3.0.0 (rcs-revision 1.7)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathutil.code.tex")
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathparser.code.tex"
 \pgfmath@dimen=\dimen161
-\pgfmath@count=\count124
+\pgfmath@count=\count122
 \pgfmath@box=\box40
 \pgfmath@toks=\toks30
 \pgfmath@stack@operand=\toks31
@@ -467,7 +460,7 @@ ex")
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.integerarit
 hmetics.code.tex")))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfloat.code.tex"
-\c@pgfmathroundto@lastzeros=\count125
+\c@pgfmathroundto@lastzeros=\count123
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepoints.code.tex
 "
@@ -505,7 +498,7 @@ File: pgfcorescopes.code.tex 2013/10/09  (rcs-revision 1.44)
 \pgfpic=\box41
 \pgf@hbox=\box42
 \pgf@layerbox@main=\box43
-\pgf@picture@serial@count=\count126
+\pgf@picture@serial@count=\count124
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoregraphicstate.co
 de.tex"
@@ -538,7 +531,7 @@ File: pgfcorearrows.code.tex 2013/11/07  (rcs-revision 1.40)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreshade.code.tex"
 File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
 \pgf@max=\dimen185
-\pgf@sys@shading@range@num=\count127
+\pgf@sys@shading@range@num=\count125
 ) ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreimage.code.te
 x"
 File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
@@ -595,7 +588,7 @@ Package: tikz 2013/12/13 v3.0.0 (rcs-revision 1.142)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryplothandlers.
 code.tex"
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.0 (rcs-revision 1.20)
-\pgf@plot@mark@count=\count128
+\pgf@plot@mark@count=\count126
 \pgfplotmarksize=\dimen190
 )
 \tikz@lastx=\dimen191
@@ -608,18 +601,18 @@ File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.0 (rcs-revision 1.20)
 \tikz@figbox@bg=\box47
 \tikz@tempbox=\box48
 \tikz@tempbox@bg=\box49
-\tikztreelevel=\count129
-\tikznumberofchildren=\count130
-\tikznumberofcurrentchild=\count131
-\tikz@fig@count=\count132
+\tikztreelevel=\count127
+\tikznumberofchildren=\count128
+\tikznumberofcurrentchild=\count129
+\tikz@fig@count=\count130
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmodulematrix.code.tex"
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count133
-\pgfmatrixcurrentcolumn=\count134
-\pgf@matrix@numberofcolumns=\count135
+\pgfmatrixcurrentrow=\count131
+\pgfmatrixcurrentcolumn=\count132
+\pgf@matrix@numberofcolumns=\count133
 )
-\tikz@expandcount=\count136
+\tikz@expandcount=\count134
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
 librarytopaths.code.tex"
@@ -631,107 +624,187 @@ File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.0 (rcs-revision 1.7)
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count137
-\calc@Bcount=\count138
+\calc@Acount=\count135
+\calc@Bcount=\count136
 \calc@Adimen=\dimen197
 \calc@Bdimen=\dimen198
 \calc@Askip=\skip63
 \calc@Bskip=\skip64
 LaTeX Info: Redefining \setlength on input line 75.
 LaTeX Info: Redefining \addtolength on input line 76.
-\calc@Ccount=\count139
+\calc@Ccount=\count137
 \calc@Cskip=\skip65
 )
-\c@@todonotes@numberoftodonotes=\count140
+\c@@todonotes@numberoftodonotes=\count138
 )
-("C:\Users\ambar_000\Desktop\COMP594\Written Work\Final Report\finalReport.aux"
-)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 235.
-LaTeX Font Info:    ... okay on input line 235.
+("C:\Program Files\MiKTeX 2.9\tex\latex\colortbl\colortbl.sty"
+Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
 
--- Lines per column: 56 (exact).
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen199
+\extrarowheight=\dimen200
+\NC@list=\toks35
+\extratabsurround=\skip66
+\backup@length=\skip67
+)
+\everycr=\toks36
+\minrowclearance=\skip68
+)
+("C:\Users\ambar_000\Documents\GitHub\GBMWithVariableShrinkageWrittenWork\Final
+ Report\finalReport.aux")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 241.
+LaTeX Font Info:    ... okay on input line 241.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 241.
+LaTeX Font Info:    ... okay on input line 241.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 241.
+LaTeX Font Info:    ... okay on input line 241.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 241.
+LaTeX Font Info:    ... okay on input line 241.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 241.
+LaTeX Font Info:    ... okay on input line 241.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 241.
+LaTeX Font Info:    ... okay on input line 241.
+
+-- Lines per column: 61 (exact).
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count141
-\scratchdimen=\dimen199
+\scratchcounter=\count139
+\scratchdimen=\dimen201
 \scratchbox=\box50
-\nofMPsegments=\count142
-\nofMParguments=\count143
-\everyMPshowfont=\toks35
-\MPscratchCnt=\count144
-\MPscratchDim=\dimen200
-\MPnumerator=\count145
-\makeMPintoPDFobject=\count146
-\everyMPtoPDFconversion=\toks36
+\nofMPsegments=\count140
+\nofMParguments=\count141
+\everyMPshowfont=\toks37
+\MPscratchCnt=\count142
+\MPscratchDim=\dimen202
+\MPnumerator=\count143
+\makeMPintoPDFobject=\count144
+\everyMPtoPDFconversion=\toks38
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
  ABD: EveryShipout initializing macros
-Overfull \hbox (15.16959pt too wide) in paragraph at lines 298--298
-[][][][]\OT1/ptm/m/n/10 Revise  
+Overfull \hbox (11.75261pt too wide) in paragraph at lines 304--304
+[][][][]\OT1/ptm/m/n/9 Revise  
  []
 
 
-Overfull \hbox (15.16959pt too wide) in paragraph at lines 298--298
-[][][][]\OT1/ptm/m/n/10 Revise  
+Overfull \hbox (11.75261pt too wide) in paragraph at lines 304--304
+[][][][]\OT1/ptm/m/n/9 Revise  
  []
 
 
-Overfull \hbox (15.16959pt too wide) in paragraph at lines 298--298
-[][][][]\OT1/ptm/m/n/10 Revise  
+Overfull \hbox (11.75261pt too wide) in paragraph at lines 304--304
+[][][][]\OT1/ptm/m/n/9 Revise  
  []
 
 
-Overfull \hbox (15.16959pt too wide) in paragraph at lines 298--298
-[][][][]\OT1/ptm/m/n/10 Revise  
+Overfull \hbox (11.75261pt too wide) in paragraph at lines 304--304
+[][][][]\OT1/ptm/m/n/9 Revise  
  []
 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 323.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 323.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 323.
 [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 316.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 316.
+Underfull \vbox (badness 2285) has occurred while \output is active []
 
+ [2]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `htbp') on input line 322.
+               Default added (so using `htbp') on input line 460.
+
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 495.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+)
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 495.
+LaTeX Font Info:    Try loading font information for OML+phv on input line 495.
 
 
-Overfull \hbox (279.0pt too wide) in paragraph at lines 323--326
-[][] 
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omlphv.fd"
+File: omlphv.fd 
+)
+LaTeX Font Info:    Font shape `OML/phv/m/n' in size <9> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 495.
+ [3]
+
+LaTeX Warning: Citation `crimeCommunities' on page 4 undefined on input line 51
+7.
+
+
+Overfull \hbox (5.97469pt too wide) in paragraph at lines 517--517
+[][][][]\OT1/ptm/m/n/9 write 
  []
 
 
-Overfull \hbox (279.0pt too wide) in paragraph at lines 335--337
-[][] 
+Overfull \hbox (9.47571pt too wide) in paragraph at lines 517--517
+\OT1/ptm/m/n/9 some- 
  []
 
 
-Overfull \hbox (279.0pt too wide) in paragraph at lines 368--370
-[][] 
+Overfull \hbox (5.98381pt too wide) in paragraph at lines 517--517
+\OT1/ptm/m/n/9 thing  
  []
 
-[2]
-("C:\Users\ambar_000\Desktop\COMP594\Written Work\Final Report\finalReport.bbl"
-[3]
+
+Overfull \hbox (5.97469pt too wide) in paragraph at lines 517--517
+[][][][]\OT1/ptm/m/n/9 write 
+ []
+
+
+Overfull \hbox (9.47571pt too wide) in paragraph at lines 517--517
+\OT1/ptm/m/n/9 some- 
+ []
+
+
+Overfull \hbox (5.98381pt too wide) in paragraph at lines 517--517
+\OT1/ptm/m/n/9 thing  
+ []
+
+
+Overfull \hbox (5.97469pt too wide) in paragraph at lines 517--517
+[][][][]\OT1/ptm/m/n/9 write 
+ []
+
+
+Overfull \hbox (9.47571pt too wide) in paragraph at lines 517--517
+\OT1/ptm/m/n/9 some- 
+ []
+
+
+Overfull \hbox (5.98381pt too wide) in paragraph at lines 517--517
+\OT1/ptm/m/n/9 thing  
+ []
+
+
+Overfull \hbox (5.97469pt too wide) in paragraph at lines 517--517
+[][][][]\OT1/ptm/m/n/9 write 
+ []
+
+
+Overfull \hbox (9.47571pt too wide) in paragraph at lines 517--517
+\OT1/ptm/m/n/9 some- 
+ []
+
+
+Overfull \hbox (5.98381pt too wide) in paragraph at lines 517--517
+\OT1/ptm/m/n/9 thing  
+ []
+
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 32.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 32.
-
+(Font)              <8> on input line 528.
+[4]
+("C:\Users\ambar_000\Documents\GitHub\GBMWithVariableShrinkageWrittenWork\Final
+ Report\finalReport.bbl"
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
@@ -753,6 +826,105 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 Missing character: There is no Ã in font ptmr7t!
 Missing character: There is no ¡ in font ptmr7t!
 )
+Overfull \hbox (9.97964pt too wide) in paragraph at lines 621--621
+[][][][]\OT1/ptm/m/n/9 Crime 
+ []
+
+
+Overfull \hbox (5.97481pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 com- 
+ []
+
+
+Overfull \hbox (1.97887pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 mu- 
+ []
+
+
+Overfull \hbox (1.48381pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 tion 
+ []
+
+
+Overfull \hbox (6.47874pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 quest  
+ []
+
+
+Overfull \hbox (9.97964pt too wide) in paragraph at lines 621--621
+[][][][]\OT1/ptm/m/n/9 Crime 
+ []
+
+
+Overfull \hbox (5.97481pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 com- 
+ []
+
+
+Overfull \hbox (1.97887pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 mu- 
+ []
+
+
+Overfull \hbox (1.48381pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 tion 
+ []
+
+
+Overfull \hbox (6.47874pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 quest  
+ []
+
+
+Overfull \hbox (9.97964pt too wide) in paragraph at lines 621--621
+[][][][]\OT1/ptm/m/n/9 Crime 
+ []
+
+
+Overfull \hbox (5.97481pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 com- 
+ []
+
+
+Overfull \hbox (1.97887pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 mu- 
+ []
+
+
+Overfull \hbox (1.48381pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 tion 
+ []
+
+
+Overfull \hbox (6.47874pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 quest  
+ []
+
+
+Overfull \hbox (9.97964pt too wide) in paragraph at lines 621--621
+[][][][]\OT1/ptm/m/n/9 Crime 
+ []
+
+
+Overfull \hbox (5.97481pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 com- 
+ []
+
+
+Overfull \hbox (1.97887pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 mu- 
+ []
+
+
+Overfull \hbox (1.48381pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 tion 
+ []
+
+
+Overfull \hbox (6.47874pt too wide) in paragraph at lines 621--621
+\OT1/ptm/m/n/9 quest  
+ []
+
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -764,34 +936,37 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[4
+[5]
+("C:\Users\ambar_000\Documents\GitHub\GBMWithVariableShrinkageWrittenWork\Final
+ Report\finalReport.aux")
 
-]
-("C:\Users\ambar_000\Desktop\COMP594\Written Work\Final Report\finalReport.aux"
-) ) 
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 15847 strings out of 493706
- 302814 string characters out of 3144572
- 466845 words of memory out of 3000000
- 18894 multiletter control sequences out of 15000+200000
- 37580 words of font info for 71 fonts, out of 3000000 for 9000
+ 16022 strings out of 493706
+ 305445 string characters out of 3144572
+ 474608 words of memory out of 3000000
+ 19054 multiletter control sequences out of 15000+200000
+ 42990 words of font info for 79 fonts, out of 3000000 for 9000
  1028 hyphenation exceptions out of 8191
- 62i,12n,76p,1004b,679s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.p
-fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/tim
-es/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on finalReport.pdf (4 pages, 163046 bytes).
+ 62i,17n,76p,1004b,679s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+mr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times
+/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on finalReport.pdf (5 pages, 184738 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
+ 78 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

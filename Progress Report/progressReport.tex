@@ -234,12 +234,6 @@ We believe that variable learning rates provide an unexploited area of research 
 
 Specifically, the model will take as input a maximum learning rate \(v_{max}\) instead of the constant learning rate \(v\). The following equation will then be used to compute the learning rate for each of the J leaves in tree m.
 
-\begin{figure}[!htb]\centering
-	\includegraphics[width=1\textwidth]{"C:/Users/ambar_000/Documents/GitHub/GBMWithVariableShrinkage/data/paramTuning4/bikeSharingParameterTuning/Averages/Constant/0.00100LR/8Splits/CONSTANT_LR-0.0010_SPLITS-8_BF-0.7500_MEIN-1_TREES-150000"}
-	\caption{Bike Sharing CONSTANT LR: 0.0010 MaxSplits: 8 BF: 0.7500 MEIN: 1}
-	\label{fig:BikeSharingCONSTANTLR0.0010MaxSplits8BF0.7500MEIN1}
-\end{figure}
-
 \begin{equation}
 	v_{m,j} = v_{max}  \cdot  \frac{|R_{m,j}|}{|S_m|}
 	\label{eq:adaptRule1}

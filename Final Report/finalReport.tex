@@ -1,4 +1,4 @@
-\documentclass[conference]{IEEEtran}
+\documentclass[9pt, conference]{IEEEtran}
 
 % Some very useful LaTeX packages include:
 % (uncomment the ones you want to load)
@@ -171,7 +171,7 @@
 % http://www.ctan.org/tex-archive/macros/latex/base/
 
 
-\usepackage{stfloats}
+%\usepackage{stfloats}
 % stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
 % the ability to do double column floats at the bottom of the page as well
 % as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
@@ -231,6 +231,12 @@
 
 \usepackage{filecontents,lipsum}
 \usepackage{todonotes}
+\usepackage{xcolor}% you could also use the color package
+\usepackage{colortbl}
+
+\makeatletter
+\newcommand{\removelatexerror}{\let\@latex@error\@gobble}
+\makeatother
 
 \begin{document}
 %
@@ -240,7 +246,7 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Variable Learning Rate Gradient Boosting Regression Trees }
+\title{Gradient Boosting Regression Trees with Variable Shrinkage}
 
 
 % author names and affiliations
@@ -265,7 +271,7 @@ Email: jjb24@psu.edu}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-In this research we explore the effect of variable learning rates on gradient boosting machines that utilize regression trees as the base learners. Until now all research and implementations of gradient boosting machines have used only constant learning rates as in Algorithm \ref{alg:GeneralGradientBoost}. The conventional wisdom has been to use small learning rates of 0.01 or lower as this always seems to lead to high accuracy models with a low risk of overfitting. However this comes at the cost of increased computation time because more base learners must be trained \cite{2012ridgeway}. 
+In this research we explore the effect of variable shrinkage (learning rate) on gradient boosting machines that utilize regression trees as the base learners. Conventionally, research and implementations of gradient boosting machines have used only constant shrinkage that is applied uniformly to the predictions of all base learners.
 \end{abstract}
 
 % no keywords
@@ -293,11 +299,12 @@ The gradient boosting machine, originally introduced by Friedman in 1999 is a ge
 
 Production implementations of gradient boosting machines such as the gbm package in R have found remarkable traction among researchers in a wide variety of fields including robotics and ecology \cite{GBMTut} \cite{ecological}. Interestingly these packages generally implement Friedman's Gradient Boost algorithm as it was originally defined \cite{2012ridgeway}, leaving some definite opportunity for research into algorithmic tweaks to improve performance. 
 
-A particular component of the algorithm that has not been explored to date is the learning rate, also referred to as shrinkage, which is implemented as a constant parameter to the model. After each iteration the new base learner's predictions are scaled by this parameter as a form of regularization. 
+A particular component of the algorithm that has not been explored to date is the shrinkage, also referred to as shrinkage, which is implemented as a constant parameter to the model. After each iteration the new base learner's predictions are scaled by this parameter as a form of regularization. 
 
-This proposal outlines a new way to think about shrinkage for the common case where the base learners are regression trees. We hypothesize that by varying the learning rate applied to the prediction of the examples in each individual leaf of the regression tree base learners, we will be able to decrease convergence time without sacrificing resilience to overfitting. \todo{Revise}
+This proposal outlines a new way to think about shrinkage for the common case where the base learners are regression trees. We hypothesize that by varying the shrinkage applied to the prediction of the examples in each individual leaf of the regression tree base learners, we will be able to decrease convergence time without sacrificing resilience to overfitting. \todo{Revise}
 
 \section{Related Work}
+\label{sec:RelatedWork}
 Boosting finds its roots in a question originally posed by Kearns and Valient in 1988, is weak learnability equivalent to strong learnability\cite{Kearns:1988} \cite{KearnsValient:1989}? That is if you have a way to learn well enough to beat random guessing, is it inherently true that a strong learner, capable of arbitrarily low error, for that same problem exists? Schapire successfully proved this equivalence in 1990 by proposing and proving the correctness of a polynomial time boosting model he termed \textit{The hypothesis boosting mechanism} \cite{StrengthOfWeak}. 
 
 After Schapire's compelling proof that weak and strong learnability are in fact equivalent, researchers bagan working to improve upon his boosting algorithm. The first practical application of the early boosting algorithms came out of the work of Drucker, Schapire, and Simard at AT\&T Bell Labs in 1992. There they applied boosting of neural network base learners to the problem of optical character recognition of handwritten zip codes on USPS letters \cite{OCRDruckerHarrisSchapire}. 
@@ -317,58 +324,62 @@ In supervised learning, our goal is to find an approximation \(\hat{F}\) of an u
 Friedman's gradient boosting machine achieves this by iteratively constructing a strong learner that approximates \(F\) from many weak learners. In each iteration a new weak learner, such as a short regression tree, \(h(\vec{x})\) is trained to fit the errors made by the function approximation so far. This training is based upon an extremely common numerical minimization method known as steepest gradient descent \cite{2012ridgeway} \cite{2001Friedman} . 
 However, unlike most applications of steepest descent, Friedman's Gradient Boost algorithm computes the negative gradient \(\vec{g}\) in the space of the estimated function itself, not in the space of a finite set of parameters that define the function. By framing the problem in this way, the function \(\hat{F}\) is not limited to a set of functions definable by a finite set of parameters, but rather is defined by a potentially infinite set of parameters, one for each possible value \(\vec{x}\). Obviously, it is impossible to actually compute the gradient and apply steepest-descent in this potentially infinite dimensional function space, but it is possible to perform steepest-descent with respect to the finite space of training examples \(D\) \cite{2012ridgeway} \cite{2001Friedman}. 
 
-The negative gradient in this restricted subset of function space defines the direction of steepest descent in the loss function for the training examples. Thus by updating the function \(\hat{F}\) directly by this negative gradient, we would move closer to the minimum values of the loss function \(\Psi\) for the examples in the training dataset. Of course this is not quite the goal, instead we would like to be able to generalize to all possible data. To accomplish this we instead train a regression model to predict the negative gradient of the loss function at each step, then update our function with this model's prediction. Friedman's general Gradient Boosting Machine, extended to include his later ideas of subsampling the training data and applying a constant learning rate to improve generalization is provided in Algorithm \ref{alg:GeneralGradientBoost} \cite{2012ridgeway} \cite{2001Friedman} \cite{2002Friedman}. 
+The negative gradient in this restricted subset of function space defines the direction of steepest descent in the loss function for the training examples. Thus by updating the function \(\hat{F}\) directly by this negative gradient, we would move closer to the minimum values of the loss function \(\Psi\) for the examples in the training dataset. Of course this is not quite the goal, instead we would like to be able to generalize to all possible data. To accomplish this we instead train a regression model to predict the negative gradient of the loss function at each step, then update our function with this model's prediction. Friedman's general Gradient Boosting Machine, extended to include his later ideas of subsampling the training data and applying a constant shrinkage to improve generalization is provided in Algorithm \ref{alg:GeneralGradientBoost} \cite{2012ridgeway} \cite{2001Friedman} \cite{2002Friedman}. 
+%---------------------------------------------------------------
+\begin{figure}[t]
+	\removelatexerror
+	\begin{algorithm}[H]
+		\hspace{1 mm} \\\hrule\hspace{1 mm} \\
+		\SetKwInOut{Input}{input}
+		\SetKwInOut{Output}{output}
+		
+		\Input{Training Dataset: \(D = (x_i, y_i),\, i = 1...N\) \newline
+			Bag Fraction: \(bf \, \epsilon \, [0, 1] \) \newline
+			Shrinkage: \(v \, \epsilon \, [0, 1] \) \newline
+			Number of Base Learners: \(M \) \newline
+			Loss Function: \(\Psi\) e.g. RMSE \newline
+			Choice of Base Learner: \(h(\vec{x})\) e.g. regression trees \newline
+		}
+		\Output{A function \(\hat{F}(\vec{x})\) that minimizes the expected value of \(\Psi(y, F(\vec{x})) \) }
+		\hspace{1 mm} \\\hrule\hspace{1 mm} \\
+		Initialize the  approximation of \(\hat{F}\)
+		\begin{equation}
+		\hat{F}_0(\vec{x}) = argmin_\rho \sum_{i=1}^{N}\Psi(y_i, \rho) 
+		\end{equation}
+		\For{\(m\leftarrow 1\) to \( M\) }
+		{
+			Select a random subsample, \(S_m\), of size \(\tilde{N}\) from the training data without replacement.
+			\begin{equation}
+			S_m \subset D, \ \  |S_m| = \tilde{N} =  bf  \cdot  N 
+			\end{equation}
+			Approximate the negative gradient \(\vec{g}_m\) of \(\Psi(y_i, \hat{F}_{m-1} (\vec{x}) ) \) with respect to \(\hat{F}_{m-1} (\vec{x})\).
+			\begin{equation}
+			g_{m,i} = -\frac{\partial}{\partial \hat{F}_{m-1}(\vec{x_i})} \Psi(y_i, \hat{F}_{m-1}(\vec{x_i})), \, \vec{x}_i \, \epsilon \, S_m
+			\label{eq:NegativeGradient}
+			\end{equation}
+			Train a new base learner \(h_m(\vec{x})\) to predict \(\vec{g}_m\) and fit the least squares.
+			\begin{equation}
+			\beta_m, h_m(\vec{x}) = argmin_{\beta, h(\vec{x})}\sum_{\vec{x}_i \, \epsilon \, S_m}[ g_{m,i} - \beta h(\vec{x}_i)]^2
+			\label{eq:NewBaseLearner}
+			\end{equation}		
+			Solve for the optimal coefficient \(\rho\) that minimizes \(\Psi\).
+			\begin{equation}
+			p_m = argmin_\rho \sum_{\vec{x}_i \, \epsilon \, S_m}\Psi(y_i, \hat{F}_{m-1}(\vec{x}_i) + \rho h(\vec{x}_i))
+			\label{eq:ScalingCoefficent}
+			\end{equation}
+			Update your approximation of \(\hat{F}\), scaled by the shrinkage v
+			\begin{equation}
+			\hat{F}_m(\vec{x}) = \hat{F}_{m-1}(\vec{x}) + v  \cdot  \rho_m h_m(\vec{x})
+			\label{eq:UpdateStep}
+			\end{equation}
+		}
+		\caption{Friedman's Gradient Boost Algorithm  \cite{2001Friedman} \cite{GBMTut} \cite{2002Friedman} \cite{death2007ABT}}
+		\hspace{1 mm} \\\hrule\hspace{1 mm} \\\hspace{1 mm} \\
+		\label{alg:GeneralGradientBoost}
+	\end{algorithm}
 
-\begin{algorithm}[]
-	\rule{\textwidth}{2pt}
-	\SetKwInOut{Input}{input}
-	\SetKwInOut{Output}{output}
-	
-	\Input{Training Dataset: \(D = (x_i, y_i),\, i = 1...N\) \newline
-		Bag Fraction: \(bf \, \epsilon \, [0, 1] \) \newline
-		Learning Rate: \(v \, \epsilon \, [0, 1] \) \newline
-		Number of Base Learners: \(M \) \newline
-		Loss Function: \(\Psi\) e.g. RMSE \newline
-		Choice of Base Learner: \(h(\vec{x})\) e.g. regression trees \newline
-	}
-	\Output{A function \(\hat{F}(\vec{x})\) that minimizes the expected value of \(\Psi(y, F(\vec{x})) \) }
-	\rule{\textwidth}{.5pt}
-	Initialize the  approximation of \(\hat{F}\)
-	\begin{equation}
-	\hat{F}_0(\vec{x}) = argmin_\rho \sum_{i=1}^{N}\Psi(y_i, \rho) 
-	\end{equation}
-	\For{\(m\leftarrow 1\) to \( M\) }
-	{
-		Select a random subsample \(S_m\) of training data without replacement.
-		\begin{equation}
-		S_m \subset D,  \tilde{N} = |S_m| = bf  \cdot  N 
-		\end{equation}
-		Approximate the negative gradient \(\vec{g}_m\) of \(\Psi(y_i, \hat{F}_{m-1} (\vec{x}) ) \) with respect to \(\hat{F}_{m-1} (\vec{x})\).
-		\begin{equation}
-		g_{m,i} = -\frac{\partial}{\partial \hat{F}_{m-1}(\vec{x_i})} \Psi(y_i, \hat{F}_{m-1}(\vec{x_i})), \, \vec{x}_i \, \epsilon \, S_m
-		\label{eq:NegativeGradient}
-		\end{equation}
-		Train a new base learner \(h_m(\vec{x})\) to predict \(\vec{g}_m\) and fit the least squares.
-		\begin{equation}
-		\beta_m, h_m(\vec{x}) = argmin_{\beta, h(\vec{x})}\sum_{\vec{x}_i \, \epsilon \, S_m}[ g_{m,i} - \beta h(\vec{x}_i)]^2
-		\label{eq:NewBaseLearner}
-		\end{equation}		
-		Solve for the optimal coefficient \(\rho\) that minimizes \(\Psi\).
-		\begin{equation}
-		p_m = argmin_\rho \sum_{\vec{x}_i \, \epsilon \, S_m}\Psi(y_i, \hat{F}_{m-1}(\vec{x}_i) + \rho h(\vec{x}_i))
-		\label{eq:ScalingCoefficent}
-		\end{equation}
-		Update your approximation of \(\hat{F}\), scaled by the learning rate v
-		\begin{equation}
-		\hat{F}_m(\vec{x}) = \hat{F}_{m-1}(\vec{x}) + v  \cdot  \rho_m h_m(\vec{x})
-		\label{eq:UpdateStep}
-		\end{equation}
-	}
-	\caption{Friedman's Gradient Boost Algorithm  \cite{2001Friedman} \cite{GBMTut} \cite{2002Friedman} \cite{death2007ABT}}
-	\rule{\textwidth}{2pt}
-	\label{alg:GeneralGradientBoost}
-\end{algorithm}
-
+\end{figure}
+%---------------------------------------------------------------
 \section{Simplifying Assumptions}
 \label{sec:SimplifyingAssumptions}
 For the purposes of the current research, we will consider only the case where \(\Psi\) is the squared error function and the goal is to predict a real valued response variable. Without loss of generality we will add a coefficient of \(\frac{1}{2}\) to \(\Psi\) so that the negative of the partial derivative of \(\Psi\) with respect to the predicted value of an instance \(\vec{x}_i\) is simply the residual of that prediction. In this case the component wise calculation of the negative gradient (Equation \ref{eq:NegativeGradient}) becomes Equation \ref{eq:SquaredErrorGradient}.
@@ -378,9 +389,23 @@ g_{m,i} = -\frac{\partial}{\partial \hat{F}_{m-1}(\vec{x_i})} \frac{(y_i - \hat{
 \label{eq:SquaredErrorGradient}
 \end{equation}
 
-As alluded to in the introduction, the proposed variable learning rate scheme is specially designed for the common case where the base learners are regression trees. When building the regression trees, we define the next best split as the split that leads to the largest reduction in squared error on the training examples. Thus the least squares coefficient \(\beta\) in Equation \ref{eq:NewBaseLearner} will always be 1, as will the optimal coefficient \(\rho\) in Equations \ref{eq:ScalingCoefficent} and \ref{eq:UpdateStep}. 
+As alluded to in the introduction, the proposed variable shrinkage scheme is specially designed for the common case where the base learners are regression trees, we define the notation for regression trees in Figure \ref{fig:regressionTreeFig} below.
 
-Regression trees with J leaves will be represented with the following notation.
+When building the trees, we define the next best split as the split that leads to the largest reduction in squared error on the training examples. Thus the least squares coefficient \(\beta\) in Equation \ref{eq:NewBaseLearner} will always be 1, and since we're using the squared error loss function so will the optimal coefficient \(\rho\) in Equations \ref{eq:ScalingCoefficent} and \ref{eq:UpdateStep}. 
+
+
+Thus, for the case where the base learners are regression trees and the loss function is the squared error, the update step in Equation \ref{eq:UpdateStep} can be replaced by Equation \ref{eq:UpdateStep2}
+
+\begin{equation}
+\hat{F}_m(\vec{x}) = \hat{F}_{m-1}(\vec{x}) + v  \cdot \sum_{j=1}^{J}b_{m,j}I(\vec{x} \, \epsilon \, R_{m,j})
+\label{eq:UpdateStep2}
+\end{equation}
+
+The choice of regression tree base learners introduces two additional parameters to the gradient boosting algorithm, namely the maximum number of splits in each tree (aka interaction depth) and the minimum number of observations in each leaf node. These parameters work together to regularize the complexity of the regression trees, and in general these parameters are chosen to ensure short trees and stout leaves to weaken the predictive power of each individual base learner which ultimately strengthens the boosted model's ability to generalize \cite{ecological}. 
+
+Note that although we restrict the current study to regression tasks using the squared error loss function, the variable shrinkage scheme defined and tested in the following sections could easily be applied to any of the loss functions originally defined by Friedman in \cite{2001Friedman} \cite{2002Friedman}, and most famously implemented in the gbm R package originally written by Ridgeway \cite{2012ridgeway}. Please see these references for information on the many specialized derivations of Algorithm \ref{alg:GeneralGradientBoost} for various learning tasks and to better understand the reasoning behind the equations defined in this section.
+%---------------------------------------------------------------
+\begin{figure}[t]
 	
 	\begin{equation}
 	h_m(\vec{x}) = \sum_{j=1}^{J}b_{m,j}I(\vec{x} \, \epsilon \, R_{m,j})
@@ -403,30 +428,22 @@ Regression trees with J leaves will be represented with the following notation.
 	0 & \alpha \text{ is false}  
 	\end{cases}
 	\]
-	
-	Thus, for the case where the base learners are regression trees with J leaves and the loss function is the squared error, the update step (Equation \ref{eq:UpdateStep}) becomes
-	
-	\begin{equation}
-	\hat{F}_m(\vec{x}) = \hat{F}_{m-1}(\vec{x}) + v  \cdot \sum_{j=1}^{J}b_{m,j}I(\vec{x} \, \epsilon \, R_{m,j})
-	\label{eq:UpdateStep2}
-	\end{equation}
-	
-The choice of regression tree base learners introduces two additional parameters to the gradient boosting algorithm, namely the maximum number of splits in each tree (aka interaction depth)  and the minimum number of observations in each leaf node. These parameters work together to regularize the complexity of the regression trees, and in general these parameters are chosen to ensure short trees and stout leaves to weaken the predictive power of each individual base learner and strengthen the boosted model's ability to generalize \cite{ecological}. 
+	\caption{Notation for Regression Tree Base Learners}
+	\label{fig:regressionTreeFig}
+\end{figure}	
+%---------------------------------------------------------------
+\section{Variable Shrinkage for Regression Tree Base Learners}
+\label{sec:VariableLR}
+The use of regression trees presents an interesting possibility of a simple, yet elegant adaptation method. Since the trees themselves can be seen as a summation of individual prediction terms, one for each leaf, a natural adaptation scheme is to compute a different shrinkage for each leaf node in each base learner. Specifically a simple linear mapping can be used to ensure that the lower the number of examples in a given leaf node, the lower the computed shrinkage. We hypothesize that this will encourage the training to learn rapidly from the most typical training examples, which will fall into large leaf nodes along with their similar peers, while diminishing the impact of outlying and noisy examples, which will be isolated by the regression tree's splitting algorithm. Overall we expect this scheme to lead to faster convergence time while strongly discouraging overfitting.
 
-Note that although we restricted the current study to regression tasks using the squared error loss function, the variable learning rate scheme defined and tested in the following sections could easily be applied to any of the loss functions originally defined by Friedman in \cite{2001Friedman} \cite{2002Friedman}, and most famously implemented in the gbm R package originally written by Ridgeway \cite{2012ridgeway}. Please see these references for information on the many specialized derivations of Algorithm \ref{alg:GeneralGradientBoost} for various learning tasks and to better understand the reasoning behind the equations defined in this section.
-
-\section{Variable Learning Rates for Regression Tree Base Learners}
-
-The use of regression trees as the base learners presents an interesting possibility of a simple, yet elegant adaptation method. Since the regression trees themselves can be seen as a summation of individual prediction terms, one for each leaf in the tree, a natural adaptation scheme is to compute a different learning rate for each leaf node in each base learner. Specifically a simple linear mapping will be used to ensure that the lower the number of examples in a given leaf node, the lower the computed learning rate. We hypothesize that this will encourage the training to learn rapidly from the most typical training examples, which will fall into large leaf nodes along with their similar peers, while diminishing the impact of outlying and noisy examples, which will be isolated by the regression tree's splitting algorithm. Overall we expect this scheme to lead to faster convergence time while strongly discouraging overfitting.
-
-Specifically, we will alter Algorithm 1 to take as input both a minimum and maximum learning rate \(v_{min}\) and \(v_{max}\) respectively, instead of the constant learning rate \(v\). The following equation will then be used to compute the learning rate for each of the J leaves in Equation \ref{eq:UpdateStep2}.
+To this end we will alter Algorithm 1 to take as input both a minimum and maximum shrinkage \(v_{min}\) and \(v_{max}\), instead of the constant shrinkage \(v\). The following equation will then be used to compute the shrinkage for each of the J leaves in Equation \ref{eq:UpdateStep2}.
 	
 \begin{equation}
 v_{m,j} = \frac{|R_{m,j}|}{{|S_m|}}(v_{max} - v_{min})  + v_{min}
 	\label{eq:adaptRule1}
 \end{equation}
 
-This equation maps the range of possible leaf node sizes \([0, |S_m|]\) to the range of possible learning rates \([v_{min}, v_{max}]\). Note that even when the regression trees are built with a minimum number of observations in each leaf node, a common regularization parameter, the missing value branches of the trees can still have any number of examples in them, including zero if no missing values existed in the training data. Thus zero is used as the minimum leaf size regardless of the minimum number of observations parameter. 
+This equation maps the range of possible leaf node sizes \([\ 0, \tilde{N}\ ]\) to the range of possible shrinkage values \([\ v_{min}, v_{max}\ ]\). Note that even when the regression trees are built with a nonzero minimum number of observations in each leaf node, the missing value branches of the trees can still have any number of examples in them, including zero if no missing values existed in the training data. Thus zero is still used as the minimum leaf size for the purposes of shrinkage calculation regardless of the minimum number of observations parameter. 
 
 Using equation \ref{eq:adaptRule1}, the update step (Equation \ref{eq:UpdateStep2}) becomes...
 
@@ -435,107 +452,146 @@ Using equation \ref{eq:adaptRule1}, the update step (Equation \ref{eq:UpdateStep
 	\label{eq:revisedUpdateStep}
 \end{equation}
 	
-\section{Experiment}
-First, we implemented the Friedman's gradient boosting machine algorithm as defined and simplified in sections \ref{sec:GradientBoostingMachine} and \ref{sec:SimplifyingAssumptions} in java.
+\section{Implementation}
+We implemented the Friedman's gradient boosting machine with the option to utilize either the standard constant shrinkage or our proposed variable shrinkage scheme as defined in Sections \ref{sec:GradientBoostingMachine}, \ref{sec:SimplifyingAssumptions}, and \ref{sec:VariableLR}. The core algorithm implementation is an extension of the very minimal JSGBM project found here \cite{jsgbm}. The additions to the original project include support for missing values and splits on categorical variables, optimization of the splitting algorithm, calculation of predictor relative influence, a cross validation based method for selecting the optimal number of trees, and support for De'ath's aggregated boosted trees as discussed in Section \ref{sec:RelatedWork}. All code implemented for this paper can be found at \cite{myGithub}.
+
+The algorithm for selecting the optimal number of trees is based on the gbm.step function of the dismo R package which is described in \cite{ecological}. The psuedocode for our implementation in provided in Algorithm \ref{alg:OptNumOfTrees}.
+
+\begin{algorithm}[]
+	\hspace{1 mm} \\\hrule\hspace{1 mm} \\
+%	\rule{\textwidth}{2pt}
+	\SetKwInOut{Input}{input}
+	\SetKwInOut{Output}{output}
+	
+	\Input{Number of Folds: \(K = 4\) \newline
+		Step Size: \(S_{size} = 5,000\): \newline
+		Minimum Error Delta: \(\Delta_{min} = 10^{-6} \cdot\) meanResponse \newline
+		Steps Past Minimum: \(S_{pm} = 3 \) \newline
+		Max Number of Trees: \(M = 150,000\) \newline
+	}
+	\Output{Estimated number of trees at which generalization error is minimized} 
+	\hspace{1 mm} \\\hrule\hspace{1 mm} \\
+	
+	Create \(K\) training/validation set pairs as in normal K-fold cross validation. For each pair, create a new empty GBM model. \\
+	\hspace{1 mm} \\
+	Initialize number of steps remaining
+	\[
+	S_{remaining} \leftarrow S_{pm}
+	\]
+	
+	\While{ \textsf{\upshape NumberOfTrees \textless } \(M\) \textsf{\upshape and} \(S_{remaining}\) $\textsf{\upshape \textgreater \  0}$}
+	{
+		Add \(S_{size}\) trees to each of the \(K\) GBM models.
+		\hspace{1 mm} \\\hspace{1 mm} \\
+		
+		Evaluate the new validation RMSE of each model, and average them.
+		
+		\[
+		\Delta_{error} \leftarrow \text{oldAvgRMSE - newAvgRMSE}
+		\]
+		
+		\uIf{\(\Delta_{error} > \Delta_{min}\)}{\[S_{remaining} \leftarrow S_{pm}\]}
+		\uElse{\[S_{remaining} \leftarrow S_{remaining} - 1\]}
+	}
+	\caption{Find Optimal Number of Trees using Cross Validation}
+	\hspace{1 mm} \\\hrule\hspace{1 mm} \\\hspace{1 mm} \\
+	\label{alg:OptNumOfTrees}
+\end{algorithm}
 
 
-% An example of a floating figure using the graphicx package.
-% Note that \label must occur AFTER (or within) \caption.
-% For figures, \caption should occur after the \includegraphics.
-% Note that IEEEtran v1.7 and later has special internal code that
-% is designed to preserve the operation of \label within \caption
-% even when the captionsoff option is in effect. However, because
-% of issues like this, it may be the safest practice to put all your
-% \label just after \caption rather than within \caption{}.
-%
-% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
-% option should be used if it is desired that the figures are to be
-% displayed while in draft mode.
-%
-%\begin{figure}[!t]
-%\centering
-%\includegraphics[width=2.5in]{myfigure}
-% where an .eps filename suffix will be assumed under latex, 
-% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-% via \DeclareGraphicsExtensions.
-%\caption{Simulation results for the network.}
-%\label{fig_sim}
-%\end{figure}
+\section{Datasets}
+\label{sec:datasets}
+Four real world datasets with natural regression tasks were selected for use in this study. Each of these can be found in the UC Irvine Machine Learning Repository \cite{Lichman:2013}. This section introduces each of these in turn.
 
-% Note that IEEE typically puts floats only at the top, even when this
-% results in a large percentage of a column being occupied by floats.
+\subsection{Combined Cycle Power Plant (powerPlant)}
+This dataset contains 9568 examples collected over 6 years from a power plant set work at full load. Each instance consists of 4 real valued predictors; namely the  Temperature (T), Ambient Pressure (AP), Relative Humidity (RH) and Exhaust Vacuum (V). The target response variable is the net hourly electrical energy output (EP) of the plant \cite{powerPlantDataset}.
 
+\subsection{Airfoil Self-Noise (nasa)}
+This data originated from a 1989 NASA experiment in which different size air foils were placed in a wind tunnels and subjected to various free-stream velocities and angles of attack. The regression goal is to predict the scaled sound pressure level in decibels of an air foil given the frequency (Hertz), angle of attack (degrees), chord length (meters), free-stream velocity (meters/second), and suction side displacement thickness (meters) \cite{airFoilDataset}.
 
-% An example of a double column floating figure using two subfigures.
-% (The subfig.sty package must be loaded for this to work.)
-% The subfigure \label commands are set within each subfloat command,
-% and the \label for the overall figure must come after \caption.
-% \hfil is used as a separator to get equal spacing.
-% Watch out that the combined width of all the subfigures on a 
-% line do not exceed the text width or a line break will occur.
-%
-%\begin{figure*}[!t]
-%\centering
-%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
-%\label{fig_first_case}}
-%\hfil
-%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
-%\label{fig_second_case}}
-%\caption{Simulation results for the network.}
-%\label{fig_sim}
-%\end{figure*}
-%
-% Note that often IEEE papers with subfigures do not employ subfigure
-% captions (using the optional argument to \subfloat[]), but instead will
-% reference/describe all of them (a), (b), etc., within the main caption.
-% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
-% labels, the optional argument to \subfloat must be present. If a
-% subcaption is not desired, just leave its contents blank,
-% e.g., \subfloat[].
+\subsection{Bike Sharing (bikeSharing)}
+Hadi Fanaee from the Laboratory of Artificial Intelligence and Decision Support (LIAAD), University of Porto pulled together weather information and holiday information and integrated it with publically available trip data provided by Capital Bikeshare to generate this intriguing dataset consisting of almost two years of bike rental data aggregated both by day and by hour. Each instance contains attributes providing information about the day [and hour] that the rentals occurred. This includes the year, season, month, day, hour, whether it was a holiday, a weekday, or a working day. In addition the weather conditions for each instant in time are provided including the precipitation type, temperature, humidity, and wind speed. Finally the count of bikes rented during each time period is provided, which will be used as the target variable in our experiment \cite{bikeSharingDataset} \cite{bikeSharingCiteRequest}. 
 
+\subsection{Communities and Crime (crimeCommunities)}
+Lastly we will look at the Communities and Crime dataset which "combines socio-economic data from the 1990 US Census, law enforcement data from the 1990 US LEMAS survey, and crime 
+data from the 1995 FBI UCR." \cite{crimeCommunities} \todo{write something}
 
-% An example of a floating table. Note that, for IEEE style tables, the
-% \caption command should come BEFORE the table and, given that table
-% captions serve much like titles, are usually capitalized except for words
-% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
-% and up, which are usually not capitalized unless they are the first or
-% last word of the caption. Table text will default to \footnotesize as
-% IEEE normally uses this smaller font for tables.
-% The \label must come after \caption as always.
-%
-%\begin{table}[!t]
-%% increase table row spacing, adjust to taste
-%\renewcommand{\arraystretch}{1.3}
-% if using array.sty, it might be a good idea to tweak the value of
-% \extrarowheight as needed to properly center the text within the cells
-%\caption{An Example of a Table}
-%\label{table_example}
-%\centering
-%% Some packages, such as MDW tools, offer better commands for making tables
-%% than the plain LaTeX2e tabular which is used here.
-%\begin{tabular}{|c||c|}
-%\hline
-%One & Two\\
-%\hline
-%Three & Four\\
-%\hline
-%\end{tabular}
-%\end{table}
+\section {Parameter Tuning Experiment}
+In order to compare model performance of the original algorithm with our proposed shrinkage adaption scheme, we developed an experiment in which 2048 total sets of parameters were tested on the four datasets described in Section \ref{sec:datasets}. 
 
+All parameters that affect the execution of Algorithm \ref{alg:OptNumOfTrees}, which is the core training procedure used in all of our tests, are shown in Table \ref{tab:findOptTreeParam}. Two additional parameters are listed that were not introduced with algorithm itself but are important to node. These indicate that the running time and memory usage for during training was limited to 1.5 hours and 20 GB respectively. These values were exceeded only a handful of times when using the lowest constant learning rate and the highest number of splits. In the rare case that a test exceeded these limits the training stopped and the application continued with collecting and saving metadata about the constructed models, just as though the training stopped due to the normal stopping condition.
 
-% Note that the IEEE does not put floats in the very first column
-% - or typically anywhere on the first page for that matter. Also,
-% in-text middle ("here") positioning is typically not used, but it
-% is allowed and encouraged for Computer Society conferences (but
-% not Computer Society journals). Most IEEE journals/conferences use
-% top floats exclusively. 
-% Note that, LaTeX2e, unlike IEEE journals/conferences, places
-% footnotes above bottom floats. This can be corrected via the
-% \fnbelowfloat command of the stfloats package.
+Gradient boosting machines with regression tree base learners are traditionally defined by the number of trees to build and 4 additional parameters; the bag fraction, shrinkage, minimum number of examples in each leaf, and the maximum number of splits in each tree. To support our variable shrinkage scheme we must add one additional parameter since we require both a minimum and a maximum learning rate. All values that were considered for each of these parameters are provided in Table \ref{tab:parameters}. Taking all possible combinations of these parameters leads to 512 parameter sets with constant shrinkage, and 1536 possibilities with variable shrinkage for a total of 2048 individual tests.
+%---------------------------------------------------------------
+\begin{table}
+	\centering
+	\begin{tabular}{ | l || c |}
+		\hline
+		Maximum Running Time & 1.5 hours \\ \hline
+		Maximum Memory Usage & 20 GB \\ \hline
+		Maximum Number of Trees & 150,000 \\ \hline
+		Number of CV Folds & 4 \\ \hline
+		CV Step Size & 5000 \\ \hline
+		\begin{tabular}{@{}l@{}}Number of CV Steps after \\ Falling Below Min Error Delta\end{tabular}
+		& 3 \\ \hline
+		Minimum Error Delta & 0.000001 $\cdot$ mean training response \\
+		\hline
+	\end{tabular}
+	\caption{Execution limits and Parameters for Finding Optimal Number of Trees}
+	\label{tab:findOptTreeParam}
+\end{table}
+%---------------------------------------------------------------
+\begin{table}
+	\centering
+		\begin{tabular}	{ | l || c |}
+			\hline
+			Bag Fraction & 0.25, 0.50, 0.75, 1 \\ \hline
+			Min Examples In Node & 1, 50, 100, 250 \\ \hline
+			Max Number Of Splits & 1, 2, 4, 8, 16, 32, 64, 128 \\ \hline
+			Constant: Shrinkage & 0.1, 0.01, 0.001, 0.0001 \\ \hline
+			Variable: Minimum Shrinkage & 0.01, 0.001, 0.0001 \\ \hline
+			Variable: Maximum Shrinkage & 0.1, 0.4, 0.7, 1 \\
+			\hline
+			
+		\end{tabular}
+		\caption{Execution limits and Parameters for Finding Optimal Number of Trees}
+		\label{tab:parameters}
+\end{table}
+%---------------------------------------------------------------
+For each combination of parameters on each dataset five independent runs were performed and all data collected from them was averaged. All results  presented and discussed in the following sections are derived from these average values. Each run of a particular parameter set on a dataset consists of the following procedure.
+%---------------------------------------------------------------
+\begin{enumerate}
+	\item Select randomly without replacement 20\% of the dataset and set aside as a test set.
+	\item Use Algorithm \ref{alg:OptNumOfTrees} to perform 4-fold cross validation and find the optimal number of trees. Simultaneously train a GBM using the entire training set. 
+	\item Build an Aggregated Boosted Tree from the 4 GBMs built for cross validation.
+	\item For each number of trees from 1 to total number of trees built, collect the following information to generate error curves and other interesting graphs. (This is done as steps 2 and 3 execute)
+		\begin{enumerate}
+		\item Average training, validation, and test RMSE of the 4 cross validation GBMs.
+		\item Training and Test RMSE of the GBM trained using all training data.
+		\item Training and Test RMSE of the Aggregated Boosted Tree.
+		\item Mean and Standard Deviation of the actual number of examples across the leaf nodes in the last tree that was added to the all training data GBM.
+		\item Mean and Standard Deviation of the actual shrinkage values across the leaf nodes in the last tree that was added to the all training data GBM.
+		\item The actual number of splits in the last tree that was added to the all training data GBM.
+		\end{enumerate}
+	\item For each example in the dataset (both training and test) collect the following information.
+	\begin{enumerate}
+		\item Prediction at the optimal number of trees using the all training data GBM.
+		\item The residual of that prediction
+		\item The avg learning rate applied to that example across all trees using the all training data GBM.
+	\end{enumerate}
 
-
-
-
+	\item Compute the relative influences of the predictors for both the all training data GBM and the aggregated boosted tree.
+	\item Compute the average and standard deviation of the actual number of splits across all trees built. (Average and Std. Dev. of 4.f)
+	\item Compute the average and standard deviation of the average learning rates applied to each example. (Average and Std. Dev. of 5.c)
+	\item Record the total amount of time taken to perform all of these steps.
+\end{enumerate}
+%---------------------------------------------------------------
+\section{Results}
+Results and Stuff
+%---------------------------------------------------------------
+\section{Analysis}
+Analysis and stuff
+%---------------------------------------------------------------
 \section{Conclusion}
 The conclusion goes here.
 
@@ -547,39 +603,39 @@ The conclusion goes here.
 
 % use section* for acknowledgment
 \section*{Acknowledgment}
-
-
-The authors would like to thank...
-
-
-
+Yo chang's the man
 
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page
 % adjust value as needed - may need to be readjusted if
 % the document is modified later
-%\IEEEtriggeratref{8}
+\IEEEtriggeratref{8}
 % The "triggered" command can be changed if desired:
 %\IEEEtriggercmd{\enlargethispage{-5in}}
 
 % references section
-
-% can use a bibliography generated by BibTeX as a .bbl file
-% BibTeX documentation can be easily obtained at:
-% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
-% The IEEEtran BibTeX style support page is at:
-% http://www.michaelshell.org/tex/ieeetran/bibtex/
-%\bibliographystyle{IEEEtran}
-% argument is your BibTeX string definitions and bibliography database(s)
-%\bibliography{IEEEabrv,../bib/paper}
-%
-% <OR> manually copy in the resultant .bbl file
-% set second argument of \begin to the number of references
-% (used to reserve space for the reference number labels box)
 \bibliographystyle{ieeetran}
 \bibliography{references}
 
+\todo{Crime communities citation request} 
+U. S. Department of Commerce, Bureau of the Census, Census Of Population And Housing 1990 United States: Summary Tape File 1a \& 3a (Computer Files),
+
+U.S. Department Of Commerce, Bureau Of The Census Producer, Washington, DC and 
+Inter-university Consortium for Political and Social Research Ann Arbor, Michigan. 
+(1992)
+
+U.S. Department of Justice, Bureau of Justice Statistics, Law Enforcement Management 
+And Administrative Statistics (Computer File) U.S. Department Of Commerce, Bureau Of 
+The Census Producer, Washington, DC and Inter-university Consortium for Political and 
+Social Research Ann Arbor, Michigan. (1992)
+
+U.S. Department of Justice, Federal Bureau of Investigation, Crime in the United 
+States (Computer File) (1995)
+
+Redmond, M. A. and A. Baveja: A Data-Driven Software Tool for Enabling Cooperative 
+Information Sharing Among Police Departments. European Journal of Operational Research 
+141 (2002) 660-678. 
 
 
 
