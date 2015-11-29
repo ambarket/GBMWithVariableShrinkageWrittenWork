@@ -233,10 +233,14 @@
 \usepackage{todonotes}
 \usepackage{xcolor}% you could also use the color package
 \usepackage{colortbl}
-
+\usepackage{lipsum}
 \makeatletter
 \newcommand{\removelatexerror}{\let\@latex@error\@gobble}
 \makeatother
+
+%\makeatletter
+%\@dblfptop 0pt
+%\makeatother
 
 \begin{document}
 %
@@ -516,12 +520,12 @@ Hadi Fanaee from the Laboratory of Artificial Intelligence and Decision Support 
 Lastly we will look at the Communities and Crime dataset which "combines socio-economic data from the 1990 US Census, law enforcement data from the 1990 US LEMAS survey, and crime 
 data from the 1995 FBI UCR." \cite{crimeCommunities} \todo{write something}
 
-\section {Parameter Tuning Experiment}
+\section {Experiment}
 In order to compare model performance of the original algorithm with our proposed shrinkage adaption scheme, we developed an experiment in which 2048 total sets of parameters were tested on the four datasets described in Section \ref{sec:datasets}. 
 
-All parameters that affect the execution of Algorithm \ref{alg:OptNumOfTrees}, which is the core training procedure used in all of our tests, are shown in Table \ref{tab:findOptTreeParam}. Two additional parameters are listed that were not introduced with algorithm itself but are important to node. These indicate that the running time and memory usage for during training was limited to 1.5 hours and 20 GB respectively. These values were exceeded only a handful of times when using the lowest constant learning rate and the highest number of splits. In the rare case that a test exceeded these limits the training stopped and the application continued with collecting and saving metadata about the constructed models, just as though the training stopped due to the normal stopping condition.
+All parameters that affect the execution of Algorithm \ref{alg:OptNumOfTrees}, which is the core training procedure used in all of our tests, are shown in Table \ref{tab:findOptTreeParam}. Two additional parameters are listed that were not introduced with algorithm itself but are important to note. These indicate that the running time and memory usage for during training was limited to 1.5 hours and 20 GB respectively. These values were exceeded only a handful of times when using the lowest constant learning rate and the highest number of splits. In the rare case that a test exceeded these limits the training stopped and the application continued with collecting and saving metadata about the constructed models, just as though the training stopped due to the normal stopping condition.
 
-Gradient boosting machines with regression tree base learners are traditionally defined by the number of trees to build and 4 additional parameters; the bag fraction, shrinkage, minimum number of examples in each leaf, and the maximum number of splits in each tree. To support our variable shrinkage scheme we must add one additional parameter since we require both a minimum and a maximum learning rate. All values that were considered for each of these parameters are provided in Table \ref{tab:parameters}. Taking all possible combinations of these parameters leads to 512 parameter sets with constant shrinkage, and 1536 possibilities with variable shrinkage for a total of 2048 individual tests.
+Gradient boosting machines with regression tree base learners are traditionally defined by the number of trees to be built and 4 additional parameters; the bag fraction, shrinkage, minimum number of examples in each leaf, and the maximum number of splits in each tree. To support our variable shrinkage scheme we must add one additional parameter since we require both a minimum and a maximum learning rate. All values that were considered for each of these parameters are provided in Table \ref{tab:parameters}. Taking all possible combinations of these parameters leads to 512 parameter sets with constant shrinkage, and 1536 possibilities with variable shrinkage for a total of 2048 individual tests.
 %---------------------------------------------------------------
 \begin{table}
 	\centering
@@ -567,7 +571,7 @@ For each combination of parameters on each dataset five independent runs were pe
 	\item For each number of trees from 1 to total number of trees built, collect the following information to generate error curves and other interesting graphs. (This is done as steps 2 and 3 execute)
 		\begin{enumerate}
 		\item Average training, validation, and test RMSE of the 4 cross validation GBMs.
-		\item Training and Test RMSE of the GBM trained using all training data.
+		\item Training and Test RMSE of the GBM trained using all training data (ADT).
 		\item Training and Test RMSE of the Aggregated Boosted Tree.
 		\item Mean and Standard Deviation of the actual number of examples across the leaf nodes in the last tree that was added to the all training data GBM.
 		\item Mean and Standard Deviation of the actual shrinkage values across the leaf nodes in the last tree that was added to the all training data GBM.
@@ -585,9 +589,242 @@ For each combination of parameters on each dataset five independent runs were pe
 	\item Compute the average and standard deviation of the average learning rates applied to each example. (Average and Std. Dev. of 5.c)
 	\item Record the total amount of time taken to perform all of these steps.
 \end{enumerate}
+
 %---------------------------------------------------------------
 \section{Results}
-Results and Stuff
+
+For each dataset, we have sorted all parameter sets by the average cross validation error across the five runs performed. The five sets of parameters leading to the lowest average cross validation root mean squared error (RMSE) using both constant and variable shrinkages are provided for each dataset in Tables III through X. Note the lighter shaded cells indicate the minimum value in each row, while the darker shade indicates the maximum value.
+
+The topmost sections of these tables contain the parameter values themselves (columns are sorted by CV Error in ascending order). 
+
+In the middle portion of the table we have the running time, average cross validation error, average performance of the GBMs built with all training data on the test set (ATD Test RMSE), average performance of the Aggregated Boosted Trees on the test set (ABT Test RMSE), as well as the average optimal number of trees found across the five runs. 
+
+The bottom most sections of these tables contain the mean and standard deviation values of the actual leaf sizes and number of splits across all trees. In the case of variable shrinkage we additionally provide the average shrinkage applied across all of the examples. 
+
+It's important to notice that the trees cannot always be grown to the maximum number of splits or to the point of reaching the minimum leaf size. The tree building algorithm terminates when it can no longer find a split that decreases the overall squared error of the training instances involved in the split. Thus when the maximum number of splits is high, the minimum leaf size is low, th
+
+
+
+%--------------------------------------NASA------------------------------------
+\begin{table}[!t]
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{ | c || c | c | c | c | c | }
+			\hline
+			\rule{0pt}{2ex} Bag Fraction & 0.5 & 0.5 & 0.5 & 0.5 & 0.75\\ \hline 
+			\rule{0pt}{2ex} Min Leaf Size & 1.0 & 1.0 & 1.0 & 1.0 & 1.0\\ \hline 
+			\rule{0pt}{2ex} MaxSplits & 32.0 & 32.0 & 16.0 & 64.0 & 16.0\\ \hline 
+			\rule{0pt}{2ex} Shrinkage & 0.001 & 0.01 & 0.001 & 0.01 & 0.01\\ \hline 
+			\hline 
+			\rule{0pt}{2ex} RunningTime (seconds) & \cellcolor{blue!30}335.1678 & 96.351 & 219.6743 & \cellcolor{blue!10}81.041 & 90.7919\\ \hline 
+			\rule{0pt}{2ex} ATD Test RMSE & 1.2844 & 1.2723 & \cellcolor{blue!30}1.3036 & 1.2846 & \cellcolor{blue!10}1.2429\\ \hline 
+			\rule{0pt}{2ex} ABT Test RMSE & 1.3875 & \cellcolor{blue!30}1.3934 & 1.3719 & 1.3639 & \cellcolor{blue!10}1.3271\\ \hline 
+			\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}1.4463 & 1.451 & 1.4542 & 1.4583 & \cellcolor{blue!30}1.4686\\ \hline 
+			\rule{0pt}{2ex} Optimal Num. of Trees & 137017.6 & 43745.8 & \cellcolor{blue!30}149957.8 & \cellcolor{blue!10}19801.6 & 59061.4\\ \hline 
+			\hline 
+			\rule{0pt}{2ex} Avg. Leaf Size & \cellcolor{blue!10}6.37702 & 6.388851 & 13.570182 & 8.684288 & \cellcolor{blue!30}18.810179\\ \hline 
+			\rule{0pt}{2ex} Std. Dev. Leaf Size & 0.661731 & 2.80447 & \cellcolor{blue!10}0.03642 & \cellcolor{blue!30}7.786496 & 3.760119\\ \hline 
+			\rule{0pt}{2ex} Avg. Splits & 29.6533 & 27.02 & 16 & \cellcolor{blue!30}40.5662 & \cellcolor{blue!10}14.7692\\ \hline 
+			\rule{0pt}{2ex} Std. Dev. Splits & 3.0841 & 9.4346 & \cellcolor{blue!10}0 & \cellcolor{blue!30}26.7213 & 2.9538\\ \hline 
+		\end{tabular}}
+		\caption{Constant Shrinkage: Nasa Air Foil Parameters with Best Cross Validation RMSE.}
+		\label{tab:nasaconstantBestAndWorstParameters}
+	\end{table}
+	
+	
+	\begin{table}[!t]
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{ | c || c | c | c | c | c | }
+				\hline
+				\rule{0pt}{2ex} Bag Fraction & 0.5 & 0.5 & 0.5 & 0.5 & 0.5\\ \hline 
+				\rule{0pt}{2ex} Min Leaf Size & 1.0 & 1.0 & 1.0 & 1.0 & 1.0\\ \hline 
+				\rule{0pt}{2ex} MaxSplits & 16.0 & 16.0 & 32.0 & 32.0 & 16.0\\ \hline 
+				\rule{0pt}{2ex} Min Shrinkage & 0.01 & 0.001 & 0.0001 & 0.001 & 0.001\\ \hline 
+				\rule{0pt}{2ex} Max Shrinkage & 0.7 & 0.4 & 0.4 & 0.4 & 0.1\\ \hline 
+				\hline 
+				\rule{0pt}{2ex} RunningTime (seconds) & \cellcolor{blue!10}84.3753 & 198.8264 & \cellcolor{blue!30}231.5566 & 168.5468 & 205.0479\\ \hline 
+				\rule{0pt}{2ex} ATD Test RMSE & 1.2732 & 1.2448 & \cellcolor{blue!10}1.1749 & \cellcolor{blue!30}1.4282 & 1.3342\\ \hline 
+				\rule{0pt}{2ex} ABT Test RMSE & 1.3357 & \cellcolor{blue!10}1.2664 & 1.2811 & \cellcolor{blue!30}1.5203 & 1.4044\\ \hline 
+				\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}1.4229 & 1.4349 & 1.4353 & 1.4358 & \cellcolor{blue!30}1.4465\\ \hline 
+				\rule{0pt}{2ex} Optimal Num. of Trees & \cellcolor{blue!10}56181 & 142271.4 & 98964.2 & 67466 & \cellcolor{blue!30}149497.8\\ \hline 
+				\hline 
+				\rule{0pt}{2ex} Avg. Leaf Size & 12.750963 & 12.946516 & \cellcolor{blue!10}5.347274 & 5.733489 & \cellcolor{blue!30}13.572058\\ \hline 
+				\rule{0pt}{2ex} Std. Dev. Leaf Size & \cellcolor{blue!30}2.23063 & 1.670755 & 1.720047 & 1.538506 & \cellcolor{blue!10}0.034655\\ \hline 
+				\rule{0pt}{2ex} Avg. Splits & \cellcolor{blue!10}15.0154 & 15.2533 & 24.8615 & \cellcolor{blue!30}26.6667 & 16\\ \hline 
+				\rule{0pt}{2ex} Std. Dev. Splits & 2.6282 & 1.9697 & \cellcolor{blue!30}8.0028 & 7.1554 & \cellcolor{blue!10}0\\ \hline 
+				\rule{0pt}{2ex} Avg. Shrinkage & \cellcolor{blue!30}0.177175 & 0.105513 & 0.067341 & 0.065603 & \cellcolor{blue!10}0.028777\\ \hline 
+				\rule{0pt}{2ex} Std. Dev. Shrinkage & \cellcolor{blue!30}0.030301 & 0.020138 & 0.017297 & 0.016133 & \cellcolor{blue!10}0.005734\\ \hline 
+			\end{tabular}}
+			\caption{Variable Shrinkage: Nasa Air Foil Parameters with Best Cross Validation RMSE.}
+			\label{tab:nasaconstantBestAndWorstParameters}
+		\end{table}
+
+
+
+%--------------------------------------Bike SHaring------------------------------------
+\begin{table}[!t]
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{ | c || c | c | c | c | c | }
+			\hline
+			\rule{0pt}{2ex} Bag Fraction & 0.25 & 0.25 & 0.25 & 0.75 & 0.5\\ \hline 
+			\rule{0pt}{2ex} Min Leaf Size & 1.0 & 1.0 & 1.0 & 1.0 & 1.0\\ \hline 
+			\rule{0pt}{2ex} MaxSplits & 16.0 & 32.0 & 64.0 & 8.0 & 8.0\\ \hline 
+			\rule{0pt}{2ex} Shrinkage & 0.001 & 0.001 & 0.001 & 0.0001 & 0.0001\\ \hline 
+			\hline 
+			\rule{0pt}{2ex} RunningTime (seconds) & \cellcolor{blue!10}56.504 & 90.2223 & \cellcolor{blue!30}235.1741 & 218.2886 & 192.6188\\ \hline 
+			\rule{0pt}{2ex} ATD Test RMSE & 651.4022 & 658.0197 & 656.9807 & \cellcolor{blue!30}676.6008 & \cellcolor{blue!10}622.1279\\ \hline 
+			\rule{0pt}{2ex} ABT Test RMSE & 655.1055 & 660.1975 & 661.3023 & \cellcolor{blue!30}685.5282 & \cellcolor{blue!10}623.8224\\ \hline 
+			\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}621.5137 & 623.1882 & 623.9958 & 625.4049 & \cellcolor{blue!30}626.079\\ \hline 
+			\rule{0pt}{2ex} Optimal Num. of Trees & 8096 & \cellcolor{blue!10}8025.4 & 26047.4 & \cellcolor{blue!30}129637.2 & 121190\\ \hline 
+			\hline 
+			\rule{0pt}{2ex} Avg. Leaf Size & 3.302786 & 1.542667 & \cellcolor{blue!10}0.329561 & \cellcolor{blue!30}17.878478 & 11.507763\\ \hline 
+			\rule{0pt}{2ex} Std. Dev. Leaf Size & \cellcolor{blue!10}0.001619 & 0.268327 & 0.280136 & 2.725598 & \cellcolor{blue!30}3.101209\\ \hline 
+			\rule{0pt}{2ex} Avg. Splits & 16 & \cellcolor{blue!30}29.4397 & 24.9575 & 7.4133 & \cellcolor{blue!10}7.1467\\ \hline 
+			\rule{0pt}{2ex} Std. Dev. Splits & \cellcolor{blue!10}0.0025 & 5.1199 & \cellcolor{blue!30}21.2159 & 1.1301 & 1.9259\\ \hline 
+		\end{tabular}}
+		\caption{Constant Shrinkage: Bike Sharing By Day Parameters with Best Cross Validation RMSE.}
+		\label{tab:bikeSharingDayconstantBestAndWorstParameters}
+	\end{table}
+	
+	
+	\begin{table}[!t]
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{ | c || c | c | c | c | c | }
+				\hline
+				\rule{0pt}{2ex} Bag Fraction & 0.5 & 0.5 & 0.25 & 0.25 & 0.25\\ \hline 
+				\rule{0pt}{2ex} Min Leaf Size & 1.0 & 1.0 & 1.0 & 1.0 & 1.0\\ \hline 
+				\rule{0pt}{2ex} MaxSplits & 8.0 & 8.0 & 128.0 & 16.0 & 128.0\\ \hline 
+				\rule{0pt}{2ex} Min Shrinkage & 0.01 & 0.001 & 0.0001 & 0.01 & 0.001\\ \hline 
+				\rule{0pt}{2ex} Max Shrinkage & 0.1 & 0.1 & 0.4 & 0.1 & 0.4\\ \hline 
+				\hline 
+				\rule{0pt}{2ex} RunningTime (seconds) & 29.6724 & \cellcolor{blue!10}28.487 & \cellcolor{blue!30}158.0349 & 45.789 & 142.5841\\ \hline 
+				\rule{0pt}{2ex} ATD Test RMSE & 650.0301 & 658.3118 & 653.8457 & \cellcolor{blue!10}623.0296 & \cellcolor{blue!30}670.386\\ \hline 
+				\rule{0pt}{2ex} ABT Test RMSE & 651.2336 & 657.3432 & 645.1478 & \cellcolor{blue!10}603.3586 & \cellcolor{blue!30}671.631\\ \hline 
+				\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}617.6814 & 618.1792 & 623.571 & 628.0958 & \cellcolor{blue!30}628.7687\\ \hline 
+				\rule{0pt}{2ex} Optimal Num. of Trees & 778 & 1976.4 & \cellcolor{blue!30}4391.6 & \cellcolor{blue!10}593 & 1859.6\\ \hline 
+				\hline 
+				\rule{0pt}{2ex} Avg. Leaf Size & 12.881251 & \cellcolor{blue!30}12.881854 & \cellcolor{blue!10}0.452567 & 3.302758 & 0.511332\\ \hline 
+				\rule{0pt}{2ex} Std. Dev. Leaf Size & 0.019336 & 0.044956 & \cellcolor{blue!30}0.130897 & \cellcolor{blue!10}0.005692 & 0.012704\\ \hline 
+				\rule{0pt}{2ex} Avg. Splits & \cellcolor{blue!10}7.9999 & 7.9999 & 93.5407 & 15.9998 & \cellcolor{blue!30}106.1888\\ \hline 
+				\rule{0pt}{2ex} Std. Dev. Splits & \cellcolor{blue!10}0.0071 & 0.0122 & \cellcolor{blue!30}26.4443 & 0.0164 & 1.8836\\ \hline 
+				\rule{0pt}{2ex} Avg. Shrinkage & \cellcolor{blue!30}0.035531 & 0.031621 & \cellcolor{blue!10}0.004295 & 0.019985 & 0.004885\\ \hline 
+				\rule{0pt}{2ex} Std. Dev. Shrinkage & 0.001633 & \cellcolor{blue!30}0.002721 & 0.000183 & 0.00108 & \cellcolor{blue!10}0\\ \hline 
+			\end{tabular}}
+			\caption{Variable Shrinkage: Bike Sharing By Day Parameters with Best Cross Validation RMSE.}
+			\label{tab:bikeSharingDayconstantBestAndWorstParameters}
+		\end{table}
+
+				
+		%-----------Best Constant and Variable Error Curves---------------------------------------------
+
+%------------------------------Power Plant---------------------------------------------
+\begin{table}[!t]
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{ | c || c | c | c | c | c | }
+			\hline
+			\rule{0pt}{2ex} Bag Fraction & 0.75 & 0.75 & 0.75 & 0.5 & 0.75\\ \hline 
+			\rule{0pt}{2ex} Min Leaf Size & 1.0 & 1.0 & 1.0 & 1.0 & 1.0\\ \hline 
+			\rule{0pt}{2ex} MaxSplits & 16.0 & 64.0 & 32.0 & 32.0 & 64.0\\ \hline 
+			\rule{0pt}{2ex} Shrinkage & 0.001 & 0.01 & 0.01 & 0.001 & 0.001\\ \hline 
+			\hline 
+			\rule{0pt}{2ex} RunningTime (seconds) & 1535.213 & 520.0124 & \cellcolor{blue!10}374.4487 & 1509.8043 & \cellcolor{blue!30}1713.554\\ \hline 
+			\rule{0pt}{2ex} ATD Test RMSE & 2.9434 & 2.9665 & \cellcolor{blue!10}2.8883 & \cellcolor{blue!30}3.0721 & 2.9603\\ \hline 
+			\rule{0pt}{2ex} ABT Test RMSE & 2.9368 & 2.9644 & \cellcolor{blue!10}2.8819 & \cellcolor{blue!30}3.0609 & 2.9751\\ \hline 
+			\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}3.0016 & 3.0086 & 3.0226 & 3.0227 & \cellcolor{blue!30}3.0307\\ \hline 
+			\rule{0pt}{2ex} Optimal Num. of Trees & \cellcolor{blue!30}149834.6 & \cellcolor{blue!10}5613.8 & 9749.6 & 90980.4 & 54872.4\\ \hline 
+			\hline 
+			\rule{0pt}{2ex} Avg. Leaf Size & \cellcolor{blue!30}130.42424 & 33.36434 & 66.21538 & 37.997457 & \cellcolor{blue!10}30.981173\\ \hline 
+			\rule{0pt}{2ex} Std. Dev. Leaf Size & \cellcolor{blue!10}0 & 0 & 0 & \cellcolor{blue!30}12.051963 & 6.956236\\ \hline 
+			\rule{0pt}{2ex} Avg. Splits & \cellcolor{blue!10}16 & \cellcolor{blue!30}64 & 32 & 27.5478 & 59.4286\\ \hline 
+			\rule{0pt}{2ex} Std. Dev. Splits & \cellcolor{blue!10}0 & 0 & 0 & 8.7376 & \cellcolor{blue!30}13.3436\\ \hline 
+		\end{tabular}}
+		\caption{Constant Shrinkage: Power Plant Parameters with Best Cross Validation RMSE.}
+		\label{tab:powerPlantconstantBestAndWorstParameters}
+	\end{table}
+	
+	
+	\begin{table}[!t]
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{ | c || c | c | c | c | c | }
+				\hline
+				\rule{0pt}{2ex} Bag Fraction & 0.75 & 0.75 & 0.75 & 0.75 & 0.75\\ \hline 
+				\rule{0pt}{2ex} Min Leaf Size & 1.0 & 1.0 & 1.0 & 1.0 & 1.0\\ \hline 
+				\rule{0pt}{2ex} MaxSplits & 32.0 & 32.0 & 16.0 & 64.0 & 16.0\\ \hline 
+				\rule{0pt}{2ex} Min Shrinkage & 0.01 & 0.01 & 0.01 & 0.01 & 0.001\\ \hline 
+				\rule{0pt}{2ex} Max Shrinkage & 0.1 & 0.4 & 0.7 & 0.4 & 0.1\\ \hline 
+				\hline 
+				\rule{0pt}{2ex} RunningTime (seconds) & 413.4511 & 377.9108 & \cellcolor{blue!10}292.2713 & 522.1357 & \cellcolor{blue!30}1364.3959\\ \hline 
+				\rule{0pt}{2ex} ATD Test RMSE & 2.9906 & \cellcolor{blue!30}3.0471 & 3.0163 & \cellcolor{blue!10}2.9712 & 2.9929\\ \hline 
+				\rule{0pt}{2ex} ABT Test RMSE & 2.9854 & \cellcolor{blue!30}3.0449 & 2.9916 & 2.9672 & \cellcolor{blue!10}2.9657\\ \hline 
+				\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}2.9862 & 3.006 & 3.0362 & \cellcolor{blue!30}3.0383 & 3.0383\\ \hline 
+				\rule{0pt}{2ex} Optimal Num. of Trees & 10259 & 8888 & 14138.6 & \cellcolor{blue!10}5088.4 & \cellcolor{blue!30}129227.6\\ \hline 
+				\hline 
+				\rule{0pt}{2ex} Avg. Leaf Size & 66.21538 & 66.21538 & \cellcolor{blue!30}126.076765 & \cellcolor{blue!10}33.36434 & 124.127897\\ \hline 
+				\rule{0pt}{2ex} Std. Dev. Leaf Size & \cellcolor{blue!10}0 & 0 & 9.721249 & 0 & \cellcolor{blue!30}21.285523\\ \hline 
+				\rule{0pt}{2ex} Avg. Splits & 32 & 32 & 15.4667 & \cellcolor{blue!30}64 & \cellcolor{blue!10}15.2276\\ \hline 
+				\rule{0pt}{2ex} Std. Dev. Splits & \cellcolor{blue!10}0 & 0 & 1.1926 & 0 & \cellcolor{blue!30}2.6112\\ \hline 
+				\rule{0pt}{2ex} Avg. Shrinkage & \cellcolor{blue!10}0.047665 & 0.170609 & \cellcolor{blue!30}0.338802 & 0.139473 & 0.05176\\ \hline 
+				\rule{0pt}{2ex} Std. Dev. Shrinkage & \cellcolor{blue!10}0.004657 & 0.01999 & \cellcolor{blue!30}0.035525 & 0.018966 & 0.005411\\ \hline 
+			\end{tabular}}
+			\caption{Variable Shrinkage: Power Plant Parameters with Best Cross Validation RMSE.}
+			\label{tab:powerPlantconstantBestAndWorstParameters}
+		\end{table}
+
+
+
+%-------------------------------------------------Crime COmmunities------------------------------------------------------------
+\begin{table}[!t]
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{ | c || c | c | c | c | c | }
+			\hline
+			\rule{0pt}{2ex} Bag Fraction & 0.75 & 0.75 & 0.5 & 0.5 & 0.5\\ \hline 
+			\rule{0pt}{2ex} Min Leaf Size & 50.0 & 1.0 & 1.0 & 50.0 & 50.0\\ \hline 
+			\rule{0pt}{2ex} MaxSplits & 64.0 & 8.0 & 16.0 & 32.0 & 128.0\\ \hline 
+			\rule{0pt}{2ex} Shrinkage & 0.01 & 0.001 & 0.001 & 0.0001 & 0.001\\ \hline 
+			\hline 
+			\rule{0pt}{2ex} RunningTime (seconds) & 804.0786 & 1614.8035 & 1221.8599 & \cellcolor{blue!30}2382.7478 & \cellcolor{blue!10}565.2622\\ \hline 
+			\rule{0pt}{2ex} ATD Test RMSE & \cellcolor{blue!30}0.1432 & 0.1421 & 0.1375 & 0.136 & \cellcolor{blue!10}0.1349\\ \hline 
+			\rule{0pt}{2ex} ABT Test RMSE & \cellcolor{blue!30}0.1431 & 0.1417 & 0.1367 & 0.1361 & \cellcolor{blue!10}0.1349\\ \hline 
+			\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}0.1333 & 0.1335 & 0.1337 & 0.1343 & \cellcolor{blue!30}0.1345\\ \hline 
+			\rule{0pt}{2ex} Optimal Num. of Trees & \cellcolor{blue!10}830.8 & 26488.2 & 7292.4 & \cellcolor{blue!30}92747.2 & 9680\\ \hline 
+			\hline 
+			\rule{0pt}{2ex} Avg. Leaf Size & \cellcolor{blue!30}38.168482 & 18.110589 & \cellcolor{blue!10}15.920001 & 30.781199 & 29.906396\\ \hline 
+			\rule{0pt}{2ex} Std. Dev. Leaf Size & 6.997223 & \cellcolor{blue!30}15.62332 & \cellcolor{blue!10}4.341818 & 8.759128 & 10.357147\\ \hline 
+			\rule{0pt}{2ex} Avg. Splits & 11.6437 & \cellcolor{blue!10}2.752 & \cellcolor{blue!30}14.08 & 7.3093 & 7.1072\\ \hline 
+			\rule{0pt}{2ex} Std. Dev. Splits & \cellcolor{blue!10}1.5399 & 2.374 & \cellcolor{blue!30}3.84 & 2.0806 & 2.4574\\ \hline 
+		\end{tabular}}
+		\caption{Constant Shrinkage: Crime Communities Parameters with Best Cross Validation RMSE.}
+		\label{tab:crimeCommunitiesconstantBestAndWorstParameters}
+	\end{table}
+	
+	
+	\begin{table}[!t]
+		\resizebox{\linewidth}{!}{
+			\begin{tabular}{ | c || c | c | c | c | c | }
+				\hline
+				\rule{0pt}{2ex} Bag Fraction & 0.5 & 0.5 & 0.25 & 0.75 & 0.5\\ \hline 
+				\rule{0pt}{2ex} Min Leaf Size & 50.0 & 1.0 & 1.0 & 50.0 & 50.0\\ \hline 
+				\rule{0pt}{2ex} MaxSplits & 32.0 & 32.0 & 16.0 & 128.0 & 4.0\\ \hline 
+				\rule{0pt}{2ex} Min Shrinkage & 0.0001 & 0.001 & 0.0001 & 0.001 & 0.01\\ \hline 
+				\rule{0pt}{2ex} Max Shrinkage & 0.1 & 0.1 & 0.1 & 0.1 & 0.1\\ \hline 
+				\hline 
+				\rule{0pt}{2ex} RunningTime (seconds) & 464.4778 & \cellcolor{blue!30}1443.1898 & 830.8513 & 849.6289 & \cellcolor{blue!10}309.6907\\ \hline 
+				\rule{0pt}{2ex} ATD Test RMSE & \cellcolor{blue!10}0.1379 & \cellcolor{blue!30}0.1434 & 0.143 & 0.138 & 0.1431\\ \hline 
+				\rule{0pt}{2ex} ABT Test RMSE & 0.1379 & \cellcolor{blue!30}0.1429 & 0.1426 & \cellcolor{blue!10}0.1378 & 0.1418\\ \hline 
+				\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}0.1337 & 0.1338 & 0.1339 & 0.1342 & \cellcolor{blue!30}0.1343\\ \hline 
+				\rule{0pt}{2ex} Optimal Num. of Trees & 1139.8 & 1664.8 & \cellcolor{blue!30}2018 & 1073.4 & \cellcolor{blue!10}684\\ \hline 
+				\hline 
+				\rule{0pt}{2ex} Avg. Leaf Size & 34.124605 & 27.549538 & \cellcolor{blue!10}9.0303 & 34.975735 & \cellcolor{blue!30}66.33333\\ \hline 
+				\rule{0pt}{2ex} Std. Dev. Leaf Size & 1.194561 & \cellcolor{blue!30}36.410169 & \cellcolor{blue!10}0 & 1.601863 & 0\\ \hline 
+				\rule{0pt}{2ex} Avg. Splits & 8.2961 & \cellcolor{blue!30}25.4139 & 16 & 12.3821 & \cellcolor{blue!10}4\\ \hline 
+				\rule{0pt}{2ex} Std. Dev. Splits & 0.3004 & \cellcolor{blue!30}11.4279 & \cellcolor{blue!10}0 & 0.5222 & 0\\ \hline 
+				\rule{0pt}{2ex} Avg. Shrinkage & 0.011279 & 0.028734 & 0.029102 & \cellcolor{blue!10}0.008565 & \cellcolor{blue!30}0.036525\\ \hline 
+				\rule{0pt}{2ex} Std. Dev. Shrinkage & \cellcolor{blue!10}0.000291 & 0.005544 & \cellcolor{blue!30}0.010263 & 0.000314 & 0.004001\\ \hline 
+			\end{tabular}}
+			\caption{Variable Shrinkage: Crime Communities Parameters with Best Cross Validation RMSE.}
+			\label{tab:crimeCommunitiesconstantBestAndWorstParameters}
+		\end{table}
+
+
 %---------------------------------------------------------------
 \section{Analysis}
 Analysis and stuff
