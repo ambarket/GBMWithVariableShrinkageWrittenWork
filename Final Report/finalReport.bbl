@@ -21,10 +21,6 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{2012ridgeway}
-G.~Ridgeway, ``Generalized boosted models: A guide to the gbm package,''
-  \emph{Update}, vol.~1, no.~1, p.~14, 2012.
-
 \bibitem{StrengthOfWeak}
 \BIBentryALTinterwordspacing
 R.~E. Schapire, ``The strength of weak learnability,'' \emph{Mach. Learn.},
@@ -61,6 +57,10 @@ J.~Elith, J.~R. Leathwick, and T.~Hastie, ``A working guide to boosted
   802--813, 2008. [Online]. Available:
   \url{http://dx.doi.org/10.1111/j.1365-2656.2008.01390.x}
 \BIBentrySTDinterwordspacing
+
+\bibitem{2012ridgeway}
+G.~Ridgeway, ``Generalized boosted models: A guide to the gbm package,''
+  \emph{Update}, vol.~1, no.~1, p.~14, 2012.
 
 \bibitem{Kearns:1988}
 M.~Kearns, ``Thoughts on hypothesis boosting,'' \emph{Unpublished manuscript
@@ -142,11 +142,36 @@ M.~Lichman, ``{UCI} machine learning repository,'' 2013. [Online]. Available:
   \url{http://archive.ics.uci.edu/ml/datasets/Combined+Cycle+Power+Plant}
 \BIBentrySTDinterwordspacing
 
+\bibitem{powerPlantCiteRequest1}
+\BIBentryALTinterwordspacing
+P.~Tüfekci, ``Prediction of full load electrical power output of a base load
+  operated combined cycle power plant using machine learning methods,''
+  \emph{International Journal of Electrical Power \& Energy Systems}, pp.
+  126--140, 2014. [Online]. Available:
+  \url{http://dx.doi.org/10.1016/j.ijepes.2014.02.027}
+\BIBentrySTDinterwordspacing
+
+\bibitem{powerPlantCiteRequest2}
+P.~T. Heysem~Kaya, ``Local and global learning methods for predicting power of
+  a combined gas \& steam turbine,'' \emph{roceedings of the International
+  Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE
+  2012}, pp. 13--18, 2012.
+
 \bibitem{airFoilDataset}
 \BIBentryALTinterwordspacing
 ``Airfoil self-noise data set.'' [Online]. Available:
   \url{http://archive.ics.uci.edu/ml/datasets/Airfoil+Self-Noise}
 \BIBentrySTDinterwordspacing
+
+\bibitem{nasaCiteRequest1}
+D.~P. T.F.~Brooks and A.~Marcolini, ``Airfoil self-noise and prediction,''
+  \emph{Technical report, NASA RP-1218}, July 1989.
+
+\bibitem{nasaCiteRequest2}
+K.~Lau, ``A neural networks approach for aerofoil noise prediction,'' 2006.
+
+\bibitem{nasaCiteRequest3}
+R.~Lopez, ``Neural networks for variational problems in engineering,'' 2008.
 
 \bibitem{bikeSharingDataset}
 \BIBentryALTinterwordspacing
@@ -160,5 +185,37 @@ H.~Fanaee-T and J.~Gama, ``Event labeling combining ensemble detectors and
   background knowledge,'' \emph{Progress in Artificial Intelligence}, pp.
   1--15, 2013. [Online]. Available: \url{[Web Link]}
 \BIBentrySTDinterwordspacing
+
+\bibitem{crimeCommunitiesDataset}
+\BIBentryALTinterwordspacing
+``Communities and crime data set.'' [Online]. Available:
+  \url{https://archive.ics.uci.edu/ml/datasets/Communities+and+Crime}
+\BIBentrySTDinterwordspacing
+
+\bibitem{crimeCommunitiesCiteRequest1}
+P.~T. Heysem~Kaya, ``Local and global learning methods for predicting power of
+  a combined gas \& steam turbine,'' \emph{roceedings of the International
+  Conference on Emerging Trends in Computer and Electronics Engineering ICETCEE
+  2012}, pp. 13--18, 2012.
+
+\bibitem{crimeCommunitiesCiteRequest2}
+``U.s. department of commerce, bureau of the census producer, washington, dc
+  and inter-university consortium for political and social research ann arbor,
+  michigan. (1992).''
+
+\bibitem{crimeCommunitiesCiteRequest3}
+``U.s. department of justice, bureau of justice statistics, law enforcement
+  management and administrative statistics (computer file) u.s. department of
+  commerce, bureau of the census producer, washington, dc and inter-university
+  consortium for political and social research ann arbor, michigan. (1992).''
+
+\bibitem{crimeCommunitiesCiteRequest4}
+``U.s. department of justice, federal bureau of investigation, crime in the
+  united states (computer file) (1995).''
+
+\bibitem{crimeCommunitiesCiteRequest5}
+M.~A. Redmond and A.~Baveja, ``A data-driven software tool for enabling
+  cooperative information sharing among police departments,'' \emph{European
+  Journal of Operational Research 141}, pp. 660--678, 2002.
 
 \end{thebibliography}
