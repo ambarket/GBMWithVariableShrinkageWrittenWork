@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.3)  2 DEC 2015 09:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.3)  2 DEC 2015 10:42
 entering extended mode
 **finalReport.tex
 (finalReport.tex
@@ -783,7 +783,7 @@ Overfull \hbox (9.0pt too wide) detected at line 605
 
 [4] (Z:/GBMWithVariableShrinkage/parameterTuning/5/entireResultsSection.tex
 <Z:/GBMWithVariableShrinkage/parameterTuning/5/runDataSummaryGraphLegend.png, i
-d=30, 88.1694pt x 45.2892pt>
+d=30, 140.2038pt x 45.771pt>
 File: Z:/GBMWithVariableShrinkage/parameterTuning/5/runDataSummaryGraphLegend.p
 ng Graphic file (type png)
 
@@ -791,7 +791,7 @@ ng Graphic file (type png)
 g>
 Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/runDataS
 ummaryGraphLegend.png used on input line 292.
-(pdftex.def)             Requested size: 88.16917pt x 45.28908pt.
+(pdftex.def)             Requested size: 140.20345pt x 45.77087pt.
 
 <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/CvVali
 dErrorvsADTE/AllAllPoints.png, id=31, 361.35pt x 244.9953pt>
@@ -1222,14 +1222,18 @@ Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
 ryGraphs/NoFilter/MaxLRvsCvValidError/VarUniquePoints.png used on input line 42
 6.
 (pdftex.def)             Requested size: 361.34912pt x 245.47649pt.
-) [5] [6 <Z:/GBMWithVariableShrinkage/parameterTuning/5/runDataSummaryGraphLege
-nd.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGra
-phs/NoFilter/CvValidErrorvsADTE/AllAllPoints.png (PNG copy)> <Z:/GBMWithVariabl
-eShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/CvValidErrorvsCvEnsTestE
-rror/AllAllPoints.png (PNG copy)>]
+) [5 <Z:/GBMWithVariableShrinkage/parameterTuning/5/runDataSummaryGraphLegend.p
+ng (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/
+NoFilter/CvValidErrorvsADTE/AllAllPoints.png (PNG copy)> <Z:/GBMWithVariableShr
+inkage/parameterTuning/5/avgSummaryGraphs/NoFilter/CvValidErrorvsCvEnsTestError
+/AllAllPoints.png (PNG copy)>] [6]
+[7]
+Underfull \vbox (badness 4779) has occurred while \output is active []
+
+
 Underfull \vbox (badness 1874) has occurred while \output is active []
 
- [7 <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+ [8 <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
 xSplitsvsTIME/AllAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/paramet
 erTuning/5/avgSummaryGraphs/NoFilter/MaxSplitsvsTIME/AllUniquePoints.png (PNG c
 opy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/
@@ -1246,50 +1250,28 @@ VarAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avg
 SummaryGraphs/NoFilter/MinLRvsTIME/VarUniquePoints.png (PNG copy)> <Z:/GBMWithV
 ariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRvsTIME/VarAll
 Points.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummar
-yGraphs/NoFilter/MaxLRvsTIME/VarUniquePoints.png (PNG copy)>]
-Underfull \vbox (badness 4779) has occurred while \output is active []
-
-
+yGraphs/NoFilter/MaxLRvsTIME/VarUniquePoints.png (PNG copy)> <Z:/GBMWithVariabl
+eShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSplitsvsOptNOT/AllAll
+Points.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummar
+yGraphs/NoFilter/MaxSplitsvsOptNOT/AllUniquePoints.png (PNG copy)> <Z:/GBMWithV
+ariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvsOptNOT/AllAl
+lPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MEINvsOptNOT/AllUniquePoints.png (PNG copy)> <Z:/GBMWithVaria
+bleShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsOptNOT/AllAllPoint
+s.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGrap
+hs/NoFilter/BFvsOptNOT/AllUniquePoints.png (PNG copy)> <Z:/GBMWithVariableShrin
+kage/parameterTuning/5/avgSummaryGraphs/NoFilter/ConstantLRvsOptNOT/ConstAllPoi
+nts.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGr
+aphs/NoFilter/ConstantLRvsOptNOT/ConstUniquePoints.png (PNG copy)> <Z:/GBMWithV
+ariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRvsOptNOT/VarA
+llPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumm
+aryGraphs/NoFilter/MinLRvsOptNOT/VarUniquePoints.png (PNG copy)> <Z:/GBMWithVar
+iableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRvsOptNOT/VarAll
+Points.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummar
+yGraphs/NoFilter/MaxLRvsOptNOT/VarUniquePoints.png (PNG copy)>]
 Underfull \vbox (badness 1953) has occurred while \output is active []
 
- [8 <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
-xSplitsvsOptNOT/AllAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/param
-eterTuning/5/avgSummaryGraphs/NoFilter/MaxSplitsvsOptNOT/AllUniquePoints.png (P
-NG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFil
-ter/MEINvsOptNOT/AllAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/para
-meterTuning/5/avgSummaryGraphs/NoFilter/MEINvsOptNOT/AllUniquePoints.png (PNG c
-opy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/
-BFvsOptNOT/AllAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterT
-uning/5/avgSummaryGraphs/NoFilter/BFvsOptNOT/AllUniquePoints.png (PNG copy)> <Z
-:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Constant
-LRvsOptNOT/ConstAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/paramete
-rTuning/5/avgSummaryGraphs/NoFilter/ConstantLRvsOptNOT/ConstUniquePoints.png (P
-NG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFil
-ter/MinLRvsOptNOT/VarAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/par
-ameterTuning/5/avgSummaryGraphs/NoFilter/MinLRvsOptNOT/VarUniquePoints.png (PNG
- copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilte
-r/MaxLRvsOptNOT/VarAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/param
-eterTuning/5/avgSummaryGraphs/NoFilter/MaxLRvsOptNOT/VarUniquePoints.png (PNG c
-opy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/
-MaxSplitsvsCvValidError/AllAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinka
-ge/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSplitsvsCvValidError/AllUniqu
-ePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
-ryGraphs/NoFilter/MEINvsCvValidError/AllAllPoints.png (PNG copy)> <Z:/GBMWithVa
-riableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvsCvValidError/
-AllUniquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/
-avgSummaryGraphs/NoFilter/BFvsCvValidError/AllAllPoints.png (PNG copy)> <Z:/GBM
-WithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsCvValidEr
-ror/AllUniquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTunin
-g/5/avgSummaryGraphs/NoFilter/ConstantLRvsCvValidError/ConstAllPoints.png (PNG 
-copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter
-/ConstantLRvsCvValidError/ConstUniquePoints.png (PNG copy)> <Z:/GBMWithVariable
-Shrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRvsCvValidError/VarAl
-lPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
-ryGraphs/NoFilter/MinLRvsCvValidError/VarUniquePoints.png (PNG copy)> <Z:/GBMWi
-thVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRvsCvValidE
-rror/VarAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/
-5/avgSummaryGraphs/NoFilter/MaxLRvsCvValidError/VarUniquePoints.png (PNG copy)>
-]
+
 (finalReport.bbl
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
@@ -1303,7 +1285,25 @@ rror/VarAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
-[9]
+[9 <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Max
+SplitsvsCvValidError/AllAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/
+parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSplitsvsCvValidError/AllUniquePo
+ints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryG
+raphs/NoFilter/MEINvsCvValidError/AllAllPoints.png (PNG copy)> <Z:/GBMWithVaria
+bleShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvsCvValidError/All
+UniquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avg
+SummaryGraphs/NoFilter/BFvsCvValidError/AllAllPoints.png (PNG copy)> <Z:/GBMWit
+hVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsCvValidError
+/AllUniquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5
+/avgSummaryGraphs/NoFilter/ConstantLRvsCvValidError/ConstAllPoints.png (PNG cop
+y)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Co
+nstantLRvsCvValidError/ConstUniquePoints.png (PNG copy)> <Z:/GBMWithVariableShr
+inkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRvsCvValidError/VarAllPo
+ints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryG
+raphs/NoFilter/MinLRvsCvValidError/VarUniquePoints.png (PNG copy)> <Z:/GBMWithV
+ariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRvsCvValidErro
+r/VarAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/a
+vgSummaryGraphs/NoFilter/MaxLRvsCvValidError/VarUniquePoints.png (PNG copy)>]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
@@ -1326,33 +1326,31 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[10
-
-] (finalReport.aux) ) 
+[10] (finalReport.aux) ) 
 Here is how much of TeX's memory you used:
  17370 strings out of 493673
  336702 string characters out of 3141530
- 2522890 words of memory out of 3000000
+ 2526890 words of memory out of 3000000
  20385 multiletter control sequences out of 15000+200000
  42990 words of font info for 79 fonts, out of 3000000 for 9000
  1028 hyphenation exceptions out of 8191
- 1003i,15n,1003p,2100b,484s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontnam
-e/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex
-10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.
-pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb
-><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C
-:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Progra
-m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program F
-iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program File
-s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Program Files (
-x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files (x86)/MiK
-TeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
-ts/type1/urw/times/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/u
-rw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/ut
-mri8a.pfb>
-Output written on finalReport.pdf (10 pages, 2149635 bytes).
+ 1003i,15n,1003p,2168b,484s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/font
+name/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+mex10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
+i5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.
+pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb
+><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:
+/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Pro
+gram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program F
+iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files (x86)/
+MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/
+fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
+1/urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times
+/utmri8a.pfb>
+Output written on finalReport.pdf (10 pages, 2152789 bytes).
 PDF statistics:
  134 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
