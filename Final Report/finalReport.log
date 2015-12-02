@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.3)  29 NOV 2015 18:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.11.3)  1 DEC 2015 19:47
 entering extended mode
 **finalReport.tex
 (finalReport.tex
@@ -667,36 +667,28 @@ Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
 \everycr=\toks36
 \minrowclearance=\skip68
 )
-(finalReport.aux
-
-LaTeX Warning: Label `tab:nasaconstantBestAndWorstParameters' multiply defined.
-
-
-
-LaTeX Warning: Label `tab:bikeSharingDayconstantBestAndWorstParameters' multipl
-y defined.
-
-
-LaTeX Warning: Label `tab:powerPlantconstantBestAndWorstParameters' multiply de
-fined.
-
-
-LaTeX Warning: Label `tab:crimeCommunitiesconstantBestAndWorstParameters' multi
-ply defined.
-
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\verbatim.sty"
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks37
+\verbatim@line=\toks38
+\verbatim@in@stream=\read3
 )
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 245.
-LaTeX Font Info:    ... okay on input line 245.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\import\import.sty"
+Package: import 2009/03/23  v 5.1
+)
+(finalReport.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 249.
+LaTeX Font Info:    ... okay on input line 249.
 
 -- Lines per column: 61 (exact).
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
@@ -706,22 +698,22 @@ LaTeX Font Info:    ... okay on input line 245.
 \scratchbox=\box50
 \nofMPsegments=\count140
 \nofMParguments=\count141
-\everyMPshowfont=\toks37
+\everyMPshowfont=\toks39
 \MPscratchCnt=\count142
 \MPscratchDim=\dimen202
 \MPnumerator=\count143
 \makeMPintoPDFobject=\count144
-\everyMPtoPDFconversion=\toks38
+\everyMPtoPDFconversion=\toks40
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
  ABD: EveryShipout initializing macros
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 327.
+(Font)              <9> on input line 331.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 327.
+(Font)              <6> on input line 331.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 327.
+(Font)              <5> on input line 331.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -731,50 +723,638 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ] [2]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `htbp') on input line 464.
+               Default added (so using `htbp') on input line 468.
 
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 500.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 504.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 500.
-LaTeX Font Info:    Try loading font information for OML+phv on input line 500.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 504.
+LaTeX Font Info:    Try loading font information for OML+phv on input line 504.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omlphv.fd"
 File: omlphv.fd 
 )
 LaTeX Font Info:    Font shape `OML/phv/m/n' in size <9> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 500.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 504.
  [3]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 535.
+(Font)              <8> on input line 541.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `htbp') on input line 566.
+               Default added (so using `htbp') on input line 582.
 
 
-Overfull \hbox (9.0pt too wide) detected at line 579
+Overfull \hbox (9.0pt too wide) detected at line 594
 [][] 
  []
 
-[4] (finalReport.bbl
+[4] (Z:/GBMWithVariableShrinkage/parameterTuning/5/entireResultsSection.tex
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/errorCurveLegend.png, id=30, 183
+.5658pt x 135.3858pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/errorCurveLegend.png Graphi
+c file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/errorCurveLegend.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/errorCur
+veLegend.png used on input line 252.
+(pdftex.def)             Requested size: 183.56534pt x 135.38547pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/runDataSummaryGraphLegend.png, i
+d=31, 88.1694pt x 45.2892pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/runDataSummaryGraphLegend.p
+ng Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/runDataSummaryGraphLegend.pn
+g>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/runDataS
+ummaryGraphLegend.png used on input line 256.
+(pdftex.def)             Requested size: 88.16917pt x 45.28908pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRv
+sTIME/VarUniquePoints.png, id=32, 361.35pt x 241.8636pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+inLRvsTIME/VarUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Mi
+nLRvsTIME/VarUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MinLRvsTIME/VarUniquePoints.png used on input line 264.
+(pdftex.def)             Requested size: 361.34912pt x 241.863pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRv
+sTIME/VarAllPoints.png, id=33, 361.35pt x 237.5274pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+inLRvsTIME/VarAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Mi
+nLRvsTIME/VarAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MinLRvsTIME/VarAllPoints.png used on input line 267.
+(pdftex.def)             Requested size: 361.34912pt x 237.52681pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRv
+sTIME/VarUniquePoints.png, id=34, 361.35pt x 242.8272pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axLRvsTIME/VarUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xLRvsTIME/VarUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxLRvsTIME/VarUniquePoints.png used on input line 270.
+(pdftex.def)             Requested size: 361.34912pt x 242.8266pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRv
+sTIME/VarAllPoints.png, id=35, 361.35pt x 238.7319pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axLRvsTIME/VarAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xLRvsTIME/VarAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxLRvsTIME/VarAllPoints.png used on input line 273.
+(pdftex.def)             Requested size: 361.34912pt x 238.73131pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSpl
+itsvsTIME/AllUniquePoints.png, id=36, 361.35pt x 238.7319pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axSplitsvsTIME/AllUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xSplitsvsTIME/AllUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxSplitsvsTIME/AllUniquePoints.png used on input line 276.
+(pdftex.def)             Requested size: 361.34912pt x 238.73131pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSpl
+itsvsTIME/AllAllPoints.png, id=37, 361.35pt x 238.7319pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axSplitsvsTIME/AllAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xSplitsvsTIME/AllAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxSplitsvsTIME/AllAllPoints.png used on input line 279.
+(pdftex.def)             Requested size: 361.34912pt x 238.73131pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsTI
+ME/AllUniquePoints.png, id=38, 361.35pt x 238.7319pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/B
+FvsTIME/AllUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BF
+vsTIME/AllUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/BFvsTIME/AllUniquePoints.png used on input line 282.
+(pdftex.def)             Requested size: 361.34912pt x 238.73131pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsTI
+ME/AllAllPoints.png, id=39, 361.35pt x 238.7319pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/B
+FvsTIME/AllAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BF
+vsTIME/AllAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/BFvsTIME/AllAllPoints.png used on input line 285.
+(pdftex.def)             Requested size: 361.34912pt x 238.73131pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvs
+TIME/AllUniquePoints.png, id=40, 361.35pt x 238.7319pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+EINvsTIME/AllUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/ME
+INvsTIME/AllUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MEINvsTIME/AllUniquePoints.png used on input line 288.
+(pdftex.def)             Requested size: 361.34912pt x 238.73131pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvs
+TIME/AllAllPoints.png, id=41, 361.35pt x 238.7319pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+EINvsTIME/AllAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/ME
+INvsTIME/AllAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MEINvsTIME/AllAllPoints.png used on input line 291.
+(pdftex.def)             Requested size: 361.34912pt x 238.73131pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRv
+sADTE/VarUniquePoints.png, id=42, 361.35pt x 235.3593pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+inLRvsADTE/VarUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Mi
+nLRvsADTE/VarUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MinLRvsADTE/VarUniquePoints.png used on input line 299.
+(pdftex.def)             Requested size: 361.34912pt x 235.3587pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRv
+sADTE/VarAllPoints.png, id=43, 361.35pt x 241.8636pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+inLRvsADTE/VarAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Mi
+nLRvsADTE/VarAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MinLRvsADTE/VarAllPoints.png used on input line 302.
+(pdftex.def)             Requested size: 361.34912pt x 241.863pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRv
+sADTE/VarUniquePoints.png, id=44, 361.35pt x 244.0317pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axLRvsADTE/VarUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xLRvsADTE/VarUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxLRvsADTE/VarUniquePoints.png used on input line 305.
+(pdftex.def)             Requested size: 361.34912pt x 244.0311pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRv
+sADTE/VarAllPoints.png, id=45, 361.35pt x 242.8272pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axLRvsADTE/VarAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xLRvsADTE/VarAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxLRvsADTE/VarAllPoints.png used on input line 308.
+(pdftex.def)             Requested size: 361.34912pt x 242.8266pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSpl
+itsvsADTE/AllUniquePoints.png, id=46, 361.35pt x 243.0681pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axSplitsvsADTE/AllUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xSplitsvsADTE/AllUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxSplitsvsADTE/AllUniquePoints.png used on input line 311.
+(pdftex.def)             Requested size: 361.34912pt x 243.0675pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSpl
+itsvsADTE/AllAllPoints.png, id=47, 361.35pt x 243.0681pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axSplitsvsADTE/AllAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xSplitsvsADTE/AllAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxSplitsvsADTE/AllAllPoints.png used on input line 314.
+(pdftex.def)             Requested size: 361.34912pt x 243.0675pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsAD
+TE/AllUniquePoints.png, id=48, 361.35pt x 243.0681pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/B
+FvsADTE/AllUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BF
+vsADTE/AllUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/BFvsADTE/AllUniquePoints.png used on input line 317.
+(pdftex.def)             Requested size: 361.34912pt x 243.0675pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsAD
+TE/AllAllPoints.png, id=49, 361.35pt x 243.0681pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/B
+FvsADTE/AllAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BF
+vsADTE/AllAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/BFvsADTE/AllAllPoints.png used on input line 320.
+(pdftex.def)             Requested size: 361.34912pt x 243.0675pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvs
+ADTE/AllUniquePoints.png, id=50, 361.35pt x 243.0681pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+EINvsADTE/AllUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/ME
+INvsADTE/AllUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MEINvsADTE/AllUniquePoints.png used on input line 323.
+(pdftex.def)             Requested size: 361.34912pt x 243.0675pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvs
+ADTE/AllAllPoints.png, id=51, 361.35pt x 243.0681pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+EINvsADTE/AllAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/ME
+INvsADTE/AllAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MEINvsADTE/AllAllPoints.png used on input line 326.
+(pdftex.def)             Requested size: 361.34912pt x 243.0675pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRv
+sCvEnsTestError/VarUniquePoints.png, id=52, 361.35pt x 240.6591pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+inLRvsCvEnsTestError/VarUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Mi
+nLRvsCvEnsTestError/VarUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MinLRvsCvEnsTestError/VarUniquePoints.png used on input line 
+334.
+(pdftex.def)             Requested size: 361.34912pt x 240.65851pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRv
+sCvEnsTestError/VarAllPoints.png, id=53, 361.35pt x 242.1045pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+inLRvsCvEnsTestError/VarAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Mi
+nLRvsCvEnsTestError/VarAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MinLRvsCvEnsTestError/VarAllPoints.png used on input line 337
+.
+(pdftex.def)             Requested size: 361.34912pt x 242.10391pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRv
+sCvEnsTestError/VarUniquePoints.png, id=54, 361.35pt x 236.5638pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axLRvsCvEnsTestError/VarUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xLRvsCvEnsTestError/VarUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxLRvsCvEnsTestError/VarUniquePoints.png used on input line 
+340.
+(pdftex.def)             Requested size: 361.34912pt x 236.5632pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRv
+sCvEnsTestError/VarAllPoints.png, id=55, 361.35pt x 243.309pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axLRvsCvEnsTestError/VarAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xLRvsCvEnsTestError/VarAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxLRvsCvEnsTestError/VarAllPoints.png used on input line 343
+.
+(pdftex.def)             Requested size: 361.34912pt x 243.30841pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSpl
+itsvsCvEnsTestError/AllUniquePoints.png, id=56, 361.35pt x 243.0681pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axSplitsvsCvEnsTestError/AllUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xSplitsvsCvEnsTestError/AllUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxSplitsvsCvEnsTestError/AllUniquePoints.png used on input l
+ine 346.
+(pdftex.def)             Requested size: 361.34912pt x 243.0675pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSpl
+itsvsCvEnsTestError/AllAllPoints.png, id=57, 361.35pt x 243.0681pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axSplitsvsCvEnsTestError/AllAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xSplitsvsCvEnsTestError/AllAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxSplitsvsCvEnsTestError/AllAllPoints.png used on input line
+ 349.
+(pdftex.def)             Requested size: 361.34912pt x 243.0675pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsCv
+EnsTestError/AllUniquePoints.png, id=58, 361.35pt x 243.0681pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/B
+FvsCvEnsTestError/AllUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BF
+vsCvEnsTestError/AllUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/BFvsCvEnsTestError/AllUniquePoints.png used on input line 352
+.
+(pdftex.def)             Requested size: 361.34912pt x 243.0675pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsCv
+EnsTestError/AllAllPoints.png, id=59, 361.35pt x 243.0681pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/B
+FvsCvEnsTestError/AllAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BF
+vsCvEnsTestError/AllAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/BFvsCvEnsTestError/AllAllPoints.png used on input line 355.
+(pdftex.def)             Requested size: 361.34912pt x 243.0675pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvs
+CvEnsTestError/AllUniquePoints.png, id=60, 361.35pt x 243.0681pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+EINvsCvEnsTestError/AllUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/ME
+INvsCvEnsTestError/AllUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MEINvsCvEnsTestError/AllUniquePoints.png used on input line 3
+58.
+(pdftex.def)             Requested size: 361.34912pt x 243.0675pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvs
+CvEnsTestError/AllAllPoints.png, id=61, 361.35pt x 243.0681pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+EINvsCvEnsTestError/AllAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/ME
+INvsCvEnsTestError/AllAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MEINvsCvEnsTestError/AllAllPoints.png used on input line 361.
+
+(pdftex.def)             Requested size: 361.34912pt x 243.0675pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRv
+sCvValidError/VarUniquePoints.png, id=62, 361.35pt x 235.3593pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+inLRvsCvValidError/VarUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Mi
+nLRvsCvValidError/VarUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MinLRvsCvValidError/VarUniquePoints.png used on input line 36
+9.
+(pdftex.def)             Requested size: 361.34912pt x 235.3587pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRv
+sCvValidError/VarAllPoints.png, id=63, 361.35pt x 241.8636pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+inLRvsCvValidError/VarAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Mi
+nLRvsCvValidError/VarAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MinLRvsCvValidError/VarAllPoints.png used on input line 372.
+(pdftex.def)             Requested size: 361.34912pt x 241.863pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRv
+sCvValidError/VarUniquePoints.png, id=64, 361.35pt x 236.5638pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axLRvsCvValidError/VarUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xLRvsCvValidError/VarUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxLRvsCvValidError/VarUniquePoints.png used on input line 37
+5.
+(pdftex.def)             Requested size: 361.34912pt x 236.5632pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRv
+sCvValidError/VarAllPoints.png, id=65, 361.35pt x 242.8272pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axLRvsCvValidError/VarAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xLRvsCvValidError/VarAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxLRvsCvValidError/VarAllPoints.png used on input line 378.
+(pdftex.def)             Requested size: 361.34912pt x 242.8266pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSpl
+itsvsCvValidError/AllUniquePoints.png, id=66, 361.35pt x 249.3315pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axSplitsvsCvValidError/AllUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xSplitsvsCvValidError/AllUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxSplitsvsCvValidError/AllUniquePoints.png used on input lin
+e 381.
+(pdftex.def)             Requested size: 361.34912pt x 249.33087pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSpl
+itsvsCvValidError/AllAllPoints.png, id=67, 361.35pt x 249.3315pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axSplitsvsCvValidError/AllAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xSplitsvsCvValidError/AllAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxSplitsvsCvValidError/AllAllPoints.png used on input line 3
+84.
+(pdftex.def)             Requested size: 361.34912pt x 249.33087pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsCv
+ValidError/AllUniquePoints.png, id=68, 361.35pt x 249.3315pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/B
+FvsCvValidError/AllUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BF
+vsCvValidError/AllUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/BFvsCvValidError/AllUniquePoints.png used on input line 387.
+(pdftex.def)             Requested size: 361.34912pt x 249.33087pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsCv
+ValidError/AllAllPoints.png, id=69, 361.35pt x 249.3315pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/B
+FvsCvValidError/AllAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BF
+vsCvValidError/AllAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/BFvsCvValidError/AllAllPoints.png used on input line 390.
+(pdftex.def)             Requested size: 361.34912pt x 249.33087pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvs
+CvValidError/AllUniquePoints.png, id=70, 361.35pt x 249.3315pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+EINvsCvValidError/AllUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/ME
+INvsCvValidError/AllUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MEINvsCvValidError/AllUniquePoints.png used on input line 393
+.
+(pdftex.def)             Requested size: 361.34912pt x 249.33087pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvs
+CvValidError/AllAllPoints.png, id=71, 361.35pt x 249.3315pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+EINvsCvValidError/AllAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/ME
+INvsCvValidError/AllAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MEINvsCvValidError/AllAllPoints.png used on input line 396.
+(pdftex.def)             Requested size: 361.34912pt x 249.33087pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRv
+sOptNOT/VarUniquePoints.png, id=72, 361.35pt x 232.2276pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+inLRvsOptNOT/VarUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Mi
+nLRvsOptNOT/VarUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MinLRvsOptNOT/VarUniquePoints.png used on input line 404.
+(pdftex.def)             Requested size: 361.34912pt x 232.22702pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRv
+sOptNOT/VarAllPoints.png, id=73, 361.35pt x 238.491pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+inLRvsOptNOT/VarAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Mi
+nLRvsOptNOT/VarAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MinLRvsOptNOT/VarAllPoints.png used on input line 407.
+(pdftex.def)             Requested size: 361.34912pt x 238.4904pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRv
+sOptNOT/VarUniquePoints.png, id=74, 361.35pt x 233.673pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axLRvsOptNOT/VarUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xLRvsOptNOT/VarUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxLRvsOptNOT/VarUniquePoints.png used on input line 410.
+(pdftex.def)             Requested size: 361.34912pt x 233.67242pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRv
+sOptNOT/VarAllPoints.png, id=75, 361.35pt x 239.9364pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axLRvsOptNOT/VarAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xLRvsOptNOT/VarAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxLRvsOptNOT/VarAllPoints.png used on input line 413.
+(pdftex.def)             Requested size: 361.34912pt x 239.9358pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSpl
+itsvsOptNOT/AllUniquePoints.png, id=76, 361.35pt x 229.0959pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axSplitsvsOptNOT/AllUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xSplitsvsOptNOT/AllUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxSplitsvsOptNOT/AllUniquePoints.png used on input line 416.
+
+(pdftex.def)             Requested size: 361.34912pt x 229.09534pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSpl
+itsvsOptNOT/AllAllPoints.png, id=77, 361.35pt x 229.0959pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+axSplitsvsOptNOT/AllAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Ma
+xSplitsvsOptNOT/AllAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MaxSplitsvsOptNOT/AllAllPoints.png used on input line 419.
+(pdftex.def)             Requested size: 361.34912pt x 229.09534pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsOp
+tNOT/AllUniquePoints.png, id=78, 361.35pt x 229.5777pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/B
+FvsOptNOT/AllUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BF
+vsOptNOT/AllUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/BFvsOptNOT/AllUniquePoints.png used on input line 422.
+(pdftex.def)             Requested size: 361.34912pt x 229.57713pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsOp
+tNOT/AllAllPoints.png, id=79, 361.35pt x 229.5777pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/B
+FvsOptNOT/AllAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BF
+vsOptNOT/AllAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/BFvsOptNOT/AllAllPoints.png used on input line 425.
+(pdftex.def)             Requested size: 361.34912pt x 229.57713pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvs
+OptNOT/AllUniquePoints.png, id=80, 361.35pt x 229.0959pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+EINvsOptNOT/AllUniquePoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/ME
+INvsOptNOT/AllUniquePoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MEINvsOptNOT/AllUniquePoints.png used on input line 428.
+(pdftex.def)             Requested size: 361.34912pt x 229.09534pt.
+
+<Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvs
+OptNOT/AllAllPoints.png, id=81, 361.35pt x 229.0959pt>
+File: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+EINvsOptNOT/AllAllPoints.png Graphic file (type png)
+
+<use Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/ME
+INvsOptNOT/AllAllPoints.png>
+Package pdftex.def Info: Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumma
+ryGraphs/NoFilter/MEINvsOptNOT/AllAllPoints.png used on input line 431.
+(pdftex.def)             Requested size: 361.34912pt x 229.09534pt.
+) (finalReport.bbl
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
-[5]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
+[5 <Z:/GBMWithVariableShrinkage/parameterTuning/5/errorCurveLegend.png (PNG cop
+y)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/runDataSummaryGraphLegend.pn
+g (PNG copy)>]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
@@ -797,21 +1377,91 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[7
-
-] (finalReport.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
+[7 <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/Min
+LRvsTIME/VarUniquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameter
+Tuning/5/avgSummaryGraphs/NoFilter/MinLRvsTIME/VarAllPoints.png (PNG copy)> <Z:
+/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRvsTI
+ME/VarUniquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning
+/5/avgSummaryGraphs/NoFilter/MaxLRvsTIME/VarAllPoints.png (PNG copy)> <Z:/GBMWi
+thVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSplitsvsTIME
+/AllUniquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5
+/avgSummaryGraphs/NoFilter/MaxSplitsvsTIME/AllAllPoints.png (PNG copy)> <Z:/GBM
+WithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsTIME/AllU
+niquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgS
+ummaryGraphs/NoFilter/BFvsTIME/AllAllPoints.png (PNG copy)> <Z:/GBMWithVariable
+Shrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvsTIME/AllUniquePoint
+s.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGrap
+hs/NoFilter/MEINvsTIME/AllAllPoints.png (PNG copy)>] [8 <Z:/GBMWithVariableShri
+nkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRvsADTE/VarUniquePoints.p
+ng (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/
+NoFilter/MinLRvsADTE/VarAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/
+parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRvsADTE/VarUniquePoints.png (PN
+G copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilt
+er/MaxLRvsADTE/VarAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parame
+terTuning/5/avgSummaryGraphs/NoFilter/MaxSplitsvsADTE/AllUniquePoints.png (PNG 
+copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter
+/MaxSplitsvsADTE/AllAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/para
+meterTuning/5/avgSummaryGraphs/NoFilter/BFvsADTE/AllUniquePoints.png (PNG copy)
+> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvs
+ADTE/AllAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/
+5/avgSummaryGraphs/NoFilter/MEINvsADTE/AllUniquePoints.png (PNG copy)> <Z:/GBMW
+ithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvsADTE/All
+AllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSum
+maryGraphs/NoFilter/MinLRvsCvEnsTestError/VarUniquePoints.png (PNG copy)> <Z:/G
+BMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRvsCvEn
+sTestError/VarAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterT
+uning/5/avgSummaryGraphs/NoFilter/MaxLRvsCvEnsTestError/VarUniquePoints.png (PN
+G copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilt
+er/MaxLRvsCvEnsTestError/VarAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrink
+age/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSplitsvsCvEnsTestError/AllUn
+iquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSu
+mmaryGraphs/NoFilter/MaxSplitsvsCvEnsTestError/AllAllPoints.png (PNG copy)> <Z:
+/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsCvEns
+TestError/AllUniquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/paramete
+rTuning/5/avgSummaryGraphs/NoFilter/BFvsCvEnsTestError/AllAllPoints.png (PNG co
+py)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/M
+EINvsCvEnsTestError/AllUniquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkag
+e/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvsCvEnsTestError/AllAllPoints
+.png (PNG copy)>] [9 <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryG
+raphs/NoFilter/MinLRvsCvValidError/VarUniquePoints.png (PNG copy)> <Z:/GBMWithV
+ariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRvsCvValidErro
+r/VarAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/a
+vgSummaryGraphs/NoFilter/MaxLRvsCvValidError/VarUniquePoints.png (PNG copy)> <Z
+:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRvsC
+vValidError/VarAllPoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameter
+Tuning/5/avgSummaryGraphs/NoFilter/MaxSplitsvsCvValidError/AllUniquePoints.png 
+(PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoF
+ilter/MaxSplitsvsCvValidError/AllAllPoints.png (PNG copy)> <Z:/GBMWithVariableS
+hrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsCvValidError/AllUnique
+Points.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSummar
+yGraphs/NoFilter/BFvsCvValidError/AllAllPoints.png (PNG copy)> <Z:/GBMWithVaria
+bleShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvsCvValidError/All
+UniquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avg
+SummaryGraphs/NoFilter/MEINvsCvValidError/AllAllPoints.png (PNG copy)> <Z:/GBMW
+ithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MinLRvsOptNOT/
+VarUniquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/
+avgSummaryGraphs/NoFilter/MinLRvsOptNOT/VarAllPoints.png (PNG copy)> <Z:/GBMWit
+hVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxLRvsOptNOT/Va
+rUniquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/av
+gSummaryGraphs/NoFilter/MaxLRvsOptNOT/VarAllPoints.png (PNG copy)> <Z:/GBMWithV
+ariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MaxSplitsvsOptNOT/
+AllUniquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/
+avgSummaryGraphs/NoFilter/MaxSplitsvsOptNOT/AllAllPoints.png (PNG copy)> <Z:/GB
+MWithVariableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/BFvsOptNOT/A
+llUniquePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/a
+vgSummaryGraphs/NoFilter/BFvsOptNOT/AllAllPoints.png (PNG copy)> <Z:/GBMWithVar
+iableShrinkage/parameterTuning/5/avgSummaryGraphs/NoFilter/MEINvsOptNOT/AllUniq
+uePoints.png (PNG copy)> <Z:/GBMWithVariableShrinkage/parameterTuning/5/avgSumm
+aryGraphs/NoFilter/MEINvsOptNOT/AllAllPoints.png (PNG copy)>] (finalReport.aux)
  ) 
 Here is how much of TeX's memory you used:
- 16027 strings out of 493673
- 306945 string characters out of 3141530
- 537542 words of memory out of 3000000
- 19087 multiletter control sequences out of 15000+200000
+ 17406 strings out of 493673
+ 343167 string characters out of 3141530
+ 2561095 words of memory out of 3000000
+ 20424 multiletter control sequences out of 15000+200000
  42990 words of font info for 79 fonts, out of 3000000 for 9000
  1028 hyphenation exceptions out of 8191
- 62i,15n,56p,1049b,482s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 1003i,15n,1003p,1049b,688s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program 
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Fil
@@ -826,9 +1476,9 @@ ts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
 /urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/
 utmbi8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb
 ><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on finalReport.pdf (7 pages, 201840 bytes).
+Output written on finalReport.pdf (9 pages, 2250856 bytes).
 PDF statistics:
- 86 PDF objects out of 1000 (max. 8388607)
+ 144 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 273 words of extra memory for PDF output out of 10000 (max. 10000000)
 
