@@ -234,9 +234,15 @@
 \usepackage{xcolor}% you could also use the color package
 \usepackage{colortbl}
 \usepackage{lipsum}
+\usepackage{verbatim}
+\usepackage{import}
+\usepackage{tabularx, booktabs}
 \makeatletter
 \newcommand{\removelatexerror}{\let\@latex@error\@gobble}
 \makeatother
+
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
 
 %\makeatletter
 %\@dblfptop 0pt
@@ -262,7 +268,7 @@ The Pennsylvania State University at Harrisburg\\
 Middletown, PA 17057\\
 Email: amb6470@psu.edu}
 \and
-\IEEEauthorblockN{Jeremy Blum}
+\IEEEauthorblockN{Dr. Jeremy Blum}
 \IEEEauthorblockA{Department of Computer Science\\
 The Pennsylvania State University at Harrisburg\\
 Middletown, PA 17057\\
@@ -275,7 +281,7 @@ Email: jjb24@psu.edu}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-In this research we explore the effect of variable shrinkage (learning rate) on gradient boosting machines that utilize regression trees as the base learners. Conventionally, research and implementations of gradient boosting machines have used only constant shrinkage that is applied uniformly to the predictions of all base learners.
+We explore the effect of variable shrinkage (learning rate) on gradient boosting machines that utilize regression trees as the base learners. Conventionally, research and implementations of gradient boosting machines have used only constant shrinkage that is applied uniformly to the predictions of all base learners. Results show that the use of variable shrinkage results in models with competitive error to those built using constant shrinkage. On average the use of variable shrinkage leads to a considerable decrease in running time and increased robustness to variations in the model parameters.
 \end{abstract}
 
 % no keywords
@@ -299,36 +305,36 @@ In this research we explore the effect of variable shrinkage (learning rate) on 
 
 Boosting is a machine learning technique that combines learning algorithms that barely beat random guessing, known as a weak or base learners, into a single model with significantly improved accuracy or lower error rates over any of its constituent parts \cite{StrengthOfWeak}  \cite{BoostingSurvey}. 
 
-The gradient boosting machine, originally introduced by Friedman in 1999 is a general boosting framework that leverages the steepest descent numerical optimization method to iteratively train base learners to address the errors made by those before them \cite{2001Friedman}.
+The gradient boosting machine (GBM), originally introduced by Friedman in 1999 is a general boosting framework that leverages the steepest descent numerical optimization method to iteratively train base learners to address the errors made by those before them \cite{2001Friedman}.
 
 Production implementations of gradient boosting machines such as the gbm package in R have found remarkable traction among researchers in a wide variety of fields including robotics and ecology \cite{GBMTut} \cite{ecological}. Interestingly these packages generally implement Friedman's Gradient Boost algorithm as it was originally defined \cite{2012ridgeway}, leaving some definite opportunity for research into algorithmic tweaks to improve performance. 
 
-A particular component of the algorithm that has not been explored to date is the shrinkage, also referred to as shrinkage, which is implemented as a constant parameter to the model. After each iteration the new base learner's predictions are scaled by this parameter as a form of regularization. 
+A particular component of the algorithm that has not been explored to date is the learning rate, commonly referred to as shrinkage in the case of GBMs. Shrinkage is traditionally implemented as a constant parameter to the model. After each iteration the new base learner's predictions are scaled by the shrinkage as a form of regularization. 
 
-This proposal outlines a new way to think about shrinkage for the common case where the base learners are regression trees. We hypothesize that by varying the shrinkage applied to the prediction of the examples in each individual leaf of the regression tree base learners, we will be able to decrease convergence time without sacrificing resilience to overfitting. \todo{Revise}
+This research presents and evaluates a new way to think about shrinkage for the common case where the base learners are regression trees. We compared our proposed variable shrinkage scheme against the traditional constant shrinkage scheme using four real world datasets with natural regression tasks. Our results show that the use of variable shrinkage results in models with competitive error to those built using constant shrinkage. On average the use of variable shrinkage leads to a considerable decrease in running time and increased robustness to variations in the model parameters without sacrificing resilience to over fitting. 
 
 \section{Related Work}
 \label{sec:RelatedWork}
-Boosting finds its roots in a question originally posed by Kearns and Valient in 1988, is weak learnability equivalent to strong learnability\cite{Kearns:1988} \cite{KearnsValient:1989}? That is if you have a way to learn well enough to beat random guessing, is it inherently true that a strong learner, capable of arbitrarily low error, for that same problem exists? Schapire successfully proved this equivalence in 1990 by proposing and proving the correctness of a polynomial time boosting model he termed \textit{The hypothesis boosting mechanism} \cite{StrengthOfWeak}. 
+Boosting finds its roots in a question originally posed by Kearns and Valient in 1988, is weak learnability equivalent to strong learnability\cite{Kearns:1988} \cite{KearnsValient:1989}? In other words, if you have a way to learn well enough to beat random guessing, is it inherently true that a strong learner, capable of arbitrarily low error, for that same problem exists? Schapire successfully proved this equivalence in 1990 by proposing and proving the correctness of a polynomial time boosting model he termed \textit{The hypothesis boosting mechanism} \cite{StrengthOfWeak}. 
 
 After Schapire's compelling proof that weak and strong learnability are in fact equivalent, researchers bagan working to improve upon his boosting algorithm. The first practical application of the early boosting algorithms came out of the work of Drucker, Schapire, and Simard at AT\&T Bell Labs in 1992. There they applied boosting of neural network base learners to the problem of optical character recognition of handwritten zip codes on USPS letters \cite{OCRDruckerHarrisSchapire}. 
 
-In 1995 Freund and Schapire introduced the AdaBoost algorithm which is hailed as solving many of the practical problems suffered by previous boosting algorithms. The unique idea introduced by Adaboost is the notion of applying higher weights at each iteration to the training examples that were misclassified in previous iterations, forcing the new base learners to focus their efforts on these examples. AdaBoost became famous as an excellent out of the bag approach for classification with exceptional resilience to overfitting \cite{adaboost}.  However, the details of why exactly AdaBoost worked were unknown until the year 1998 when Friedman, Hastie, and Tibshirani explored the algorithm from an in depth statistical viewpoint. They found that AdaBoost a specialized additive model, and applied knowledge from the long history of statistical additive function approximation to gain a better understanding of AdaBoost and boosting in general \cite{friedman2000}. 
+In 1995 Freund and Schapire introduced the AdaBoost algorithm which is hailed as solving many of the practical problems suffered by previous boosting algorithms. The unique idea introduced by Adaboost is the notion of applying higher weights at each iteration to the training examples that were misclassified in previous iterations, forcing the new base learners to focus their efforts on these examples. AdaBoost became famous as an excellent out of the bag approach for classification with exceptional resilience to overfitting \cite{adaboost}.  However, the details of why exactly AdaBoost worked were unknown until the year 1998 when Friedman, Hastie, and Tibshirani explored the algorithm from an in depth statistical viewpoint. They found that AdaBoost is a specialized additive model, and applied knowledge from the long history of statistical additive function approximation to gain a better understanding of AdaBoost and boosting in general \cite{friedman2000}. 
 
-With an increased theoretical statistical understanding of boosting now available, Friedman developed a generalized stagewise additive function approximation boosting model termed the gradient boosting machine in 1999, which he later extended to include a stochastic subsampling approach in 2002 \cite{2001Friedman} \cite{2002Friedman}. Gradient Boosting Machines will be explored is great detail in the following sections as extending this model is the focus of the proposed research.
+With an increased theoretical statistical understanding of boosting now available, Friedman developed a generalized stagewise additive function approximation boosting model termed the gradient boosting machine in 1999, which he later extended to include a stochastic subsampling approach in 2002 \cite{2001Friedman} \cite{2002Friedman}. Gradient Boosting Machines will be explored is great detail in the following sections as extending this model is the focus of our current research.
 
-Since their introduction to the machine learning and data mining communities in 1999, gradient boosting machines have found applications in a variety of fields for both classification and regression tasks. Most recently ecology researchers have found great interest in gradient boosting machines, particularly the varient of them that utilizes classification or regression trees as base learners. In 2007, Glenn De'ath extended the R package gbm, creating a new package gbmplus that implements a varient algorithm he terms Aggregated Boosted Trees (ABT). The idea behind ABTs is to perform cross validation to determine an optimal number of iterations for the boosting, then save the models built during cross validation chopping them off at the optimal number of iterations found. To make a prediction, the predictions of all of these boosted trees are computed then averaged. It was found that this approach lead to improved accuracy over gbm alone \cite{death2007ABT}. 
+Since their introduction to the machine learning and data mining communities in 1999, gradient boosting machines have found applications in a variety of fields for both classification and regression tasks. Most recently ecology researchers have found great interest in gradient boosting machines, particularly the varient of them that utilizes classification or regression trees as base learners. In 2007, Glenn De'ath extended the R package gbm, creating a new package gbmplus that implements a varient algorithm he terms Aggregated Boosted Trees (ABT). The idea behind ABTs is to perform cross validation to determine an optimal number of iterations for the boosting, then save the models built during cross validation chopping them off at the optimal number of iterations found. To make a prediction, the predictions of all of these boosted trees are computed then averaged. It was found that this approach lead to improved accuracy over gbm alone \cite{death2007ABT}.
 
-Another group of ecological researchers Jane Elith and John Leathwick have also been applying boosted regression trees to their work. One such problem involves predicting whether or not a particular species off eel will be present in unsampled Australian rivers based upon measured environmental factors \cite{ecological}.  Elith and Leathwick implemented their own extensions to the functions in the gbm package in their dismo package in 2015 \cite{elith2015boosted}. 
+Another group of ecological researchers Jane Elith and John Leathwick have also been applying boosted regression trees to their work. One such problem involves predicting whether or not a particular species off eel will be present in unsampled Australian rivers based upon measured environmental factors \cite{ecological}.  Elith and Leathwick implemented their own extensions to the functions in the gbm package in their dismo package in 2015, including a very useful function known as gbm.step. This function implements a cross validation based approach to estimate the number of trees that should be built to reach optimal generalization error, an approach that we will mimic in our experiment \cite{elith2015boosted}. 
 
 
 \section{The Gradient Boosting Machine}
 \label{sec:GradientBoostingMachine}
 In supervised learning, our goal is to find an approximation \(\hat{F}\) of an unknown function \(F: \vec{x} \rightarrow y\) that maps data instances \(\vec{x}\) to a set of response variables \(y\) and best minimizes the expected value of some loss function \( \Psi(y, F(\vec{x})) \). 
-Friedman's gradient boosting machine achieves this by iteratively constructing a strong learner that approximates \(F\) from many weak learners. In each iteration a new weak learner, such as a short regression tree, \(h(\vec{x})\) is trained to fit the errors made by the function approximation so far. This training is based upon an extremely common numerical minimization method known as steepest gradient descent \cite{2012ridgeway} \cite{2001Friedman} . 
+Friedman's gradient boosting machine achieves this by iteratively constructing a strong learner that approximates \(F\) from many weak learners also referred to as base learners. \(h(\vec{x})\) is the standard notation for the generic base learner, which takes an instance \(\vec{x}\) and predicts the value of its response variable. In each iteration a new base learner, such as a short regression tree, is trained to fit the errors made by the function approximation so far. This training is based upon an extremely common numerical minimization method known as steepest gradient descent \cite{2012ridgeway} \cite{2001Friedman} . 
 However, unlike most applications of steepest descent, Friedman's Gradient Boost algorithm computes the negative gradient \(\vec{g}\) in the space of the estimated function itself, not in the space of a finite set of parameters that define the function. By framing the problem in this way, the function \(\hat{F}\) is not limited to a set of functions definable by a finite set of parameters, but rather is defined by a potentially infinite set of parameters, one for each possible value \(\vec{x}\). Obviously, it is impossible to actually compute the gradient and apply steepest-descent in this potentially infinite dimensional function space, but it is possible to perform steepest-descent with respect to the finite space of training examples \(D\) \cite{2012ridgeway} \cite{2001Friedman}. 
 
-The negative gradient in this restricted subset of function space defines the direction of steepest descent in the loss function for the training examples. Thus by updating the function \(\hat{F}\) directly by this negative gradient, we would move closer to the minimum values of the loss function \(\Psi\) for the examples in the training dataset. Of course this is not quite the goal, instead we would like to be able to generalize to all possible data. To accomplish this we instead train a regression model to predict the negative gradient of the loss function at each step, then update our function with this model's prediction. Friedman's general Gradient Boosting Machine, extended to include his later ideas of subsampling the training data and applying a constant shrinkage to improve generalization is provided in Algorithm \ref{alg:GeneralGradientBoost} \cite{2012ridgeway} \cite{2001Friedman} \cite{2002Friedman}. 
+The negative gradient in this restricted subset of function space defines the direction of steepest descent in the loss function for the training examples. Thus by updating the function \(\hat{F}\) directly by this negative gradient, we would move closer to the minimum values of the loss function \(\Psi\) for the examples in the training dataset. Of course this is not quite the goal, instead we would like to be able to generalize to all possible data. To accomplish this we instead train a base learner to predict the negative gradient of the loss function at each step, then update our function with this model's prediction. Friedman's general Gradient Boosting Machine, extended to include his later ideas of subsampling the training data and applying a constant shrinkage to improve generalization is provided in Algorithm \ref{alg:GeneralGradientBoost} \cite{2012ridgeway} \cite{2001Friedman} \cite{2002Friedman}. 
 %---------------------------------------------------------------
 \begin{figure}[t]
 	\removelatexerror
@@ -393,7 +399,7 @@ g_{m,i} = -\frac{\partial}{\partial \hat{F}_{m-1}(\vec{x_i})} \frac{(y_i - \hat{
 \label{eq:SquaredErrorGradient}
 \end{equation}
 
-As alluded to in the introduction, the proposed variable shrinkage scheme is specially designed for the common case where the base learners are regression trees, we define the notation for regression trees in Figure \ref{fig:regressionTreeFig} below.
+As mentioned in the introduction, the proposed variable shrinkage scheme is specially designed for the common case where the base learners are regression trees, we define the notation for regression trees in Figure \ref{fig:regressionTreeFig}.
 
 When building the trees, we define the next best split as the split that leads to the largest reduction in squared error on the training examples. Thus the least squares coefficient \(\beta\) in Equation \ref{eq:NewBaseLearner} will always be 1, and since we're using the squared error loss function so will the optimal coefficient \(\rho\) in Equations \ref{eq:ScalingCoefficent} and \ref{eq:UpdateStep}. 
 
@@ -405,7 +411,7 @@ Thus, for the case where the base learners are regression trees and the loss fun
 \label{eq:UpdateStep2}
 \end{equation}
 
-The choice of regression tree base learners introduces two additional parameters to the gradient boosting algorithm, namely the maximum number of splits in each tree (aka interaction depth) and the minimum number of observations in each leaf node. These parameters work together to regularize the complexity of the regression trees, and in general these parameters are chosen to ensure short trees and stout leaves to weaken the predictive power of each individual base learner which ultimately strengthens the boosted model's ability to generalize \cite{ecological}. 
+The choice of regression tree base learners introduces two additional parameters to the gradient boosting algorithm, namely the maximum number of splits in each tree (aka interaction depth) and the minimum number of observations in each leaf node (leaf size). These parameters work together to regularize the complexity of the regression trees. In general these parameters are chosen to ensure short trees and stout leaves to weaken the predictive power of each individual base learner which ultimately strengthens the boosted model's ability to generalize \cite{ecological}. 
 
 Note that although we restrict the current study to regression tasks using the squared error loss function, the variable shrinkage scheme defined and tested in the following sections could easily be applied to any of the loss functions originally defined by Friedman in \cite{2001Friedman} \cite{2002Friedman}, and most famously implemented in the gbm R package originally written by Ridgeway \cite{2012ridgeway}. Please see these references for information on the many specialized derivations of Algorithm \ref{alg:GeneralGradientBoost} for various learning tasks and to better understand the reasoning behind the equations defined in this section.
 %---------------------------------------------------------------
@@ -449,7 +455,7 @@ v_{m,j} = \frac{|R_{m,j}|}{{|S_m|}}(v_{max} - v_{min})  + v_{min}
 
 This equation maps the range of possible leaf node sizes \([\ 0, \tilde{N}\ ]\) to the range of possible shrinkage values \([\ v_{min}, v_{max}\ ]\). Note that even when the regression trees are built with a nonzero minimum number of observations in each leaf node, the missing value branches of the trees can still have any number of examples in them, including zero if no missing values existed in the training data. Thus zero is still used as the minimum leaf size for the purposes of shrinkage calculation regardless of the minimum number of observations parameter. 
 
-Using equation \ref{eq:adaptRule1}, the update step (Equation \ref{eq:UpdateStep2}) becomes...
+Using equation \ref{eq:adaptRule1}, the update step (Equation \ref{eq:UpdateStep2}) becomes Equation \ref{eq:revisedUpdateStep}.
 
 \begin{equation}
 	\hat{F}_m(\vec{x}) = \hat{F}_{m-1}(\vec{x}) + \rho_m\sum_{j=1}^{J}v_{m,j}  \cdot  b_{m,j}I(\vec{x} \, \epsilon \, R_{m,j})
@@ -459,7 +465,7 @@ Using equation \ref{eq:adaptRule1}, the update step (Equation \ref{eq:UpdateStep
 \section{Implementation}
 We implemented the Friedman's gradient boosting machine with the option to utilize either the standard constant shrinkage or our proposed variable shrinkage scheme as defined in Sections \ref{sec:GradientBoostingMachine}, \ref{sec:SimplifyingAssumptions}, and \ref{sec:VariableLR}. The core algorithm implementation is an extension of the very minimal JSGBM project found here \cite{jsgbm}. The additions to the original project include support for missing values and splits on categorical variables, optimization of the splitting algorithm, calculation of predictor relative influence, a cross validation based method for selecting the optimal number of trees, and support for De'ath's aggregated boosted trees as discussed in Section \ref{sec:RelatedWork}. All code implemented for this paper can be found at \cite{myGithub}.
 
-The algorithm for selecting the optimal number of trees is based on the gbm.step function of the dismo R package which is described in \cite{ecological}. The psuedocode for our implementation in provided in Algorithm \ref{alg:OptNumOfTrees}.
+The algorithm for selecting the optimal number of trees is based on the gbm.step function of the dismo R package which is described in \cite{ecological}. The psuedocode for our modified implementation in provided in Algorithm \ref{alg:OptNumOfTrees}.
 
 \begin{algorithm}[]
 	\hspace{1 mm} \\\hrule\hspace{1 mm} \\
@@ -467,9 +473,8 @@ The algorithm for selecting the optimal number of trees is based on the gbm.step
 	\SetKwInOut{Input}{input}
 	\SetKwInOut{Output}{output}
 	
-	\Input{Number of Folds: \(K = 4\) \newline
-		Step Size: \(S_{size} = 5,000\): \newline
-		Minimum Error Delta: \(\Delta_{min} = 10^{-6} \cdot\) meanResponse \newline
+	\Input{Number of Folds: \(K = 5\) \newline
+		Step Size: \(S_{size} = 500\): \newline
 		Steps Past Minimum: \(S_{pm} = 3 \) \newline
 		Max Number of Trees: \(M = 150,000\) \newline
 	}
@@ -478,24 +483,26 @@ The algorithm for selecting the optimal number of trees is based on the gbm.step
 	
 	Create \(K\) training/validation set pairs as in normal K-fold cross validation. For each pair, create a new empty GBM model. \\
 	\hspace{1 mm} \\
-	Initialize number of steps remaining
-	\[
-	S_{remaining} \leftarrow S_{pm}
-	\]
 	
+	\(
+	S_{remaining} \leftarrow S_{pm}
+	\) (Initialize number of steps remaining) 	\hspace{1 mm} \\\hspace{1 mm} \\
+
 	\While{ \textsf{\upshape NumberOfTrees \textless } \(M\) \textsf{\upshape and} \(S_{remaining}\) $\textsf{\upshape \textgreater \  0}$}
 	{
+		
 		Add \(S_{size}\) trees to each of the \(K\) GBM models.
-		\hspace{1 mm} \\\hspace{1 mm} \\
+		\hspace{1 mm} \\
 		
-		Evaluate the new validation RMSE of each model, and average them.
+		\(avgRMSE \leftarrow \) Evaluate the new validation RMSE of each model, and average them.
 		
-		\[
-		\Delta_{error} \leftarrow \text{oldAvgRMSE - newAvgRMSE}
-		\]
+		\uIf{\(avgRMSE < minAvgRMSE\)}{
+			\hspace{1 mm} \\
+			\(S_{remaining} \leftarrow S_{pm}\) \\
+			\(minAvgRMSE \leftarrow avgRMSE\)
+			}
 		
-		\uIf{\(\Delta_{error} > \Delta_{min}\)}{\[S_{remaining} \leftarrow S_{pm}\]}
-		\uElse{\[S_{remaining} \leftarrow S_{remaining} - 1\]}
+		\uElse{\(S_{remaining} \leftarrow S_{remaining} - 1\)}
 	}
 	\caption{Find Optimal Number of Trees using Cross Validation}
 	\hspace{1 mm} \\\hrule\hspace{1 mm} \\\hspace{1 mm} \\
@@ -505,52 +512,43 @@ The algorithm for selecting the optimal number of trees is based on the gbm.step
 
 \section{Datasets}
 \label{sec:datasets}
-Four real world datasets with natural regression tasks were selected for use in this study. Each of these can be found in the UC Irvine Machine Learning Repository \cite{Lichman:2013}. This section introduces each of these in turn.
+Four real world datasets with natural regression tasks were selected for use in this study. Each of these can be found in the UC Irvine Machine Learning Repository \cite{Lichman:2013}. This section introduces each of these in turn. Note the parenthesized minimal name found in the subsection titles will be used to refer to these datasets throughout the results and discussion sections.
 
-\subsection{Combined Cycle Power Plant (powerPlant)}
-This dataset contains 9568 examples collected over 6 years from a power plant set work at full load. Each instance consists of 4 real valued predictors; namely the  Temperature (T), Ambient Pressure (AP), Relative Humidity (RH) and Exhaust Vacuum (V). The target response variable is the net hourly electrical energy output (EP) of the plant \cite{powerPlantDataset}.
+\subsection{Combined Cycle Power Plant (Power Plant)}
+This dataset contains 9568 examples collected over 6 years from a power plant set work at full load. Each instance consists of 4 real valued predictors; namely the  Temperature (AT), Ambient Pressure (AP), Relative Humidity (RH) and Exhaust Vacuum (V). The target response variable is the net hourly electrical energy output (EP) of the plant \cite{powerPlantDataset}. The Power Plant dataset was subjected to extensive cleaning and preprocessing prior to donation to the UCI repository. This preprocessing procedure filtered out all nonsensical outliers and diminished the noise that resulted from electrical disturbance interfering with the signal \cite{powerPlantCiteRequest1} \cite{powerPlantCiteRequest2}.
 
-\subsection{Airfoil Self-Noise (nasa)}
-This data originated from a 1989 NASA experiment in which different size air foils were placed in a wind tunnels and subjected to various free-stream velocities and angles of attack. The regression goal is to predict the scaled sound pressure level in decibels of an air foil given the frequency (Hertz), angle of attack (degrees), chord length (meters), free-stream velocity (meters/second), and suction side displacement thickness (meters) \cite{airFoilDataset}.
+\subsection{Airfoil Self-Noise (NASA)}
+This data originated from a 1989 NASA experiment in which different size air foils (wing shapes) were placed in a wind tunnel and subjected to various free-stream velocities (wind speed prior to hitting the air foil) and angles of attack (direction of the wind). The regression goal is to predict the scaled sound pressure level in decibels of an air foil given the free-stream velocity (meters/second), angle of attack (degrees), frequency (Hertz), chord length (meters), and suction side displacement thickness (meters) \cite{airFoilDataset}. More information on the creation and properties of this dataset can be found in the following relevant papers \cite{nasaCiteRequest1} \cite{nasaCiteRequest2} \cite{nasaCiteRequest3}.
 
-\subsection{Bike Sharing (bikeSharing)}
-Hadi Fanaee from the Laboratory of Artificial Intelligence and Decision Support (LIAAD), University of Porto pulled together weather information and holiday information and integrated it with publically available trip data provided by Capital Bikeshare to generate this intriguing dataset consisting of almost two years of bike rental data aggregated both by day and by hour. Each instance contains attributes providing information about the day [and hour] that the rentals occurred. This includes the year, season, month, day, hour, whether it was a holiday, a weekday, or a working day. In addition the weather conditions for each instant in time are provided including the precipitation type, temperature, humidity, and wind speed. Finally the count of bikes rented during each time period is provided, which will be used as the target variable in our experiment \cite{bikeSharingDataset} \cite{bikeSharingCiteRequest}. 
+\subsection{Bike Sharing By Day (Bike Sharing)}
+Hadi Fanaee from the Laboratory of Artificial Intelligence and Decision Support (LIAAD), University of Porto pulled together weather information and holiday information and integrated it with publically available trip data provided by Capital Bikeshare to generate this intriguing dataset consisting of two years of bike rental data aggregated both by day and by hour. Each instance contains attributes providing information about the day [and hour] that the rentals occurred. This includes the year, season, month, day, hour, whether it was a holiday, a weekday, or a working day. All of the time attributes are treated as categorical predictors in our experiment. In addition the weather conditions for each instant in time are provided including the precipitation type, temperature, humidity, and wind speed. Finally the count of bikes rented during each time period is provided, which will be used as the target variable in our experiment \cite{bikeSharingDataset} \cite{bikeSharingCiteRequest}. 
 
-\subsection{Communities and Crime (crimeCommunities)}
-Lastly we will look at the Communities and Crime dataset which "combines socio-economic data from the 1990 US Census, law enforcement data from the 1990 US LEMAS survey, and crime 
-data from the 1995 FBI UCR." \cite{crimeCommunities} \todo{write something}
+For our purposes we will look only at the daily data which limits the dataset to 731 instances rather than 17381 instances in the hourly version. No normalization or data cleaning has been applied to this dataset. This dataset is of course naturally quite noisy since people do not follow any hard and fast rules when deciding whether or not to go on a bike ride so the rental counts can vary considerably even for identical values of all the predictors.
+
+\subsection{Communities and Crime (Crime Communities)}
+Lastly we will look at the Communities and Crime dataset which contains 122 predictors for the ratio of violent crime to population in 1994 communities throughout the United States, where violent crimes are defined as murder, rape, robbery, and assault. Each example is comprised of data from the 1990 US Census, law enforcement data from the 1990 US LEMAS survey, and crime 
+data from the 1995 FBI UCR. Some examples of the predictors provided are the household size, percent unemployed, divorce rates, ratio of police offices to population, number of different kinds of drugs seized by the police, average rent costs, percentage of variance races and ethnicities, and many more aspects of the community and local police force. Note that in this dataset all of the variables have been normalized to the range \([\ 0, 1\ ]\) and missing values are prevalent for many of the predictors. \cite{crimeCommunitiesDataset} \cite{crimeCommunitiesCiteRequest1} \cite{crimeCommunitiesCiteRequest2} \cite{crimeCommunitiesCiteRequest3} \cite{crimeCommunitiesCiteRequest4} \cite{crimeCommunitiesCiteRequest5}.
 
 \section {Experiment}
-In order to compare model performance of the original algorithm with our proposed shrinkage adaption scheme, we developed an experiment in which 2048 total sets of parameters were tested on the four datasets described in Section \ref{sec:datasets}. 
+In order to compare model performance of the original algorithm with our proposed shrinkage adaptation scheme, we developed an experiment in which a myriad of different parameter combinations were tested on the four datasets described in Section \ref{sec:datasets}. 
 
-All parameters that affect the execution of Algorithm \ref{alg:OptNumOfTrees}, which is the core training procedure used in all of our tests, are shown in Table \ref{tab:findOptTreeParam}. Two additional parameters are listed that were not introduced with algorithm itself but are important to note. These indicate that the running time and memory usage for during training was limited to 1.5 hours and 20 GB respectively. These values were exceeded only a handful of times when using the lowest constant learning rate and the highest number of splits. In the rare case that a test exceeded these limits the training stopped and the application continued with collecting and saving metadata about the constructed models, just as though the training stopped due to the normal stopping condition.
+Gradient boosting machines with regression tree base learners are traditionally defined by the number of trees to be built and 4 additional parameters; the bag fraction, shrinkage, minimum number of examples in each leaf, and the maximum number of splits in each tree. To support our variable shrinkage scheme we must add one additional parameter since we require both a minimum and a maximum learning rate. All values that were considered for each of these parameters are provided in Table \ref{tab:parameters}. Taking all possible combinations of these parameters leads to 512 parameter sets with constant shrinkage, and 1536 possibilities with variable shrinkage for a total of 2048 individual tests for each dataset. 
 
-Gradient boosting machines with regression tree base learners are traditionally defined by the number of trees to be built and 4 additional parameters; the bag fraction, shrinkage, minimum number of examples in each leaf, and the maximum number of splits in each tree. To support our variable shrinkage scheme we must add one additional parameter since we require both a minimum and a maximum learning rate. All values that were considered for each of these parameters are provided in Table \ref{tab:parameters}. Taking all possible combinations of these parameters leads to 512 parameter sets with constant shrinkage, and 1536 possibilities with variable shrinkage for a total of 2048 individual tests.
+All parameters that affect the execution of Algorithm \ref{alg:OptNumOfTrees}, which is the core training procedure used in all of our tests, are shown in Table \ref{tab:findOptTreeParam} for quick reference. 
+
+In Table \ref{tab:executionLimits} we have the operating system, processor model and amount of memory of the systems used to run all of our tests. In addition Table  \ref{tab:executionLimits} lists the execution limits imposed on each individual test. Specifically, the running time and memory usage for during training was limited to 1.5 hours and 20 GB respectively. These values were exceeded only a handful of times when using the lowest constant learning rate and the highest number of splits. In the rare case that a test exceeded these limits the training stopped and the application continued with collecting and saving metadata about the constructed models, just as though the training stopped due to the normal stopping condition.
+
+For a single run on a given dataset, all 2048 parameters were evaluated using the same 80\% training set / 20\% test set split. Selection of the test set examples was performed uniformly at random. The exact procedure used to evaluate a single set of parameters is provided in Algorithm \ref{alg:tuningProcedure}.
+
+We performed two full runs for each dataset and computed the averages of data collected for each set of parameters. The results found in section \ref{sec:results} and discussed in \ref{sec:discussion} are derived from this averaged run data.
+
 %---------------------------------------------------------------
 \begin{table}
 	\centering
-	\begin{tabular}{ | l || c |}
-		\hline
-		Maximum Running Time & 1.5 hours \\ \hline
-		Maximum Memory Usage & 20 GB \\ \hline
-		Maximum Number of Trees & 150,000 \\ \hline
-		Number of CV Folds & 4 \\ \hline
-		CV Step Size & 5000 \\ \hline
-		\begin{tabular}{@{}l@{}}Number of CV Steps after \\ Falling Below Min Error Delta\end{tabular}
-		& 3 \\ \hline
-		Minimum Error Delta & 0.000001 $\cdot$ mean training response \\
-		\hline
-	\end{tabular}
-	\caption{Execution limits and Parameters for Finding Optimal Number of Trees}
-	\label{tab:findOptTreeParam}
-\end{table}
-%---------------------------------------------------------------
-\begin{table}
-	\centering
-		\begin{tabular}	{ | l || c |}
+		\begin{tabular}	{ | l | c |}
 			\hline
 			Bag Fraction & 0.25, 0.50, 0.75, 1 \\ \hline
-			Min Examples In Node & 1, 50, 100, 250 \\ \hline
+			Min Examples In Node & 1, 10, 75, 150 \\ \hline
 			Max Number Of Splits & 1, 2, 4, 8, 16, 32, 64, 128 \\ \hline
 			Constant: Shrinkage & 0.1, 0.01, 0.001, 0.0001 \\ \hline
 			Variable: Minimum Shrinkage & 0.01, 0.001, 0.0001 \\ \hline
@@ -558,323 +556,136 @@ Gradient boosting machines with regression tree base learners are traditionally 
 			\hline
 			
 		\end{tabular}
-		\caption{Execution limits and Parameters for Finding Optimal Number of Trees}
+		\caption{All Tested GBM Model Parameters}
 		\label{tab:parameters}
 \end{table}
+\begin{table}
+	\centering
+	\begin{tabular}{ | l | c |}
+		\hline
+		\rule{0pt}{2ex}	Maximum Number of Trees & 150,000 \\ \hline
+		\rule{0pt}{2ex}	Number of CV Folds & 5 \\ \hline
+		\rule{0pt}{2ex}	CV Step Size & 500 \\ \hline
+		\rule{0pt}{2ex}	Max CV Steps w/o improving CV Error	& 3 \\ \hline
+	\end{tabular}
+	\caption{Parameters for Finding Optimal Number of Trees}
+	\label{tab:findOptTreeParam}
+\end{table}
+\begin{table}
+	\centering
+	\begin{tabular}{ | l | c |}
+		\hline
+		\rule{0pt}{2ex} Operating System & Ubuntu 14.04.3 LTS \\ \hline
+		\rule{0pt}{2ex} CPU & Intel i5-3570 \\ \hline
+		\rule{0pt}{2ex} System Memory & 32 GB \\ \hline
+		\rule{0pt}{2ex} Maximum Running Time & 1.5 hours \\ \hline
+		\rule{0pt}{2ex} Maximum Memory Usage & 20 GB \\ \hline
+	\end{tabular}
+	\caption{CPU and Memory Hardware and Limits}
+	\label{tab:executionLimits}
+\end{table}
 %---------------------------------------------------------------
-For each combination of parameters on each dataset five independent runs were performed and all data collected from them was averaged. All results  presented and discussed in the following sections are derived from these average values. Each run of a particular parameter set on a dataset consists of the following procedure.
-%---------------------------------------------------------------
-\begin{enumerate}
-	\item Select randomly without replacement 20\% of the dataset and set aside as a test set.
-	\item Use Algorithm \ref{alg:OptNumOfTrees} to perform 4-fold cross validation and find the optimal number of trees. Simultaneously train a GBM using the entire training set. 
-	\item Build an Aggregated Boosted Tree from the 4 GBMs built for cross validation.
-	\item For each number of trees from 1 to total number of trees built, collect the following information to generate error curves and other interesting graphs. (This is done as steps 2 and 3 execute)
-		\begin{enumerate}
-		\item Average training, validation, and test RMSE of the 4 cross validation GBMs.
-		\item Training and Test RMSE of the GBM trained using all training data (ADT).
-		\item Training and Test RMSE of the Aggregated Boosted Tree.
-		\item Mean and Standard Deviation of the actual number of examples across the leaf nodes in the last tree that was added to the all training data GBM.
-		\item Mean and Standard Deviation of the actual shrinkage values across the leaf nodes in the last tree that was added to the all training data GBM.
-		\item The actual number of splits in the last tree that was added to the all training data GBM.
-		\end{enumerate}
-	\item For each example in the dataset (both training and test) collect the following information.
+
+\begin{algorithm}[]
+	\hspace{1 mm} \\\hrule\hspace{1 mm} \\
 	\begin{enumerate}
-		\item Prediction at the optimal number of trees using the all training data GBM.
-		\item The residual of that prediction
-		\item The avg learning rate applied to that example across all trees using the all training data GBM.
+		\item Use Algorithm \ref{alg:OptNumOfTrees} to find the optimal number of trees. 
+		\item Simultaneously train a GBM using the entire training set (All Training Data GBM), stop training when Algorithm \ref{alg:OptNumOfTrees}'s stopping condition is reached.
+		\item Build an Aggregated Boosted Tree from the K GBMs built for cross validation.
+		\item Collect and save meta-data about the run. This includes the running time, optimal number of trees, and the root mean squared error values at the optimal number of trees for...
+		\begin{enumerate}
+			\item The cross validation error (CV RMSE)
+			\item The generalization error of the All Training Data GBM (ATD RMSE)
+			\item The generalization error of the Aggregated Boosted Tree (ABT RMSE)
+		\end{enumerate}
 	\end{enumerate}
+	\caption{Procedure for a Single Test.}
+	\hspace{1 mm} \\\hrule\hspace{1 mm} \\\hspace{1 mm} \\
+	\label{alg:tuningProcedure}
+\end{algorithm}%
 
-	\item Compute the relative influences of the predictors for both the all training data GBM and the aggregated boosted tree.
-	\item Compute the average and standard deviation of the actual number of splits across all trees built. (Average and Std. Dev. of 4.f)
-	\item Compute the average and standard deviation of the average learning rates applied to each example. (Average and Std. Dev. of 5.c)
-	\item Record the total amount of time taken to perform all of these steps.
-\end{enumerate}
+\begin{figure}[!t]
 
+\end{figure}
 %---------------------------------------------------------------
 \section{Results}
+\label{sec:results}
 
-For each dataset, we have sorted all parameter sets by the average cross validation error across the five runs performed. The five sets of parameters leading to the lowest average cross validation root mean squared error (RMSE) using both constant and variable shrinkages are provided for each dataset in Tables III through X. Note the lighter shaded cells indicate the minimum value in each row, while the darker shade indicates the maximum value.
+In Tables \ref{tab:powerPlantbestParameters}, \ref{tab:nasabestParameters}, \ref{tab:bikeSharingDaybestParameters}, and \ref{tab:crimeCommunitiesbestParameters} we provide the best constant and variable shrinkage parameters for the Power Plant, NASA, Bike Sharing, and Crime Communities datasets respectively. Each table consists of three subtables. The top subtable summarizes the parameters that achieved the best cross validation error, in the middle you will find the parameters that lead to the All Training Data GBM with minimal generalization error, and finally the bottom subtable presents the parameters that optimize the generalization error of their resulting Aggregated Boosted Tree. Note in an ideal world these would be equivalent, however we can never perfectly estimate generalization error.
 
-The topmost sections of these tables contain the parameter values themselves (columns are sorted by CV Error in ascending order). 
+For each set of parameters found in these tables, five measured attributes are provided that will be used throughout our discussion to compare performance achieved with constant vs. variable shrinkages. These will be referred to as "comparison attributes" and consist of the running time, the optimal number of trees, cross validation error, and generalization error of both the All Training Data GBMs and Aggregated Boosted Trees. Note all values for these attributes are averages taken across the two runs performed. The final column of each table provides the percent decrease between the performance of the best constant and best variable parameters. Since we'd like to minimize all of these quantities, a positive percent decrease indicates that the best variable shrinkage parameters performed better than their constant shrinkage counterparts, positive percent decrease are displayed in bold to quickly observe the cases in which variable shrinkage outperformed constant shrinkage in the best case. 
 
-In the middle portion of the table we have the running time, average cross validation error, average performance of the GBMs built with all training data on the test set (ATD Test RMSE), average performance of the Aggregated Boosted Trees on the test set (ABT Test RMSE), as well as the average optimal number of trees found across the five runs. 
+In order to uncover the overall impact of our proposed shrinkage adaptation scheme, we have generated plots to help visualize how each of the model parameters affects each comparison attribute when used with both constant and variable shrinkage, these will be referred to as "pairwise parameter influence plots" throughout the remainder of our discussion. The legend for the pairwise parameter influence plots is provided in Figure \ref{fig:legends} and the plots themselves are found in Figures
+\ref{fig:parametersVsTimeInSeconds},
+\ref{fig:parametersVsOptimalNumberOfTrees}, and
+\ref{fig:parametersVsCvValidationError}.
 
-The bottom most sections of these tables contain the mean and standard deviation values of the actual leaf sizes and number of splits across all trees. In the case of variable shrinkage we additionally provide the average shrinkage applied across all of the examples. 
+Each pairwise parameter influence plot shows the relationship between one of the GBM model parameters (constant shrinkage, min shrinkage, max shrinkage, bag fraction, minimum leaf size, or max number of splits) and one of 3 comparison attributes (running time, optimal number of trees, or cross validation error). The plots for the generalization error of the All Training Data GBMs and Aggregated Boosted Trees have been left out since they are almost exactly the same as those for the cross validation error. This is to be expected of course since we use cross validation to estimate generalization error. 
 
-It's important to notice that the trees cannot always be grown to the maximum number of splits or to the point of reaching the minimum leaf size. The tree building algorithm terminates when it can no longer find a split that decreases the overall squared error of the training instances involved in the split. Thus when the maximum number of splits is high, the minimum leaf size is low, th
+We will however provide plots that show the relationship between cross validation error and the two forms of generalization error to see if the variable shrinkages have an impact on the generalization error estimation quality. These are found in Figure \ref{fig:cvVsGeneralization}.
+
+To build these plots we first found the average comparison attributes across all datasets and all runs for all sets of parameters, resulting in a single set of 2048 records. Since we are comparing across datasets, 0-1 normalization is first performed on the comparison attributes within each dataset, then the normalized versions are averaged to create the final records used to generate in the plots. As a result, all of the pairwise parameter influence plots have y values ranging from 0 to 1 rather than the original ranges of the plotted attribute.
 
 
-
-%--------------------------------------NASA------------------------------------
-\begin{table}[!t]
-	\resizebox{\linewidth}{!}{
-		\begin{tabular}{ | c || c | c | c | c | c | }
-			\hline
-			\rule{0pt}{2ex} Bag Fraction & 0.5 & 0.5 & 0.5 & 0.5 & 0.75\\ \hline 
-			\rule{0pt}{2ex} Min Leaf Size & 1.0 & 1.0 & 1.0 & 1.0 & 1.0\\ \hline 
-			\rule{0pt}{2ex} MaxSplits & 32.0 & 32.0 & 16.0 & 64.0 & 16.0\\ \hline 
-			\rule{0pt}{2ex} Shrinkage & 0.001 & 0.01 & 0.001 & 0.01 & 0.01\\ \hline 
-			\hline 
-			\rule{0pt}{2ex} RunningTime (seconds) & \cellcolor{blue!30}335.1678 & 96.351 & 219.6743 & \cellcolor{blue!10}81.041 & 90.7919\\ \hline 
-			\rule{0pt}{2ex} ATD Test RMSE & 1.2844 & 1.2723 & \cellcolor{blue!30}1.3036 & 1.2846 & \cellcolor{blue!10}1.2429\\ \hline 
-			\rule{0pt}{2ex} ABT Test RMSE & 1.3875 & \cellcolor{blue!30}1.3934 & 1.3719 & 1.3639 & \cellcolor{blue!10}1.3271\\ \hline 
-			\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}1.4463 & 1.451 & 1.4542 & 1.4583 & \cellcolor{blue!30}1.4686\\ \hline 
-			\rule{0pt}{2ex} Optimal Num. of Trees & 137017.6 & 43745.8 & \cellcolor{blue!30}149957.8 & \cellcolor{blue!10}19801.6 & 59061.4\\ \hline 
-			\hline 
-			\rule{0pt}{2ex} Avg. Leaf Size & \cellcolor{blue!10}6.37702 & 6.388851 & 13.570182 & 8.684288 & \cellcolor{blue!30}18.810179\\ \hline 
-			\rule{0pt}{2ex} Std. Dev. Leaf Size & 0.661731 & 2.80447 & \cellcolor{blue!10}0.03642 & \cellcolor{blue!30}7.786496 & 3.760119\\ \hline 
-			\rule{0pt}{2ex} Avg. Splits & 29.6533 & 27.02 & 16 & \cellcolor{blue!30}40.5662 & \cellcolor{blue!10}14.7692\\ \hline 
-			\rule{0pt}{2ex} Std. Dev. Splits & 3.0841 & 9.4346 & \cellcolor{blue!10}0 & \cellcolor{blue!30}26.7213 & 2.9538\\ \hline 
-		\end{tabular}}
-		\caption{Constant Shrinkage: Nasa Air Foil Parameters with Best Cross Validation RMSE.}
-		\label{tab:nasaconstantBestAndWorstParameters}
-	\end{table}
+For each parameter and comparison attribute pair, two plots are generated. In the left columns of Figures
+\ref{fig:parametersVsTimeInSeconds},
+\ref{fig:parametersVsOptimalNumberOfTrees}, and
+\ref{fig:parametersVsCvValidationError} you'll find scatter plots with one point for each of the 2048 sets of parameters tested, where the red points indicate tests using constant shrinkage and the blue points correspond to tests using variable shrinkage. To the right of each scatter plot you'll find a line plot where each (x, y) point is the average of all the x values at that particular y value in the scatter plot. Together they provide quite an informative view of how our variable shrinkage scheme affects gradient boosted regression trees overall, and will provide the basis of much of our discussion in section \ref{sec:discussion}.
 	
-	
-	\begin{table}[!t]
-		\resizebox{\linewidth}{!}{
-			\begin{tabular}{ | c || c | c | c | c | c | }
-				\hline
-				\rule{0pt}{2ex} Bag Fraction & 0.5 & 0.5 & 0.5 & 0.5 & 0.5\\ \hline 
-				\rule{0pt}{2ex} Min Leaf Size & 1.0 & 1.0 & 1.0 & 1.0 & 1.0\\ \hline 
-				\rule{0pt}{2ex} MaxSplits & 16.0 & 16.0 & 32.0 & 32.0 & 16.0\\ \hline 
-				\rule{0pt}{2ex} Min Shrinkage & 0.01 & 0.001 & 0.0001 & 0.001 & 0.001\\ \hline 
-				\rule{0pt}{2ex} Max Shrinkage & 0.7 & 0.4 & 0.4 & 0.4 & 0.1\\ \hline 
-				\hline 
-				\rule{0pt}{2ex} RunningTime (seconds) & \cellcolor{blue!10}84.3753 & 198.8264 & \cellcolor{blue!30}231.5566 & 168.5468 & 205.0479\\ \hline 
-				\rule{0pt}{2ex} ATD Test RMSE & 1.2732 & 1.2448 & \cellcolor{blue!10}1.1749 & \cellcolor{blue!30}1.4282 & 1.3342\\ \hline 
-				\rule{0pt}{2ex} ABT Test RMSE & 1.3357 & \cellcolor{blue!10}1.2664 & 1.2811 & \cellcolor{blue!30}1.5203 & 1.4044\\ \hline 
-				\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}1.4229 & 1.4349 & 1.4353 & 1.4358 & \cellcolor{blue!30}1.4465\\ \hline 
-				\rule{0pt}{2ex} Optimal Num. of Trees & \cellcolor{blue!10}56181 & 142271.4 & 98964.2 & 67466 & \cellcolor{blue!30}149497.8\\ \hline 
-				\hline 
-				\rule{0pt}{2ex} Avg. Leaf Size & 12.750963 & 12.946516 & \cellcolor{blue!10}5.347274 & 5.733489 & \cellcolor{blue!30}13.572058\\ \hline 
-				\rule{0pt}{2ex} Std. Dev. Leaf Size & \cellcolor{blue!30}2.23063 & 1.670755 & 1.720047 & 1.538506 & \cellcolor{blue!10}0.034655\\ \hline 
-				\rule{0pt}{2ex} Avg. Splits & \cellcolor{blue!10}15.0154 & 15.2533 & 24.8615 & \cellcolor{blue!30}26.6667 & 16\\ \hline 
-				\rule{0pt}{2ex} Std. Dev. Splits & 2.6282 & 1.9697 & \cellcolor{blue!30}8.0028 & 7.1554 & \cellcolor{blue!10}0\\ \hline 
-				\rule{0pt}{2ex} Avg. Shrinkage & \cellcolor{blue!30}0.177175 & 0.105513 & 0.067341 & 0.065603 & \cellcolor{blue!10}0.028777\\ \hline 
-				\rule{0pt}{2ex} Std. Dev. Shrinkage & \cellcolor{blue!30}0.030301 & 0.020138 & 0.017297 & 0.016133 & \cellcolor{blue!10}0.005734\\ \hline 
-			\end{tabular}}
-			\caption{Variable Shrinkage: Nasa Air Foil Parameters with Best Cross Validation RMSE.}
-			\label{tab:nasaconstantBestAndWorstParameters}
-		\end{table}
 
+\import{Z:/GBMWithVariableShrinkage/parameterTuning/5/}{entireResultsSection}
 
-
-%--------------------------------------Bike SHaring------------------------------------
-\begin{table}[!t]
-	\resizebox{\linewidth}{!}{
-		\begin{tabular}{ | c || c | c | c | c | c | }
-			\hline
-			\rule{0pt}{2ex} Bag Fraction & 0.25 & 0.25 & 0.25 & 0.75 & 0.5\\ \hline 
-			\rule{0pt}{2ex} Min Leaf Size & 1.0 & 1.0 & 1.0 & 1.0 & 1.0\\ \hline 
-			\rule{0pt}{2ex} MaxSplits & 16.0 & 32.0 & 64.0 & 8.0 & 8.0\\ \hline 
-			\rule{0pt}{2ex} Shrinkage & 0.001 & 0.001 & 0.001 & 0.0001 & 0.0001\\ \hline 
-			\hline 
-			\rule{0pt}{2ex} RunningTime (seconds) & \cellcolor{blue!10}56.504 & 90.2223 & \cellcolor{blue!30}235.1741 & 218.2886 & 192.6188\\ \hline 
-			\rule{0pt}{2ex} ATD Test RMSE & 651.4022 & 658.0197 & 656.9807 & \cellcolor{blue!30}676.6008 & \cellcolor{blue!10}622.1279\\ \hline 
-			\rule{0pt}{2ex} ABT Test RMSE & 655.1055 & 660.1975 & 661.3023 & \cellcolor{blue!30}685.5282 & \cellcolor{blue!10}623.8224\\ \hline 
-			\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}621.5137 & 623.1882 & 623.9958 & 625.4049 & \cellcolor{blue!30}626.079\\ \hline 
-			\rule{0pt}{2ex} Optimal Num. of Trees & 8096 & \cellcolor{blue!10}8025.4 & 26047.4 & \cellcolor{blue!30}129637.2 & 121190\\ \hline 
-			\hline 
-			\rule{0pt}{2ex} Avg. Leaf Size & 3.302786 & 1.542667 & \cellcolor{blue!10}0.329561 & \cellcolor{blue!30}17.878478 & 11.507763\\ \hline 
-			\rule{0pt}{2ex} Std. Dev. Leaf Size & \cellcolor{blue!10}0.001619 & 0.268327 & 0.280136 & 2.725598 & \cellcolor{blue!30}3.101209\\ \hline 
-			\rule{0pt}{2ex} Avg. Splits & 16 & \cellcolor{blue!30}29.4397 & 24.9575 & 7.4133 & \cellcolor{blue!10}7.1467\\ \hline 
-			\rule{0pt}{2ex} Std. Dev. Splits & \cellcolor{blue!10}0.0025 & 5.1199 & \cellcolor{blue!30}21.2159 & 1.1301 & 1.9259\\ \hline 
-		\end{tabular}}
-		\caption{Constant Shrinkage: Bike Sharing By Day Parameters with Best Cross Validation RMSE.}
-		\label{tab:bikeSharingDayconstantBestAndWorstParameters}
-	\end{table}
-	
-	
-	\begin{table}[!t]
-		\resizebox{\linewidth}{!}{
-			\begin{tabular}{ | c || c | c | c | c | c | }
-				\hline
-				\rule{0pt}{2ex} Bag Fraction & 0.5 & 0.5 & 0.25 & 0.25 & 0.25\\ \hline 
-				\rule{0pt}{2ex} Min Leaf Size & 1.0 & 1.0 & 1.0 & 1.0 & 1.0\\ \hline 
-				\rule{0pt}{2ex} MaxSplits & 8.0 & 8.0 & 128.0 & 16.0 & 128.0\\ \hline 
-				\rule{0pt}{2ex} Min Shrinkage & 0.01 & 0.001 & 0.0001 & 0.01 & 0.001\\ \hline 
-				\rule{0pt}{2ex} Max Shrinkage & 0.1 & 0.1 & 0.4 & 0.1 & 0.4\\ \hline 
-				\hline 
-				\rule{0pt}{2ex} RunningTime (seconds) & 29.6724 & \cellcolor{blue!10}28.487 & \cellcolor{blue!30}158.0349 & 45.789 & 142.5841\\ \hline 
-				\rule{0pt}{2ex} ATD Test RMSE & 650.0301 & 658.3118 & 653.8457 & \cellcolor{blue!10}623.0296 & \cellcolor{blue!30}670.386\\ \hline 
-				\rule{0pt}{2ex} ABT Test RMSE & 651.2336 & 657.3432 & 645.1478 & \cellcolor{blue!10}603.3586 & \cellcolor{blue!30}671.631\\ \hline 
-				\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}617.6814 & 618.1792 & 623.571 & 628.0958 & \cellcolor{blue!30}628.7687\\ \hline 
-				\rule{0pt}{2ex} Optimal Num. of Trees & 778 & 1976.4 & \cellcolor{blue!30}4391.6 & \cellcolor{blue!10}593 & 1859.6\\ \hline 
-				\hline 
-				\rule{0pt}{2ex} Avg. Leaf Size & 12.881251 & \cellcolor{blue!30}12.881854 & \cellcolor{blue!10}0.452567 & 3.302758 & 0.511332\\ \hline 
-				\rule{0pt}{2ex} Std. Dev. Leaf Size & 0.019336 & 0.044956 & \cellcolor{blue!30}0.130897 & \cellcolor{blue!10}0.005692 & 0.012704\\ \hline 
-				\rule{0pt}{2ex} Avg. Splits & \cellcolor{blue!10}7.9999 & 7.9999 & 93.5407 & 15.9998 & \cellcolor{blue!30}106.1888\\ \hline 
-				\rule{0pt}{2ex} Std. Dev. Splits & \cellcolor{blue!10}0.0071 & 0.0122 & \cellcolor{blue!30}26.4443 & 0.0164 & 1.8836\\ \hline 
-				\rule{0pt}{2ex} Avg. Shrinkage & \cellcolor{blue!30}0.035531 & 0.031621 & \cellcolor{blue!10}0.004295 & 0.019985 & 0.004885\\ \hline 
-				\rule{0pt}{2ex} Std. Dev. Shrinkage & 0.001633 & \cellcolor{blue!30}0.002721 & 0.000183 & 0.00108 & \cellcolor{blue!10}0\\ \hline 
-			\end{tabular}}
-			\caption{Variable Shrinkage: Bike Sharing By Day Parameters with Best Cross Validation RMSE.}
-			\label{tab:bikeSharingDayconstantBestAndWorstParameters}
-		\end{table}
-
-				
-		%-----------Best Constant and Variable Error Curves---------------------------------------------
-
-%------------------------------Power Plant---------------------------------------------
-\begin{table}[!t]
-	\resizebox{\linewidth}{!}{
-		\begin{tabular}{ | c || c | c | c | c | c | }
-			\hline
-			\rule{0pt}{2ex} Bag Fraction & 0.75 & 0.75 & 0.75 & 0.5 & 0.75\\ \hline 
-			\rule{0pt}{2ex} Min Leaf Size & 1.0 & 1.0 & 1.0 & 1.0 & 1.0\\ \hline 
-			\rule{0pt}{2ex} MaxSplits & 16.0 & 64.0 & 32.0 & 32.0 & 64.0\\ \hline 
-			\rule{0pt}{2ex} Shrinkage & 0.001 & 0.01 & 0.01 & 0.001 & 0.001\\ \hline 
-			\hline 
-			\rule{0pt}{2ex} RunningTime (seconds) & 1535.213 & 520.0124 & \cellcolor{blue!10}374.4487 & 1509.8043 & \cellcolor{blue!30}1713.554\\ \hline 
-			\rule{0pt}{2ex} ATD Test RMSE & 2.9434 & 2.9665 & \cellcolor{blue!10}2.8883 & \cellcolor{blue!30}3.0721 & 2.9603\\ \hline 
-			\rule{0pt}{2ex} ABT Test RMSE & 2.9368 & 2.9644 & \cellcolor{blue!10}2.8819 & \cellcolor{blue!30}3.0609 & 2.9751\\ \hline 
-			\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}3.0016 & 3.0086 & 3.0226 & 3.0227 & \cellcolor{blue!30}3.0307\\ \hline 
-			\rule{0pt}{2ex} Optimal Num. of Trees & \cellcolor{blue!30}149834.6 & \cellcolor{blue!10}5613.8 & 9749.6 & 90980.4 & 54872.4\\ \hline 
-			\hline 
-			\rule{0pt}{2ex} Avg. Leaf Size & \cellcolor{blue!30}130.42424 & 33.36434 & 66.21538 & 37.997457 & \cellcolor{blue!10}30.981173\\ \hline 
-			\rule{0pt}{2ex} Std. Dev. Leaf Size & \cellcolor{blue!10}0 & 0 & 0 & \cellcolor{blue!30}12.051963 & 6.956236\\ \hline 
-			\rule{0pt}{2ex} Avg. Splits & \cellcolor{blue!10}16 & \cellcolor{blue!30}64 & 32 & 27.5478 & 59.4286\\ \hline 
-			\rule{0pt}{2ex} Std. Dev. Splits & \cellcolor{blue!10}0 & 0 & 0 & 8.7376 & \cellcolor{blue!30}13.3436\\ \hline 
-		\end{tabular}}
-		\caption{Constant Shrinkage: Power Plant Parameters with Best Cross Validation RMSE.}
-		\label{tab:powerPlantconstantBestAndWorstParameters}
-	\end{table}
-	
-	
-	\begin{table}[!t]
-		\resizebox{\linewidth}{!}{
-			\begin{tabular}{ | c || c | c | c | c | c | }
-				\hline
-				\rule{0pt}{2ex} Bag Fraction & 0.75 & 0.75 & 0.75 & 0.75 & 0.75\\ \hline 
-				\rule{0pt}{2ex} Min Leaf Size & 1.0 & 1.0 & 1.0 & 1.0 & 1.0\\ \hline 
-				\rule{0pt}{2ex} MaxSplits & 32.0 & 32.0 & 16.0 & 64.0 & 16.0\\ \hline 
-				\rule{0pt}{2ex} Min Shrinkage & 0.01 & 0.01 & 0.01 & 0.01 & 0.001\\ \hline 
-				\rule{0pt}{2ex} Max Shrinkage & 0.1 & 0.4 & 0.7 & 0.4 & 0.1\\ \hline 
-				\hline 
-				\rule{0pt}{2ex} RunningTime (seconds) & 413.4511 & 377.9108 & \cellcolor{blue!10}292.2713 & 522.1357 & \cellcolor{blue!30}1364.3959\\ \hline 
-				\rule{0pt}{2ex} ATD Test RMSE & 2.9906 & \cellcolor{blue!30}3.0471 & 3.0163 & \cellcolor{blue!10}2.9712 & 2.9929\\ \hline 
-				\rule{0pt}{2ex} ABT Test RMSE & 2.9854 & \cellcolor{blue!30}3.0449 & 2.9916 & 2.9672 & \cellcolor{blue!10}2.9657\\ \hline 
-				\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}2.9862 & 3.006 & 3.0362 & \cellcolor{blue!30}3.0383 & 3.0383\\ \hline 
-				\rule{0pt}{2ex} Optimal Num. of Trees & 10259 & 8888 & 14138.6 & \cellcolor{blue!10}5088.4 & \cellcolor{blue!30}129227.6\\ \hline 
-				\hline 
-				\rule{0pt}{2ex} Avg. Leaf Size & 66.21538 & 66.21538 & \cellcolor{blue!30}126.076765 & \cellcolor{blue!10}33.36434 & 124.127897\\ \hline 
-				\rule{0pt}{2ex} Std. Dev. Leaf Size & \cellcolor{blue!10}0 & 0 & 9.721249 & 0 & \cellcolor{blue!30}21.285523\\ \hline 
-				\rule{0pt}{2ex} Avg. Splits & 32 & 32 & 15.4667 & \cellcolor{blue!30}64 & \cellcolor{blue!10}15.2276\\ \hline 
-				\rule{0pt}{2ex} Std. Dev. Splits & \cellcolor{blue!10}0 & 0 & 1.1926 & 0 & \cellcolor{blue!30}2.6112\\ \hline 
-				\rule{0pt}{2ex} Avg. Shrinkage & \cellcolor{blue!10}0.047665 & 0.170609 & \cellcolor{blue!30}0.338802 & 0.139473 & 0.05176\\ \hline 
-				\rule{0pt}{2ex} Std. Dev. Shrinkage & \cellcolor{blue!10}0.004657 & 0.01999 & \cellcolor{blue!30}0.035525 & 0.018966 & 0.005411\\ \hline 
-			\end{tabular}}
-			\caption{Variable Shrinkage: Power Plant Parameters with Best Cross Validation RMSE.}
-			\label{tab:powerPlantconstantBestAndWorstParameters}
-		\end{table}
-
-
-
-%-------------------------------------------------Crime COmmunities------------------------------------------------------------
-\begin{table}[!t]
-	\resizebox{\linewidth}{!}{
-		\begin{tabular}{ | c || c | c | c | c | c | }
-			\hline
-			\rule{0pt}{2ex} Bag Fraction & 0.75 & 0.75 & 0.5 & 0.5 & 0.5\\ \hline 
-			\rule{0pt}{2ex} Min Leaf Size & 50.0 & 1.0 & 1.0 & 50.0 & 50.0\\ \hline 
-			\rule{0pt}{2ex} MaxSplits & 64.0 & 8.0 & 16.0 & 32.0 & 128.0\\ \hline 
-			\rule{0pt}{2ex} Shrinkage & 0.01 & 0.001 & 0.001 & 0.0001 & 0.001\\ \hline 
-			\hline 
-			\rule{0pt}{2ex} RunningTime (seconds) & 804.0786 & 1614.8035 & 1221.8599 & \cellcolor{blue!30}2382.7478 & \cellcolor{blue!10}565.2622\\ \hline 
-			\rule{0pt}{2ex} ATD Test RMSE & \cellcolor{blue!30}0.1432 & 0.1421 & 0.1375 & 0.136 & \cellcolor{blue!10}0.1349\\ \hline 
-			\rule{0pt}{2ex} ABT Test RMSE & \cellcolor{blue!30}0.1431 & 0.1417 & 0.1367 & 0.1361 & \cellcolor{blue!10}0.1349\\ \hline 
-			\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}0.1333 & 0.1335 & 0.1337 & 0.1343 & \cellcolor{blue!30}0.1345\\ \hline 
-			\rule{0pt}{2ex} Optimal Num. of Trees & \cellcolor{blue!10}830.8 & 26488.2 & 7292.4 & \cellcolor{blue!30}92747.2 & 9680\\ \hline 
-			\hline 
-			\rule{0pt}{2ex} Avg. Leaf Size & \cellcolor{blue!30}38.168482 & 18.110589 & \cellcolor{blue!10}15.920001 & 30.781199 & 29.906396\\ \hline 
-			\rule{0pt}{2ex} Std. Dev. Leaf Size & 6.997223 & \cellcolor{blue!30}15.62332 & \cellcolor{blue!10}4.341818 & 8.759128 & 10.357147\\ \hline 
-			\rule{0pt}{2ex} Avg. Splits & 11.6437 & \cellcolor{blue!10}2.752 & \cellcolor{blue!30}14.08 & 7.3093 & 7.1072\\ \hline 
-			\rule{0pt}{2ex} Std. Dev. Splits & \cellcolor{blue!10}1.5399 & 2.374 & \cellcolor{blue!30}3.84 & 2.0806 & 2.4574\\ \hline 
-		\end{tabular}}
-		\caption{Constant Shrinkage: Crime Communities Parameters with Best Cross Validation RMSE.}
-		\label{tab:crimeCommunitiesconstantBestAndWorstParameters}
-	\end{table}
-	
-	
-	\begin{table}[!t]
-		\resizebox{\linewidth}{!}{
-			\begin{tabular}{ | c || c | c | c | c | c | }
-				\hline
-				\rule{0pt}{2ex} Bag Fraction & 0.5 & 0.5 & 0.25 & 0.75 & 0.5\\ \hline 
-				\rule{0pt}{2ex} Min Leaf Size & 50.0 & 1.0 & 1.0 & 50.0 & 50.0\\ \hline 
-				\rule{0pt}{2ex} MaxSplits & 32.0 & 32.0 & 16.0 & 128.0 & 4.0\\ \hline 
-				\rule{0pt}{2ex} Min Shrinkage & 0.0001 & 0.001 & 0.0001 & 0.001 & 0.01\\ \hline 
-				\rule{0pt}{2ex} Max Shrinkage & 0.1 & 0.1 & 0.1 & 0.1 & 0.1\\ \hline 
-				\hline 
-				\rule{0pt}{2ex} RunningTime (seconds) & 464.4778 & \cellcolor{blue!30}1443.1898 & 830.8513 & 849.6289 & \cellcolor{blue!10}309.6907\\ \hline 
-				\rule{0pt}{2ex} ATD Test RMSE & \cellcolor{blue!10}0.1379 & \cellcolor{blue!30}0.1434 & 0.143 & 0.138 & 0.1431\\ \hline 
-				\rule{0pt}{2ex} ABT Test RMSE & 0.1379 & \cellcolor{blue!30}0.1429 & 0.1426 & \cellcolor{blue!10}0.1378 & 0.1418\\ \hline 
-				\rule{0pt}{2ex} Cross Validation RMSE & \cellcolor{blue!10}0.1337 & 0.1338 & 0.1339 & 0.1342 & \cellcolor{blue!30}0.1343\\ \hline 
-				\rule{0pt}{2ex} Optimal Num. of Trees & 1139.8 & 1664.8 & \cellcolor{blue!30}2018 & 1073.4 & \cellcolor{blue!10}684\\ \hline 
-				\hline 
-				\rule{0pt}{2ex} Avg. Leaf Size & 34.124605 & 27.549538 & \cellcolor{blue!10}9.0303 & 34.975735 & \cellcolor{blue!30}66.33333\\ \hline 
-				\rule{0pt}{2ex} Std. Dev. Leaf Size & 1.194561 & \cellcolor{blue!30}36.410169 & \cellcolor{blue!10}0 & 1.601863 & 0\\ \hline 
-				\rule{0pt}{2ex} Avg. Splits & 8.2961 & \cellcolor{blue!30}25.4139 & 16 & 12.3821 & \cellcolor{blue!10}4\\ \hline 
-				\rule{0pt}{2ex} Std. Dev. Splits & 0.3004 & \cellcolor{blue!30}11.4279 & \cellcolor{blue!10}0 & 0.5222 & 0\\ \hline 
-				\rule{0pt}{2ex} Avg. Shrinkage & 0.011279 & 0.028734 & 0.029102 & \cellcolor{blue!10}0.008565 & \cellcolor{blue!30}0.036525\\ \hline 
-				\rule{0pt}{2ex} Std. Dev. Shrinkage & \cellcolor{blue!10}0.000291 & 0.005544 & \cellcolor{blue!30}0.010263 & 0.000314 & 0.004001\\ \hline 
-			\end{tabular}}
-			\caption{Variable Shrinkage: Crime Communities Parameters with Best Cross Validation RMSE.}
-			\label{tab:crimeCommunitiesconstantBestAndWorstParameters}
-		\end{table}
-
-
+\newpage
 %---------------------------------------------------------------
-\section{Analysis}
-Analysis and stuff
+\section{Discussion}
+\label{sec:discussion}
+
+Overall, the results show that our initial hypothesis was well placed, and there are clear advantages to adapting the shrinkage applied to a leaf node's prediction based on the number of training examples that fell into that node. 
+
+From the data shown in Tables \ref{tab:powerPlantbestParameters}, \ref{tab:nasabestParameters}, \ref{tab:bikeSharingDaybestParameters}, and \ref{tab:crimeCommunitiesbestParameters}, we can safely say that using variable learning rates does not impede the algorithm's ability to learn and generalize effectively, and in some cases actually results in lower RMSE than using constant shrinkage. However, its important to note that the differences between the error values for the best constant and variable parameters on all datasets are not large enough (only within a 6\% difference in all cases) to be considered very significant. So although the variable learning rates show lower minimum errors in all cases for the NASA as well as the Crime Communities dataset, but usually higher minimum errors for the Power Plant and Bike Sharing datasets; the more important result is that the minimum errors achieved with variable shrinkage are comparable in magnitude to those found with constant shrinkage, and not by any means significantly worse.
+
+The really exciting result is the decrease in the amount of time and number of trees it usually takes to reach minimal error. For the Power Plant dataset we see an approximate 85\% reduction in running time across the board; and a corresponding reduction in the number of trees required for both the minimum CV Error and ADT Error. In the case of the Aggregated Boosted Trees, the best generalization was achieved using about the same number of trees with both constant and variable shrinkage, but each tree used only 4 splits rather than 64 with constant shrinkage, so here we are still looking at an overall decrease in modeled interactions of about 8 times. We see similar speedups and reduction in modeled interactions across the other three datasets, with only a couple exceptions. Namely the minimal cross validation error on the NASA and Bike Sharing datasets; yet on theses datasets we still see between a 35\% and 80\% decrease in the running time needed to achieve the minimal ATD and ABT generalization error. For the Crime Communities dataset, the running time to achieve the minimum error values is reduced by more than 20\% across the board.
+
+Interestingly, Figure \ref{fig:cvVsGeneralization}, which plots the relationship between cross validation error and generalization errors clearly shows that on average the worst case parameters using variable shrinkage result in nearly half the error of the worst case constant shrinkage parameters. This is an exciting result which indicates that variable shrinkage leads to far better model stability in general and is extremely robust to changes in the model parameters. Such a result has obvious real world significance in that model builders could spend less time parameter tuning and still have confidence that their model will perform reasonably well. Looking at the individual parameters in turn, this overall robustness seems to have intuitive justification.
+
+First consider the case where the GBM is given only a small number of splits it can work with. As always, the regression tree splitting algorithm will make the absolute most out of those splits, choosing at each step the split that results in the largest decrease in squared error (or largest increase in some other measure of node purity). Simple observation seems to indicate that the very first splits in regression trees are often quite unbalanced in nature, leading to large variance in the leaf sizes; and as the number of splits increases this variance diminishes. These initial, uneven, purity maximizing splits contain a lot of valuable information regarding example noise, outliers, and general generalization value that is ignored by simply applying the same small shrinkage to all nodes. With variable shrinkage the GBM is able to leverage this otherwise lost information to make the most out of every split, leading to faster error convergence on average. As the number of splits increases, and the size of the leave nodes become smaller and more evenly spread, it follows logically that the performance seen using constant and variable shrinkage should converge. This is precisely the relationship verified by the Max Number of Splits vs. Cross Validation Error plots in the first row of Figure \ref{fig:parametersVsCvValidationError}, and also explains how the models using variable shrinkage consistently require less running time and less trees to achieve error convergence as seen in the first rows of Figures \ref{fig:parametersVsTimeInSeconds} and \ref{fig:parametersVsOptimalNumberOfTrees}.
+
+We can take a similar view of the minimum leaf size parameter. First observe from the second row of Figure \ref{fig:parametersVsTimeInSeconds}  that as the minimum leaf size increases, the average running time slowly descends at about the same rate for both constant and variable shrinkages. This is as expected due to the strong correlation between the actual number of splits made and the minimum leaf size. Larger minimum leaf sizes result in less possible splits which naturally will trim the running time of the algorithm. From Figure \ref{fig:parametersVsTimeInSeconds} we additionally see that the tests using variable shrinkage consistently take about half the time of their constant shrinkage counterparts. Again this is likely due to the fact that variable shrinkages allow the model to make use of more information contained in each split which leads to faster reduction of the overall error and a more timely meeting of the stopping condition. The correlation between leaf size and the actual number of splits becomes more apparent when looking at its relationship to the optimal number of trees and error shown in the second rows of Figures  \ref{fig:parametersVsOptimalNumberOfTrees} and \ref{fig:parametersVsCvValidationError}. As the leaf size increases, the difference in the number of trees required to converge becomes more pronounced. This phenomena likely occurs because the computed shrinkages will increase as the minimum node size increases; and larger shrinkage values implies faster learning and earlier stopping condition satisfaction. Although one might expect the use of these larger learning rates to result in a steep error ascent due to increased risk of over fitting, Figure \ref{fig:parametersVsCvValidationError} shows that the variable scheme keeps the model stable. Although the error rises as the leaf sizes increase, it rises with a gradient nearly identical to that of the constant tests, indicating once again that the implemented shrinkage weighting scheme enables the GBM to effectively utilize larger learning rates safely without increasing the risk of over fitting.
+ 
+The bag fraction is a bit more tricky to analyze due to its inherent stochastic nature. When looking at the graphs for each individual dataset there seemed to be quite a bit of variance in which parameter values led to the fastest running time, lowest optimal number of trees, and optimal error; however these variations do appear to have averaged out to some observable trends shown in the third rows of Figures \ref{fig:parametersVsTimeInSeconds},
+\ref{fig:parametersVsOptimalNumberOfTrees}, and
+\ref{fig:parametersVsCvValidationError}. Firstly its once again apparent from Figure \ref{fig:parametersVsTimeInSeconds} that variable shrinkage leads to faster achievement of the stopping condition, less trees, and lower error on average. The running time curve expectedly shows that as the bag fraction increases, the running time increases on average; which makes sense due to the fact that more examples must be evaluated for splitting in the regression trees. The optimal number of trees curve shows an interesting trend in that the constant and variable shrinkage tests seem to be converging on the number of trees required as the bag fraction increases. This may be due to a decrease in the actual number of splits possible and potentially an increased likelihood of uneven splits when the bag fraction is low and less data is available to each regression tree. Once again the variable shrinkage scheme allows the GBM to make more effective use of all the split information so it requires less trees overall. As the bag fraction increases, the regression trees can make more splits leading to more even sized leaf nodes and an increased resemblance between the computed variable learning rates and the constant learning rates. Finally, in Figure \ref{fig:parametersVsCvValidationError} we see a slight decrease in average error as the bag fraction increases, yet from the scatter plot we see that the actual minimum errors are achieved using bag fractions less that one. This also follows closely with the intuition that the more training examples you have, the better your predictions will be in general, but is also supportive of Friedman's original reasoning in \cite{2002Friedman} that providing randomly selected subsets of the training data to each base learner decreases overall model variance, and thus error, by reducing correlation between the predictions made by the base learners built in each successive iteration.
+
+The pairwise parameter influence plots for constant shrinkage are found in the fourth rows of Figures \ref{fig:parametersVsTimeInSeconds},
+\ref{fig:parametersVsOptimalNumberOfTrees}, and
+\ref{fig:parametersVsCvValidationError}. These plots confirm the trends that have been widely analyzed by previous Gradient Boosting Machine research. Increasing the shrinkage leads to less trees and faster stopping condition satisfaction, but at the cost of over fitting and increasing error. In many cases the tests using the two lowest constant shrinkage values of 0.0001 and 0.001 were unable to converge by the time they reached the maximum number of trees or ran out of time or memory, thus the error is actually the highest for these lowest error rates, but surely would have decreased if allowed to run to completion. Also note that the plots do not capture the error increase that will result from too high of constant shrinkage since the highest tested learning rate was 0.1. In early tests larger learning rates were evaluated and invariably resulted in unstable models and quick error divergence.
+
+We will conclude our discussion with a look at the pairwise parameter influence plots for the min and max shrinkage parameters, which uncover what is perhaps the most surprising result of this study. It seems regardless of the values chosen for these parameters, the distribution of error values across all tests remains unchanged. Smaller values of these parameters do result in more trees and slightly longer running times on average, which makes sense since the average computed learning rates would be smaller and thus the model would learn more slowly. But the error value distribution is simply unaffected. This is great news as it in many ways nullifies the only major downside of implementing and using this scheme, the addition of another parameter to tune. Based on our results, it seems that in practice the min and max shrinkages could simply be set to any reasonable values, then parameter tuning would only need to be done on the remaining parameters. 
+
+Our analysis strongly supports our initial hypothesis that by varying the shrinkage applied to the prediction of the examples in each individual leaf of regression tree base learners, the convergence time can be decreased without sacrificing generalization ability and resilience to over fitting. We have shown that the proposed variable shrinkage scheme consistently achieves comparable root mean squared error to constant shrinkage on a variety of real world datasets. In addition the pairwise parameter influence plots indicate that by dynamically computing shrinkage based on leaf node size, the algorithm as a whole becomes significantly more robust to variations in all model parameters. 
+
 %---------------------------------------------------------------
 \section{Conclusion}
-The conclusion goes here.
 
+A variable shrinkage scheme for gradient boosting machines with regression tree base learners was developed and tested against four real world datasets of various sizes, predictor dimensionality, and regression task difficulty. Under the proposed adaptation scheme, a separate shrinkage is calculated for each leaf node in each regression tree such that leaf nodes with less training examples receive lower shrinkage than larger sized leaf nodes. In this way less weight is given to the predictions of noisy, outlying, and atypical examples while the model focuses its learning to the responses of the more typical training examples. 
 
+Our analysis shows that this adaptation scheme leads to a significant decrease in the total number of interactions that must be modeled in order to reach a minimum cross validation error. This decrease in running time and number of trees built is not accompanied by a decreased resilience to over fitting as one might expect, and has been shown to be capable of generating models with competitive and in some cases better root mean squared error vs. the best error achieved using a traditional constant shrinkage scheme.  
 
-
-% conference papers do not normally have an appendix
-
-
-% use section* for acknowledgment
-\section*{Acknowledgment}
-Yo chang's the man
+In addition, GBMs built with variable shrinkage have been shown to be far more robust to variations in all of the model parameters, leading to far lower error with the worst case variable shrinkage parameters than with the worst case constant shrinkage parameters. This property along with the decreased average running time makes our variable shrinkage scheme an attractive candidate for further research and use in production gradient boosting machine implementations.
 
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page
 % adjust value as needed - may need to be readjusted if
 % the document is modified later
-\IEEEtriggeratref{8}
+%\IEEEtriggeratref{8}
 % The "triggered" command can be changed if desired:
 %\IEEEtriggercmd{\enlargethispage{-5in}}
 
 % references section
+
 \bibliographystyle{ieeetran}
-\bibliography{references}
-
-\todo{Crime communities citation request} 
-U. S. Department of Commerce, Bureau of the Census, Census Of Population And Housing 1990 United States: Summary Tape File 1a \& 3a (Computer Files),
-
-U.S. Department Of Commerce, Bureau Of The Census Producer, Washington, DC and 
-Inter-university Consortium for Political and Social Research Ann Arbor, Michigan. 
-(1992)
-
-U.S. Department of Justice, Bureau of Justice Statistics, Law Enforcement Management 
-And Administrative Statistics (Computer File) U.S. Department Of Commerce, Bureau Of 
-The Census Producer, Washington, DC and Inter-university Consortium for Political and 
-Social Research Ann Arbor, Michigan. (1992)
-
-U.S. Department of Justice, Federal Bureau of Investigation, Crime in the United 
-States (Computer File) (1995)
-
-Redmond, M. A. and A. Baveja: A Data-Driven Software Tool for Enabling Cooperative 
-Information Sharing Among Police Departments. European Journal of Operational Research 
-141 (2002) 660-678. 
-
-
+	\bibliography{references}
 
 % that's all folks
 \end{document}
