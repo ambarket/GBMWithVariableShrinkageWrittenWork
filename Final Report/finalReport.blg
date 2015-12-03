@@ -1,12 +1,19 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: finalReport.aux
+This is BibTeX, Version 0.99d (TeX Live 2014/Cygwin)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: finalReport.aux
 The style file: ieeetran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: references.bib
-I was expecting a `,' or a `}'---line 236 of file references.bib
+I was expecting a `,' or a `}'---line 471 of file references.bib
  :  
  :  volume={60}
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Repeated entry---line 254 of file references.bib
+Repeated entry---line 507 of file references.bib
  : @misc{crimeCommunitiesCiteRequest1
  :                                   ,
 I'm skipping whatever remains of this entry
@@ -14,11 +21,52 @@ I'm skipping whatever remains of this entry
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 Name 1 in "Natekin, Alexey, and Alois Knoll" has a comma at the end for entry GBMTut
-while executing---line 2411 of file ieeetran.bst
+while executing---line 4821 of file ieeetran.bst
 Name 1 in "T.F. Brooks, D.S. Pope, and A.M. Marcolini" has a comma at the end for entry nasaCiteRequest1
-while executing---line 2411 of file ieeetran.bst
+while executing---line 4821 of file ieeetran.bst
 Warning--empty journal in nasaCiteRequest2
 Warning--empty journal in nasaCiteRequest3
 
 Done.
+You've used 32 entries,
+            4024 wiz_defined-function locations,
+            1013 strings with 13082 characters,
+and the built_in function-call counts, 18922 in all, are:
+= -- 1556
+> -- 297
+< -- 143
++ -- 172
+- -- 42
+* -- 890
+:= -- 3039
+add.period$ -- 68
+call.type$ -- 32
+change.case$ -- 36
+chr.to.int$ -- 327
+cite$ -- 34
+duplicate$ -- 1436
+empty$ -- 1588
+format.name$ -- 53
+if$ -- 4272
+int.to.chr$ -- 0
+int.to.str$ -- 32
+missing$ -- 237
+newline$ -- 155
+num.names$ -- 27
+pop$ -- 591
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 1483
+stack$ -- 0
+substring$ -- 809
+swap$ -- 1075
+text.length$ -- 34
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 32
+warning$ -- 2
+while$ -- 78
+width$ -- 34
+write$ -- 340
 (There were 4 error messages)
